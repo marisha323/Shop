@@ -1,8 +1,11 @@
 <x-guest-layout>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<header>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</header>
+    <!-- Session Status -->
+    bhfgh
+    <x-auth-session-status class="mb-4" :status="session('status')" />
+
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
