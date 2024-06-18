@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+//    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+//    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+//    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+});
 require __DIR__.'/auth.php';
