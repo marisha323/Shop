@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 // Category
 Route::get('category/add_category', [CategoryController::class, 'add']) -> name('category.add_category');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
