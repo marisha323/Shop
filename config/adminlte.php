@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>V</b>D',
-    'logo_img' => 'vendor/adminlte/dist/img/VD_logo.jpg',
+    'logo_img' => 'vendor/almasaeed2010/adminlte/dist/img/VD_logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -318,7 +318,14 @@ return [
         ],
         [
             'text' => 'Categories',
-            'url' => 'category/add_category',
+            'url' => 'category/index',
+            'icon' => 'far fa-fw fa-file',
+//            'label' => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Products',
+            'url' => 'product/index',
             'icon' => 'far fa-fw fa-file',
 //            'label' => 4,
             'label_color' => 'success',
