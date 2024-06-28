@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Category
+Route::get('category/add_category', [CategoryController::class, 'add']) -> name('category.add_category');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

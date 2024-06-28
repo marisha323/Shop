@@ -322,20 +322,6 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
-        [
-            'text' => 'товар',
-            'url' => 'product/index',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        [
-            'text' => 'add_product',
-            'url' => 'admin/add-product',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
