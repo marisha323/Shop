@@ -318,6 +318,7 @@ return [
         ],
         [
             'text' => 'Categories',
+
             'url' => 'category/add_category',
             'icon' => 'far fa-fw fa-file',
 //            'label' => 4,
@@ -326,6 +327,7 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
+
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
