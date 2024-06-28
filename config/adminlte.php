@@ -71,6 +71,7 @@ return [
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'Admin Logo',
 
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Logo
@@ -316,16 +317,16 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'Categories',
+            'url' => 'category/index',
             'icon' => 'far fa-fw fa-file',
-            'label' => 4,
+//            'label' => 4,
             'label_color' => 'success',
         ],
         [
-            'text' => 'товар',
-
+            'text' => 'Products',
             'url' => 'product/index',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
