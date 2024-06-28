@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +33,11 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
 //    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
 //    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
 //    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
 require __DIR__.'/auth.php';
+Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
+Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
