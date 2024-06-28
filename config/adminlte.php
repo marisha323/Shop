@@ -318,8 +318,14 @@ return [
         ],
         [
             'text' => 'Categories',
-
-            'url' => 'category/add_category',
+            'url' => 'category/index',
+            'icon' => 'far fa-fw fa-file',
+//            'label' => 4,
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Products',
+            'url' => 'product/index',
             'icon' => 'far fa-fw fa-file',
 //            'label' => 4,
             'label_color' => 'success',
@@ -327,7 +333,6 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-user',
         ],
