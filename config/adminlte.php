@@ -325,10 +325,12 @@ return [
         ],
         [
             'text' => 'товар',
+
             'url' => 'product/index',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
+
         ],
         [
             'text' => 'add_product',
