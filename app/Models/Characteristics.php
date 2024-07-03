@@ -9,15 +9,22 @@ class Characteristics extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'title',
         'type_of_material',
         'height',
         'width',
         'size_id',
+        'brand_id',
     ];
 
     // Определите связь с моделью Size
     public function size()
     {
         return $this->belongsTo(Size::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 }
