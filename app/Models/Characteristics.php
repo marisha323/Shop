@@ -18,6 +18,11 @@ class Characteristics extends Model
     // Определите связь с моделью Size
     public function size()
     {
-        return $this->belongsTo(Size::class);
+        return $this->belongsTo(Size::class, 'size_id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brands::class, 'brand_id');
     }
 }

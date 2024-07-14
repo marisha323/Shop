@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+@extends('adminlte::page')
+@section('content_header')
 <head>
     <title>Добавить категорию</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -35,3 +37,4 @@
 </div>
 </body>
 </html>
+@stop

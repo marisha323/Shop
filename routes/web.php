@@ -31,10 +31,11 @@ Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('ca
 
 //Products
 Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
+Route::get('/product/{id}/info', [ProductController::class, 'info'])->name('product.info');
 Route::get('product/add', [ProductController::class, 'create'])->name('product.add');
 Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
 Route::get('product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::put('product/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::post('product/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 
 Route::get('/dashboard', function () {
@@ -56,5 +57,5 @@ Route::prefix('admin')->group(function () {
 //    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
 require __DIR__.'/auth.php';
-Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
-Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
+//Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
+//Route::get('/product/index',[ProductController::class,'index'])->name('product.index');

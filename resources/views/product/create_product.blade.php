@@ -30,7 +30,7 @@
                 border: 1px solid #ccc;
                 border-radius: 4px;
             }
-            button {
+            .button-add-photo {
                 width: 100%;
                 padding: 10px;
                 background-color: #28a745;
@@ -48,7 +48,7 @@
     <body>
     <div class="container">
         <h1>Створення нового продукту</h1>
-        <form action="{{route('product.store')}}" method="POST">
+        <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Назва продукту:</label>
@@ -74,7 +74,6 @@
                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                     @endforeach
                 </select>
-
             </div>
             <div class="form-group">
                 <label for="characteristics_id">Характеристики:</label>
@@ -94,9 +93,45 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit">Додати продукт</button>
+            <div class="form-group" id="images-container">
+                <label for="images">Фото продукту:</label>
+                <div class="custom-file">
+                    <input type="file" id="images" name="images[]" class="custom-file-input" multiple>
+                    <label class="custom-file-label" for="images">Виберіть файли</label>
+                </div>
+            </div>
+            <button type="button" id="add-image-button" class="btn btn-secondary mb-2">Додати ще одне фото</button>
+            <button class="button-add-photo" type="submit">Додати продукт</button>
         </form>
     </div>
+
     </body>
+    <script>
+        document.getElementById('add-image-button').addEventListener('click', function() {
+            var container = document.getElementById('images-container');
+            var newInputDiv = document.createElement('div');
+            newInputDiv.classList.add('custom-file', 'mt-2');
+            var newInput = document.createElement('input');
+            newInput.type = 'file';
+            newInput.name = 'images[]';
+            newInput.classList.add('custom-file-input');
+            var newLabel = document.createElement('label');
+            newLabel.classList.add('custom-file-label');
+            newLabel.innerHTML = 'Виберіть файли';
+            newInputDiv.appendChild(newInput);
+            newInputDiv.appendChild(newLabel);
+            container.appendChild(newInputDiv);
+        });
+
+        // Update the label of custom-file input to show the selected file names
+        document.addEventListener('change', function(event) {
+            if (event.target.classList.contains('custom-file-input')) {
+                var input = event.target;
+                var label = input.nextElementSibling;
+                var fileNames = Array.from(input.files).map(file => file.name).join(', ');
+                label.innerHTML = fileNames ? fileNames : 'Виберіть файли';
+            }
+        });
+    </script>
 @stop
 
