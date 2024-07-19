@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CharacteristicController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +40,23 @@ Route::post('/characteristics/store', [CharacteristicController::class, 'store']
 Route::get('characteristics/{id}/edit', [CharacteristicController::class, 'edit'])->name('characteristics.edit');
 Route::put('characteristics/{id}', [CharacteristicController::class, 'update'])->name('characteristics.update');
 Route::delete('characteristics/{id}', [CharacteristicController::class, 'destroy'])->name('characteristics.destroy');
+
+//Colors
+Route::get('/color/index', [ColorController::class, 'index'])->name('color.index');
+Route::get('color/create', [ColorController::class, 'create']) -> name('color.create');
+Route::post('/color/store', [ColorController::class, 'store'])->name('color.store');
+Route::get('color/{id}/edit', [ColorController::class, 'edit'])->name('color.edit');
+Route::put('color/{id}', [ColorController::class, 'update'])->name('color.update');
+Route::delete('color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
+
+//Brands
+Route::get('/brand/index', [BrandController::class, 'index'])->name('brand.index');
+Route::get('brand/create', [BrandController::class, 'create']) -> name('brand.create');
+Route::post('/brand/store', [BrandController::class, 'store'])->name('brand.store');
+Route::get('brand/{id}/edit', [BrandController::class, 'edit'])->name('brand.edit');
+Route::put('brand/{id}', [BrandController::class, 'update'])->name('brand.update');
+Route::delete('brand/{id}', [BrandController::class, 'destroy'])->name('brand.destroy');
+
 
 //Products
 Route::get('/product/index',[ProductController::class,'index'])->name('product.index');

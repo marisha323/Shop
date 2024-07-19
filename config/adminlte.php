@@ -349,6 +349,20 @@ return [
             'label_color' => 'success',
 
         ],
+        [
+            'text' => 'Colors',
+            'url' => 'color/index',
+            'icon' => 'far fa-fw fa-file',
+            'label_color' => 'success',
+
+        ],
+        [
+            'text' => 'Brands',
+            'url' => 'brand/index',
+            'icon' => 'far fa-fw fa-file',
+            'label_color' => 'success',
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
