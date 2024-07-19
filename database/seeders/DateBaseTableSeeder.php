@@ -15,26 +15,26 @@ class DateBaseTableSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users_roles')->insert([
-            ['name' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'User', 'created_at' => now(), 'updated_at' => now()],
-        ]);
+//        DB::table('users_roles')->insert([
+//            ['name' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
+//            ['name' => 'User', 'created_at' => now(), 'updated_at' => now()],
+//        ]);
 //         Заповнення таблиці users
-        DB::table('users')->insert([
-            [
-                'user_role_id' => 1,
-                'name' => 'John Doe',
-                'email' => 'john.doe@example.com',
-                'email_verified_at' => now(),
-                'password' => Hash::make('password'), // Hash the password
-                'remember_token' => Str::random(10),
-                'profile_photo_path' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-                'code_mentor_id' => null, // Correct the column name here
-            ],
-            // Додайте більше користувачів тут
-        ]);
+//        DB::table('users')->insert([
+//            [
+//                'user_role_id' => 1,
+//                'name' => 'John Doe',
+//                'email' => 'john.doe@example.com',
+//                'email_verified_at' => now(),
+//                'password' => Hash::make('password'), // Hash the password
+//                'remember_token' => Str::random(10),
+//                'profile_photo_path' => null,
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//                'code_mentor_id' => null, // Correct the column name here
+//            ],
+//            // Додайте більше користувачів тут
+//        ]);
 
         DB::table('sizes')->insert([
             [
