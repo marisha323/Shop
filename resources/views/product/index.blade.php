@@ -13,6 +13,7 @@
     <a href="{{ route('admin.create_product') }}" class="btn btn-primary mb-3">Добавить продукт</a>
 
     <table class="table table-dark table-hover">
+
         <thead>
         <tr>
             <th>ID</th>
