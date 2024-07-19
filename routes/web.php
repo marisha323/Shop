@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CharacteristicController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,15 @@ Route::get('/category/index', [CategoryController::class, 'index'])->name('categ
 Route::get('category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
 Route::put('category/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
+// Characteristics
+//Route::resource('characteristics', CharacteristicController::class);
+Route::get('/characteristics/index', [CharacteristicController::class, 'index'])->name('characteristics.index');
+Route::get('characteristics/create', [CharacteristicController::class, 'create']) -> name('characteristics.create');
+Route::post('/characteristics/store', [CharacteristicController::class, 'store'])->name('characteristics.store');
+Route::get('characteristics/{id}/edit', [CharacteristicController::class, 'edit'])->name('characteristics.edit');
+Route::put('characteristics/{id}', [CharacteristicController::class, 'update'])->name('characteristics.update');
+Route::delete('characteristics/{id}', [CharacteristicController::class, 'destroy'])->name('characteristics.destroy');
 
 //Products
 Route::get('/product/index',[ProductController::class,'index'])->name('product.index');

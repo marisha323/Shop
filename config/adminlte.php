@@ -341,6 +341,14 @@ return [
             'label_color' => 'success',
 
         ],
+        [
+            'text' => 'Characteristics',
+            'url' => 'characteristics/index',
+            'icon' => 'far fa-fw fa-file',
+//            'label' => 4,
+            'label_color' => 'success',
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
