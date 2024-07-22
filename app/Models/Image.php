@@ -13,4 +13,9 @@ class Image extends Model
     {
         return url($this->path);
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_images', 'image_id', 'product_id');
+    }
 }
