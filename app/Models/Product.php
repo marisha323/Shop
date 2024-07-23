@@ -36,4 +36,10 @@ class Product extends Model
         return $this->belongsTo(DiscountProducts::class, 'discount_products_id');
     }
 
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class, 'product_images', 'product_id', 'image_id');
+    }
+
 }
