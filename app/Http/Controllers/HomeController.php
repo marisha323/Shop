@@ -19,4 +19,15 @@ class HomeController extends Controller
         return view('welcome', compact('categories', 'products'));
 
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'LIKE', "%{$query}%")
+            ->with('images')
+            ->get();
+        $categories = Category::all();
+
+        return view('welcome', compact('categories', 'products', 'query'));
+    }
 }

@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
-
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 // Category
 Route::get('category/add_category', [CategoryController::class, 'add']) -> name('category.add_category');
