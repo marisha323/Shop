@@ -19,24 +19,34 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $product = Product::find($request->product_id);
+        $product = Product::with('images')->find($request->product_id);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
 
         $cart = session()->get('cart', []);
 
-        if(isset($cart[$product->id])) {
+        if (isset($cart[$product->id])) {
             $cart[$product->id]['quantity']++;
         } else {
+            // Add product to the cart with its details
             $cart[$product->id] = [
-                "name" => $product->name,
-                "quantity" => 1,
-                "price" => $product->price,
-                "image" => $product->images->first()->ImageUrl
+                'name' => $product->name,
+                'quantity' => 1,
+                'price' => $product->price,
+                'images' => $product->images->map(function ($image) {
+                    return [
+                        'ImageUrl' => $image->ImageUrl,
+                    ];
+                })->toArray(),
             ];
         }
 
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Product added to cart!');
+        return redirect()->back()->with('success', 'Product added to cart.');
+
     }
 
     public function remove($id)

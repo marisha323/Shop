@@ -35,7 +35,12 @@
             <tbody>
             @foreach(session('cart') as $id => $details)
                 <tr>
-                    <td>{{ $details['name'] }}</td>
+                    <td>
+                        @if(!empty($details['images']))
+                            <img src="{{ $details['images'][0]['ImageUrl'] }}" alt="{{ $details['name'] }}" class="img-fluid" style="width: 50px; height: 50px; margin-right: 10px;">
+                        @endif
+                        {{ $details['name'] }}
+                    </td>
                     <td>{{ $details['quantity'] }}</td>
                     <td>${{ $details['price'] }}</td>
                     <td>${{ $details['price'] * $details['quantity'] }}</td>
@@ -55,8 +60,7 @@
         </div>
     @else
         <p>Your cart is empty.</p>
-    @endif
-</div>
+@endif
 
 </body>
 </html>
