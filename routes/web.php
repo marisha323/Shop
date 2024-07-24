@@ -68,8 +68,9 @@ Route::get('/product/{id}/info', [ProductController::class, 'info'])->name('prod
 Route::get('product/add', [ProductController::class, 'create'])->name('product.add');
 Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
 Route::get('product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::post('product/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/products/category/{id}', [ProductController::class, 'showCategory'])->name('products.showCategory');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

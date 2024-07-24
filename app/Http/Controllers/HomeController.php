@@ -19,6 +19,12 @@ class HomeController extends Controller
         return view('welcome', compact('categories', 'products'));
 
     }
+    public function showCategory($categoryId)
+    {
+        // Витягнути категорію разом з продуктами за ідентифікатором категорії
+        $category = Category::with('products.images')->findOrFail($categoryId);
+        return view('products.category', compact('category'));
+    }
 
     public function search(Request $request)
     {

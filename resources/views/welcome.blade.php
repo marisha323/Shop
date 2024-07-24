@@ -55,15 +55,23 @@
                             <h2 class="text-xl font-semibold text-gray-900 dark:text-white">ADMIN PANEL</h2>
                         </a>
                 </div>
+
             @endif
 {{--<h2>Список категорий</h2>--}}
 {{--                @foreach ($categories as $category)--}}
 {{--                        <div>{{ $category->title }}</div>--}}
 {{--                @endforeach--}}
 
+
                 <div class="container">
+                    <h1 style="color: yellow">Категорії</h1>
+                    <ul>
+                        @foreach ($categories as $category)
+                            <li><a href="{{ route('products.showCategory', $category->id) }}">{{ $category->name }}</a></li>
+                        @endforeach
+                    </ul>
                     <h1>Products</h1>
-                    <h1>Products</h1>
+
                     <div class="row">
                         @foreach ($products as $product)
                             <div class="col-md-4">

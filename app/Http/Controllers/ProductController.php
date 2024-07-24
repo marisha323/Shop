@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -120,7 +121,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        // Валідуючі дані
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'count' => 'required|integer|min:0',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'characteristics_id' => 'required|exists:characteristics,id',
+            'discount_products_id' => 'required|exists:discount_products,id',
+        ]);
+
+
+        // Знаходження продукту за ID
+        $product = Product::findOrFail($id);
+//dd($product);
+        // Оновлення продукту
+        $product->name = $request->name;
+        $product->count = $request->count;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->characteristics_id = $request->characteristics_id;
+        $product->discount_products_id = $request->discount_products_id;
+        $product->save();
+        Log::info('Update method called');
+        // Перенаправлення з повідомленням про успіх
+        return redirect()->route('product.indexf')->with('success', 'Продукт успішно оновлено');
+
     }
 
     /**

@@ -20,54 +20,61 @@
         </div>
     @endif
 
+
     <form action="{{ route('product.update', $product->id) }}" method="POST">
         @csrf
         @method('PUT')
+
         <div class="form-group">
             <label for="name">Название продукта</label>
-            <input type="text" class="form-control" id="name" name="name" value="{{ $product->name }}" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{ $product->name }}" autocomplete="off" required>
         </div>
+
         <div class="form-group">
             <label for="count">Количество</label>
-            <input type="number" class="form-control" id="count" name="count" value="{{ $product->count }}" required>
+            <input type="number" class="form-control" id="count" name="count" value="{{ $product->count }}" autocomplete="off" required>
         </div>
+
         <div class="form-group">
             <label for="description">Описание</label>
-            <textarea class="form-control" id="description" name="description">{{ $product->description }}</textarea>
+            <textarea class="form-control" id="description" name="description" autocomplete="off">{{ $product->description }}</textarea>
         </div>
+
         <div class="form-group">
             <label for="price">Цена</label>
-            <input type="number" step="0.01" value="{{ $product->price }}">
+            <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ $product->price }}" autocomplete="off" required>
         </div>
+
         <div class="form-group">
             <label for="category_id">Категорія:</label>
-            <select name="category_id" id="category_id" required>
+            <select class="form-control" id="category_id" name="category_id" required>
                 <option value="">--Будь ласка, виберіть опцію--</option>
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->title }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="characteristics_id">Характеристики:</label>
-            <select name="characteristics_id" id="characteristics_id" required>
-                <option value="">--Будь ласка, виберіть опцію--</option>
-                @foreach($characteristics as $characteristic)
-                    <option value="{{ $characteristic->id }}">{{ $characteristic->type_of_material }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="discount_products_id">Знижка:</label>
-            <select name="discount_products_id" id="discount_products_id" required>
-                <option value="">--Будь ласка, виберіть опцію--</option>
-                @foreach($discounts as $discount)
-                    <option value="{{ $discount->id }}">{{ $discount->discount }}</option>
+                    <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->title }}</option>
                 @endforeach
             </select>
         </div>
 
-        <button type="button" class="btn btn-success">Зберегти</button>
+        <div class="form-group">
+            <label for="characteristics_id">Характеристики:</label>
+            <select class="form-control" id="characteristics_id" name="characteristics_id" required>
+                <option value="">--Будь ласка, виберіть опцію--</option>
+                @foreach($characteristics as $characteristic)
+                    <option value="{{ $characteristic->id }}" {{ $product->characteristics_id == $characteristic->id ? 'selected' : '' }}>{{ $characteristic->type_of_material }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="discount_products_id">Знижка:</label>
+            <select class="form-control" id="discount_products_id" name="discount_products_id" required>
+                <option value="">--Будь ласка, виберіть опцію--</option>
+                @foreach($discounts as $discount)
+                    <option value="{{ $discount->id }}" {{ $product->discount_products_id == $discount->id ? 'selected' : '' }}>{{ $discount->discount }}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Зберегти</button>
     </form>
 </div>
 </body>
