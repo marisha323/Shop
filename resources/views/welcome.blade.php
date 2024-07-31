@@ -58,7 +58,7 @@
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                         @endif
-                    @endauth
+
                         {{--ADMIN PANEL--}}
                         <a href="{{ route('admin.index') }}"
                            class="bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5">
@@ -66,7 +66,7 @@
                         </a>
                 </div>
 
-            @endif
+
 {{--<h2>Список категорий</h2>--}}
 {{--                @foreach ($categories as $category)--}}
 {{--                        <div>{{ $category->title }}</div>--}}
