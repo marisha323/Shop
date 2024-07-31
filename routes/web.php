@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CharacteristicController;
 use App\Http\Controllers\ColorController;
@@ -27,6 +28,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+// CART
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+
 
 // Category
 Route::get('category/add_category', [CategoryController::class, 'add']) -> name('category.add_category');
