@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-5">Список категорий</h1>
+    <h1 class="mt-5 mb-3">Список категорий</h1>
     <a href="{{ route('category.add_category') }}" class="btn btn-primary mb-3">Добавить категорию</a>
     <table class="table table-dark table-hover">
         <thead>

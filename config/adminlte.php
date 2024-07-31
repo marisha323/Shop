@@ -298,6 +298,12 @@ return [
     'menu' => [
         // Navbar items:
         [
+
+            'text' => 'Повернутися на сайт',
+            'url' => '/',
+            'topnav_right' => true,
+        ],
+        [
             'type' => 'navbar-search',
             'text' => 'search',
             'topnav_right' => true,

@@ -8,7 +8,7 @@
     </head>
     <body>
     <div class="container">
-        <h1 class="mt-5">Список продуктов</h1>
+        <h1 class="mt-5 mb-3">Список продуктов</h1>
 
         <a href="{{ route('admin.create_product') }}" class="btn btn-primary mb-3">Добавить продукт</a>
 
