@@ -3,10 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Couchbase\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Pest\Support\Str;
 
 class User extends Authenticatable
 {
@@ -21,7 +23,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role_id'
+        'user_role_id',
+        'current_team_id',
+        'profile_photo_path',
+        'code_mentor_id',
+        'referral_code',
+
     ];
 
     /**
@@ -50,6 +57,27 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(UsersRole::class);
+    }
+
+
+    // Метод для генерации уникального реферального кода
+    public static function generateReferralCode()
+    {
+        do {
+            $code = Str::random(10);
+        } while (self::where('referral_code', $code)->exists());
+
+        return $code;
+    }
+
+    // Метод для назначения реферального кода при создании пользователя
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $user->referral_code = self::generateReferralCode();
+        });
     }
 }

@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
+//REFERAl LINK
+Route::get('/user/{user}/referral-link', [HomeController::class, 'generateReferralLink'])
+    ->name('user.referral-link');
+
 // CART
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');

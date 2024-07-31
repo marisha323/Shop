@@ -6,17 +6,35 @@ use App\Models\Category;
 use App\Models\Image;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+
+    public function generateReferralLink(User $user)
+    {
+        return url('/register?referral_code=' . $user->referral_code);
+    }
+
+    public function showReferralLink()
+    {
+        $user = Auth::user();
+        $referralLink = (new HomeController)->generateReferralLink($user);
+
+        return view('some-view', ['referralLink' => $referralLink]);
+    }
 
         public function index()
     {
         $products = Product::with('images')->get();
         $categories = Category::all();
+
+        $user = Auth::user();
+        $referralLink = (new HomeController)->generateReferralLink($user);
         //dd($products);
-        return view('welcome', compact('categories', 'products'));
+        return view('welcome', compact('categories', 'products', 'referralLink'));
 
     }
 
@@ -30,4 +48,5 @@ class HomeController extends Controller
 
         return view('welcome', compact('categories', 'products', 'query'));
     }
+
 }
