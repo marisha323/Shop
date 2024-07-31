@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,12 +10,13 @@ class CartController extends Controller
 {
     public function index()
     {
+        $posts = Post::all();
         $cart = session()->get('cart', []);
         $total = array_sum(array_map(function($item) {
             return $item['price'] * $item['quantity'];
         }, $cart));
 
-        return view('cart.cart', compact('cart', 'total'));
+        return view('cart.cart', compact('cart', 'total','posts'));
     }
 
     public function add(Request $request)

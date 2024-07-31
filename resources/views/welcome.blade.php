@@ -56,6 +56,8 @@
     {{--                        <div>{{ $category->title }}</div>--}}
     {{--                @endforeach--}}
 
+    <p>Ваша реферальная ссылка: <a href="{{ $referralLink }}">{{ $referralLink }}</a></p>
+
 
     <div class="container mt-5">
         <h1>Products</h1>

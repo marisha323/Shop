@@ -11,12 +11,28 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-    public function index()
+    public function generateReferralLink(User $user)
+    {
+        return url('/register?referral_code=' . $user->referral_code);
+    }
+
+    public function showReferralLink()
+    {
+        $user = Auth::user();
+        $referralLink = (new HomeController)->generateReferralLink($user);
+
+        return view('some-view', ['referralLink' => $referralLink]);
+    }
+
+        public function index()
     {
         $products = Product::with('images')->get();
         $categories = Category::all();
-        //dd($categories);
-        return view('welcome', compact('categories', 'products'));
+
+        $user = Auth::user();
+        $referralLink = (new HomeController)->generateReferralLink($user);
+        //dd($products);
+        return view('welcome', compact('categories', 'products', 'referralLink'));
 
     }
 
@@ -39,4 +55,5 @@ class HomeController extends Controller
 
         return view('welcome', compact('categories', 'products', 'query'));
     }
+
 }

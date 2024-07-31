@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CharacteristicController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,8 +27,14 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+//REFERAl LINK
+Route::get('/user/{user}/referral-link', [HomeController::class, 'generateReferralLink'])
+    ->name('user.referral-link');
 
 // CART
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
