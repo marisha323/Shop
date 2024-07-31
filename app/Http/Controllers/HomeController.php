@@ -11,19 +11,22 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
-        public function index()
+    public function index()
     {
         $products = Product::with('images')->get();
         $categories = Category::all();
-        //dd($products);
+        //dd($categories);
         return view('welcome', compact('categories', 'products'));
 
     }
+
     public function showCategory($categoryId)
     {
         // Витягнути категорію разом з продуктами за ідентифікатором категорії
         $category = Category::with('products.images')->findOrFail($categoryId);
-        return view('products.category', compact('category'));
+
+        $categories = Category::all();
+        return view('product/category', compact('category','categories'));
     }
 
     public function search(Request $request)

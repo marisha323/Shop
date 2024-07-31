@@ -67,7 +67,8 @@
                     <h1 style="color: yellow">Категорії</h1>
                     <ul>
                         @foreach ($categories as $category)
-                            <li><a href="{{ route('products.showCategory', $category->id) }}">{{ $category->name }}</a></li>
+                           <li style="color: lightyellow"><a href="{{ route('products.showCategory', $category->id) }}">{{ $category->title }}</a></li>
+
                         @endforeach
                     </ul>
                     <h1>Products</h1>

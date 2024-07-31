@@ -70,7 +70,7 @@ Route::post('product/store', [ProductController::class, 'store'])->name('product
 Route::get('product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
 Route::put('/products/{id}', [ProductController::class, 'update'])->name('product.update');
 Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
-Route::get('/products/category/{id}', [ProductController::class, 'showCategory'])->name('products.showCategory');
+Route::get('/products/category/{id}', [HomeController::class, 'showCategory'])->name('products.showCategory');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
