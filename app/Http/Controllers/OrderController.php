@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Referral;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,6 +12,7 @@ class OrderController extends Controller
 {
     public function store(Request $request)
     {
+        $referrer = User::where('referral_code', $request->input('referral_code'))->first();
         // Валидация запроса
         $request->validate([
             'post_id' => ['required', 'exists:posts,id'],
@@ -31,6 +34,20 @@ class OrderController extends Controller
         ]);
         // Очистите корзину после оформления заказа
         session()->forget('cart');
+
+
+            $referralData = [
+                'referrer_id' => $referrer->id,
+                'referred_id' => Auth::id(),
+                'order_id' => $orderId ?? null, // Используйте null, если $orderId не определен
+                'commission' => 0,
+            ];
+
+
+            // dd($referralData);
+
+            Referral::create($referralData);
+
 
         return redirect()->route('welcome'); // Создайте маршрут для успешного оформления заказа
     }
