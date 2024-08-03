@@ -24,17 +24,35 @@ class HomeController extends Controller
         return view('some-view', ['referralLink' => $referralLink]);
     }
 
-        public function index()
+//        public function index()
+//    {
+//        $products = Product::with('images')->get();
+//        $categories = Category::all();
+//
+//        $user = Auth::user();
+//        $referralLink = (new HomeController)->generateReferralLink($user);
+//        //dd($products);
+//        return view('welcome', compact('categories', 'products', 'referralLink'));
+//
+//    }
+    public function index()
     {
         $products = Product::with('images')->get();
         $categories = Category::all();
 
         $user = Auth::user();
-        $referralLink = (new HomeController)->generateReferralLink($user);
-        //dd($products);
-        return view('welcome', compact('categories', 'products', 'referralLink'));
 
+        // Проверяем, аутентифицирован ли пользователь
+        if ($user) {
+            $referralLink = $this->generateReferralLink($user);
+        } else {
+            $referralLink = null; // или какое-то значение по умолчанию
+        }
+
+        return view('welcome', compact('categories', 'products', 'referralLink'));
     }
+
+
 
     public function showCategory($categoryId)
     {
