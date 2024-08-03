@@ -67,7 +67,7 @@ class ProductController extends Controller
         ]);
         $url = url(Storage::url('images/image_product/фон5.jpg'));
 
-        echo asset('storage/images/image_product/фон5.jpg');
+        //echo asset('storage/images/image_product/фон5.jpg');
         $product = Product::create([
             'name' => $request->name,
             'count' => $request->count,

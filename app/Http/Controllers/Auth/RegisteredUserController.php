@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\ReferralUser;
+use App\Models\TotalSalary;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -59,6 +60,12 @@ class RegisteredUserController extends Controller
         ];
 
         ReferralUser::create($referraluser);
+
+        $total_salary=[
+            'user_id'=>Auth::id(),
+            'money'=>0,
+        ];
+        TotalSalary::create($total_salary);
 
         event(new Registered($user));
 
