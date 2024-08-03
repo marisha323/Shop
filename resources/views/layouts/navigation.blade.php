@@ -23,6 +23,7 @@
                         {{ __('profile.edit') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->

@@ -4,15 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Referral;
+use App\Models\TotalSalary;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        $referrer = User::where('referral_code', $request->input('referral_code'))->first();
         // Валидация запроса
         $request->validate([
             'post_id' => ['required', 'exists:posts,id'],
@@ -32,22 +33,37 @@ class OrderController extends Controller
             'postal_branch_number' => $request->postal_branch_number,
             'post_id' => $request->post_id,
         ]);
+
         // Очистите корзину после оформления заказа
         session()->forget('cart');
 
+        // Найдите запись в таблице referral_users
+        $referralUser = DB::table('referral_users')
+            ->where('referred_id', Auth::id())
+            ->first();
 
-            $referralData = [
-                'referrer_id' => $referrer->id,
+        if ($referralUser) {
+            // Рассчитайте комиссию (например, 15% от общей суммы заказа)
+            $commission = $order->total_price * 0.15;
+
+            // Сохраните запись в таблице referrals
+            Referral::create([
+                'referrer_id' => $referralUser->referrer_id,
                 'referred_id' => Auth::id(),
-                'order_id' => $orderId ?? null, // Используйте null, если $orderId не определен
-                'commission' => 0,
-            ];
+                'order_id' => $order->id,
+                'commission' => $commission,
+            ]);
 
+            // Найдите или создайте запись в таблице Total_salaries
+            $totalSalary = TotalSalary::firstOrCreate(
+                ['user_id' => $referralUser->referrer_id],
+                ['money' => 0]
+            );
 
-            // dd($referralData);
-
-            Referral::create($referralData);
-
+            // Обновите поле money, добавив комиссию
+            $totalSalary->money += $commission;
+            $totalSalary->save();
+        }
 
         return redirect()->route('welcome'); // Создайте маршрут для успешного оформления заказа
     }
