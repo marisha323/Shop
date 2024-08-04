@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoryOrder;
 use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -50,6 +52,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Product added to cart.');
 
     }
+
 
     public function remove($id)
     {

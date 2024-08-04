@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoryOrder;
 use App\Models\Order;
 use App\Models\Referral;
 use App\Models\TotalSalary;
@@ -34,37 +35,54 @@ class OrderController extends Controller
             'post_id' => $request->post_id,
         ]);
 
-        // Очистите корзину после оформления заказа
-        session()->forget('cart');
+        // Получите корзину из сессии
+        $cart = session()->get('cart', []);
+        $userId = Auth::id();
 
-        // Найдите запись в таблице referral_users
-        $referralUser = DB::table('referral_users')
-            ->where('referred_id', Auth::id())
-            ->first();
+        // Сохранение данных в таблицу history_orders перед очисткой корзины
+        if ($userId && !empty($cart)) {
+            foreach ($cart as $productId => $details) {
+                HistoryOrder::create([
+                    'user_id' => $userId,
+                    'product_id' => $productId,
+                    'sum_price' => $details['price'] * $details['quantity'],
+                    'count' => $details['quantity'],
+                ]);
+            }
 
-        if ($referralUser) {
-            // Рассчитайте комиссию (например, 15% от общей суммы заказа)
-            $commission = $order->total_price * 0.15;
+            // Очистите корзину после оформления заказа
+            session()->forget('cart');
 
-            // Сохраните запись в таблице referrals
-            Referral::create([
-                'referrer_id' => $referralUser->referrer_id,
-                'referred_id' => Auth::id(),
-                'order_id' => $order->id,
-                'commission' => $commission,
-            ]);
+            // Найдите запись в таблице referral_users
+            $referralUser = DB::table('referral_users')
+                ->where('referred_id', Auth::id())
+                ->first();
 
-            // Найдите или создайте запись в таблице Total_salaries
-            $totalSalary = TotalSalary::firstOrCreate(
-                ['user_id' => $referralUser->referrer_id],
-                ['money' => 0]
-            );
+            if ($referralUser) {
+                // Рассчитайте комиссию (например, 15% от общей суммы заказа)
+                $commission = $order->total_price * 0.15;
 
-            // Обновите поле money, добавив комиссию
-            $totalSalary->money += $commission;
-            $totalSalary->save();
+                // Сохраните запись в таблице referrals
+                Referral::create([
+                    'referrer_id' => $referralUser->referrer_id,
+                    'referred_id' => Auth::id(),
+                    'order_id' => $order->id,
+                    'commission' => $commission,
+                ]);
+
+                // Найдите или создайте запись в таблице Total_salaries
+                $totalSalary = TotalSalary::firstOrCreate(
+                    ['user_id' => $referralUser->referrer_id],
+                    ['money' => 0]
+                );
+
+                // Обновите поле money, добавив комиссию
+                $totalSalary->money += $commission;
+                $totalSalary->save();
+            }
         }
 
         return redirect()->route('welcome'); // Создайте маршрут для успешного оформления заказа
     }
+
 }
