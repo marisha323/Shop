@@ -24,9 +24,9 @@
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
-                    <td>{{ $user->created_at->format('d.m.Y H:i') }}</td>
+                    <td>{{ $user->email }}</td>
                     <td>
-{{--                        <a href="{{ route('category.edit', $category->id) }}" class="btn btn-warning">Редактировать</a>--}}
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Редактировать</a>
 
                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" style="display:inline-block;">
                             @csrf

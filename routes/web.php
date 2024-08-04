@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 //USERS
 Route::get('user/users', [UserController::class, 'index'])->name('user.index');
 Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 
