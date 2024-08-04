@@ -369,6 +369,13 @@ return [
             'label_color' => 'success',
 
         ],
+        [
+            'text' => 'All Users',
+            'url' => 'user/users',
+            'icon' => 'far fa-fw fa-file',
+            'label_color' => 'success',
+
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
