@@ -106,15 +106,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
-//    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
-//    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-//    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
+    });
 });
+
+
 require __DIR__.'/auth.php';
 //Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
 //Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
+
+
+Route::group(['middleware' => ['auth', 'role:manager']], function () {
+    // маршрути доступні тільки для менеджерів
+});

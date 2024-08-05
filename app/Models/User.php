@@ -57,9 +57,8 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(UsersRole::class);
+        return $this->belongsTo(UsersRole::class, 'user_role_id');
     }
-
 
     // Метод для генерации уникального реферального кода
     public static function generateReferralCode()
