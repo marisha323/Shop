@@ -59,8 +59,8 @@ class OrderController extends Controller
                 ->first();
 
             if ($referralUser) {
-                // Рассчитайте комиссию (например, 15% от общей суммы заказа)
-                $commission = $order->total_price * 0.15;
+                // Рассчитайте комиссию (например, 8% от общей суммы заказа)
+                $commission = $order->total_price * 0.08;
 
                 // Сохраните запись в таблице referrals
                 Referral::create([

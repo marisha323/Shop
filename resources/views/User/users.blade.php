@@ -16,6 +16,7 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>Почта</th>
+                <th>Заработок</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $totalSalaries[$user->id] ?? 0 }}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Редактировать</a>
 

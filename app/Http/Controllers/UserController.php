@@ -12,8 +12,10 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user.users', compact('users'));
+        $totalSalaries = TotalSalary::all()->pluck('money', 'user_id');
+        return view('user.users', compact('users', 'totalSalaries'));
     }
+
 
     public function edit($id)
     {
