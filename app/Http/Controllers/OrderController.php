@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Telegram;
 use App\Models\Order;
 use App\Models\Referral;
 use App\Models\TotalSalary;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -64,6 +66,18 @@ class OrderController extends Controller
             $totalSalary->money += $commission;
             $totalSalary->save();
         }
+        $userName = Auth::user()->name;
+        $telegram=new Telegram(new Http,config('bots.bot'));
+        $message = "<b>НОВЕ ЗАМОВЛЕНННЯ!</b>\n";
+        $message .= "Замовник: {$userName}\n";
+        $message .= "ID замовлення: {$order->id}\n";
+        $message .= "Сума замовлення: {$order->total_price} грн\n";
+        $message .= "Кількість товарів: {$order->total_count}\n";
+        $message .= "Поштовий індекс: {$order->index}\n";
+        $message .= "Коментар: {$order->comment}\n";
+
+        $telegram->sendMessage($message, 'HTML');
+
 
         return redirect()->route('welcome'); // Создайте маршрут для успешного оформления заказа
     }

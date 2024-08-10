@@ -28,15 +28,6 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-//Route::post('https://api.telegram.org/bot6742295851:AAFm7vgq3F-sYiEmtd-MMwbqOD0MzHwMZxE', [TelegramBotController::class, 'start']);
-//Route::get('/telegram/polling', 'TelegramBotController@handleLongPolling');
-//
-Route::get('/telegram', function() {
-    \Illuminate\Support\Facades\Http::post('https://api.telegram.org/bot6742295851:AAFm7vgq3F-sYiEmtd-MMwbqOD0MzHwMZxE/sendMessage', [
-        'chat_id' => 2081605845,
-        'text' => 'Ta kolu vono bude rabotat`????'
-    ]);
-});
 
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 
