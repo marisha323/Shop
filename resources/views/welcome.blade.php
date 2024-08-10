@@ -42,6 +42,11 @@
                 ADMIN PANEL
             </a>
 
+            <a href="{{ route('orders.order') }}" class="btn btn-primary">
+                Переглянути замовлення
+            </a>
+
+
             <!-- SEARCH -->
             <form class="form-inline d-flex my-2 my-lg-0" action="{{ route('search') }}" method="GET">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request()->input('query') }}">

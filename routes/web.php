@@ -96,6 +96,11 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/products/category/{id}', [HomeController::class, 'showCategory'])->name('products.showCategory');
 
+//ORDERS
+Route::get('/orders/order',[OrderController::class,'showOrders'])->name('orders.order');
+
+
+
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
 //})->middleware(['auth', 'verified'])->name('dashboard');
