@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TelegramBotController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
