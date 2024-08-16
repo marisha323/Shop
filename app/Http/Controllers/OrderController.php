@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use function Laravel\Prompts\alert;
 
 class OrderController extends Controller
 {
@@ -108,6 +109,7 @@ class OrderController extends Controller
             }
         }
         $userName = Auth::user()->name;
+
         $telegram=new Telegram(new Http,config('bots.bot'));
         $message = "<b>НОВЕ ЗАМОВЛЕНННЯ!</b>\n";
         $message .= "Замовник: {$userName}\n";

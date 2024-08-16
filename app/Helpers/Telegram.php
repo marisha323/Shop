@@ -34,6 +34,7 @@ class Telegram
         // Відправка повідомлень
         foreach ($chatIds as $chatId) {
             $this->http::post(self::url . $this->bot . "/sendMessage", [
+        //dd($message),
                 'chat_id' => $chatId,
                 'text' => $message,
                 'parse_mode' => $parseMode, // Додаємо parse_mode
