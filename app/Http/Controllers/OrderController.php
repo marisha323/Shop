@@ -15,6 +15,27 @@ use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
+    public function showOrders(Request $request)
+    {
+        $user = auth()->user();
+
+        // Отримання всіх замовлень користувача разом з історією замовлень та статусами
+        $orders = Order::where('user_id', $user->id)
+            ->with(['historyOrders.status'])
+            ->get();
+
+        // Для кожного замовлення обчислімо статуси
+        foreach ($orders as $order) {
+            $order->status_names = $order->historyOrders->map(function ($historyOrder) {
+                return $historyOrder->status->name ?? 'Статус не встановлений';
+            })->unique()->join(', '); // Об'єднуємо унікальні статуси в рядок
+        }
+
+        return view('orders.order', compact('orders'));
+    }
+
+
+
     public function store(Request $request)
     {
         // Валидация запроса
@@ -30,7 +51,7 @@ class OrderController extends Controller
             'user_id' => Auth::id(),
             'total_price' => $request->total_price,
             'total_count' => $request->total_count,
-            'status' => 'pending', // Или другой статус по умолчанию
+
             'index' => $request->index,
             'comment' => $request->comment,
             'postal_branch_number' => $request->postal_branch_number,
@@ -41,6 +62,7 @@ class OrderController extends Controller
         $cart = session()->get('cart', []);
         $userId = Auth::id();
 
+        //dd($order->id);
         // Сохранение данных в таблицу history_orders перед очисткой корзины
         if ($userId && !empty($cart)) {
             foreach ($cart as $productId => $details) {
@@ -49,6 +71,8 @@ class OrderController extends Controller
                     'product_id' => $productId,
                     'sum_price' => $details['price'] * $details['quantity'],
                     'count' => $details['quantity'],
+                    'StatusId' =>1,
+                    'order_id' =>$order->id
                 ]);
             }
 

@@ -33,4 +33,17 @@ class Order extends Model
         return $this->belongsTo(Post::class);
     }
 
+
+    public function historyOrders()
+    {
+        return $this->hasMany(HistoryOrder::class, 'order_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'StatusId'); // 'status' - це назва стовпця у таблиці orders
+    }
+
+
+
 }
