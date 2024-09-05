@@ -17,6 +17,31 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function products()
+{
+    return view('products');
+}
+public function show(Request $request, $itemName)
+{
+    // Provide a default color, e.g., 'Black'
+    $selectedColor = 'Black'; 
+
+    return view('product.show', [
+        'selectedColor' => $selectedColor,
+        'itemName' => $itemName
+    ]);
+}
+
+    public function updateColor(Request $request, $itemName)
+    {
+        $request->validate([
+            'color' => 'required|string|in:Black,Red,Blue',
+        ]);
+
+        $request->session()->put('selectedColor', $request->input('color'));
+        return redirect()->route('product.show', ['itemName' => $itemName]);
+    }
+
     public function index()
     {
         $products = Product::all();
@@ -99,10 +124,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(string $id)
+    // {
+    //     //
+    // }
 
     /**
      * Show the form for editing the specified resource.

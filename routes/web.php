@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
@@ -78,6 +77,10 @@ Route::delete('brand/{id}', [BrandController::class, 'destroy'])->name('brand.de
 
 
 //Products
+Route::get('/products', [ProductController::class, 'products'])->name('products');
+Route::get('products/{itemName}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/product/{itemName}/updateColor', [ProductController::class, 'updateColor'])->name('product.updateColor');
+
 Route::get('/product/index',[ProductController::class,'index'])->name('product.indexf');
 Route::get('/product/{id}/info', [ProductController::class, 'info'])->name('product.info');
 Route::get('product/add', [ProductController::class, 'create'])->name('product.add');
