@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::get('/order', [OrderController::class, 'showOrderForm'])->name('order.form');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/search', [HomeController::class, 'search'])->name('search');

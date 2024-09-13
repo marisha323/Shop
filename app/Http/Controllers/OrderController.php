@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function showOrderForm()
+{
+    return view('order'); // This assumes your Blade file is named 'order.blade.php'
+}
     public function store(Request $request)
     {
         // Валидация запроса
