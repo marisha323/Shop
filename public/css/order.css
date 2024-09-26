@@ -11,7 +11,8 @@ body {
     align-items: center;
 }
 body {
-    background-image: url('/images/bg__vd_lr.png');
+    /* background-image: url('/images/bg__vd_lr.png'); */
+    background-color: #0E4D3B;
     background-size: cover; /* Ensures the image covers the entire viewport */
     background-repeat: no-repeat; /* Prevents repeating the image */
     background-position: center; /* Centers the image in the viewport */

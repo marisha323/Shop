@@ -104,7 +104,7 @@
                     <img src="https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg" alt="Product Image" class="product-image">
                     <div class="product-details">
                         <p class="product-name">Awesome Product</p>
-                        <p class="product-price">$50</p>
+                        <p class="product-price">$50.00</p>
                         <p class="product-quantity"><strong>Qty:</strong> 2</p>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     <img src="https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg" alt="Product Image" class="product-image">
                     <div class="product-details">
                         <p class="product-name">Awesome Product</p>
-                        <p class="product-price">$50</p>
+                        <p class="product-price">$50.00</p>
                         <p class="product-quantity"><strong>Qty:</strong> 2</p>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     <img src="https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg" alt="Product Image" class="product-image">
                     <div class="product-details">
                         <p class="product-name">Awesome Product</p>
-                        <p class="product-price">$50</p>
+                        <p class="product-price">$50.00</p>
                         <p class="product-quantity"><strong>Qty:</strong> 2</p>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                     <img src="https://t3.ftcdn.net/jpg/06/12/00/18/360_F_612001823_TkzT0xmIgagoDCyQ0yuJYEGu8j6VNVYT.jpg" alt="Product Image" class="product-image">
                     <div class="product-details">
                         <p class="product-name">Awesome Product</p>
-                        <p class="product-price">$50</p>
+                        <p class="product-price">$50.00</p>
                         <p class="product-quantity"><strong>Qty:</strong> 2</p>
                     </div>
                 </div>

@@ -1,0 +1,143 @@
+body {
+    font-family: 'Roboto Slab', sans-serif;
+    background-color: #0E4D3B; /* Darkish green background */
+    color: #ffffff; /* White text for contrast */
+    margin: 0;
+    padding: 0;
+}
+
+.cart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #139975; /* Slightly lighter green for cart container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow for more depth */
+}
+
+.cart-title {
+    text-align: center;
+    color: #FEF0CC; /* Bright yellow for titles */
+    font-size: 1.5rem; /* Increased font size for prominence */
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eaeaea; /* Light separator for items */
+}
+.in-storage{
+    margin-bottom: 0;
+}
+.item-image {
+    width: 6rem; /* Fixed width for item images */
+    height: 8rem; /* Fixed height for item images */
+    margin-right: 20px;
+    object-fit: cover; /* Ensures the image covers the specified dimensions without stretching */
+    border-radius: 4px; /* Optional: adds rounded corners for a better appearance */
+}
+.item-details{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.n_p_container{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.n_p_container h1{
+    font-size: 24px;
+}
+.price{
+    font-size: 24px;
+}
+.price .cut_price{
+    font-size: 18px;
+    color: #D3D3D3;
+    text-decoration:line-through ;
+}
+.item-quantity {
+    width: 50px; /* Fixed width for quantity input */
+    margin-top: 10px;
+}
+
+.remove-item {
+    background: #FEF0CC; /* Bright orange for remove button */
+    color: white; /* White text color for contrast */
+    border: none; /* Remove border */
+    padding: 10px 15px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s; /* Smooth transition for hover */
+    color: black;
+    font-weight: 600;
+    width: 10rem;
+}
+
+.remove-item:hover {
+    background: #E65C17; /* Darker orange on hover */
+}
+
+.cart-summary {
+    margin-top: 20px; /* Spacing above summary */
+    padding: 15px;
+    background: #1B6B58; /* Same as cart container for consistency */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.summary-title {
+    margin: 0 0 15px; /* Margin below title */
+    color: #ECF0F1; /* Light grey for summary title */
+}
+
+.summary-item {
+    display: flex; /* Flex for item display */
+    justify-content: space-between; /* Space between items */
+    padding: 10px 0; /* Padding for summary items */
+}
+
+.total {
+    font-weight: bold; /* Bold font for total amount */
+    color: #FFBF00; /* Bright yellow for total amount */
+}
+
+.checkout-button {
+    margin-top: 15px; /* Spacing above button */
+    background: #FF6F20; /* Bright orange for checkout button */
+    color: white; /* White text for contrast */
+    border: none; /* Remove border */
+    padding: 15px; /* Padding for button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%; /* Full width button */
+    transition: background 0.3s; /* Smooth transition for hover */
+}
+
+.checkout-button:hover {
+    background: #E65C17; /* Darker orange on hover */
+}
+.item-quantity {
+    -moz-appearance: textfield; /* Firefox */
+    appearance: none; /* Remove default styling */
+}
+
+.item-quantity::-webkit-inner-spin-button,
+.item-quantity::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Remove arrows for Chrome/Safari */
+    margin: 0; /* Remove margin */
+}
+
+/* Optional: Style the input for better appearance */
+.item-quantity {
+    width: 50px; /* Fixed width */
+    text-align: center; /* Center the text */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+    padding: 5px; /* Padding for better usability */
+}
