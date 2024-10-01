@@ -9,16 +9,21 @@ class Referral extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
+    protected $fillable = [
         'referrer_id',
         'referred_id',
         'order_id',
         'commission',
     ];
 
-    public function user()
+    public function referrer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'referrer_id');
+    }
+
+    public function referred()
+    {
+        return $this->belongsTo(User::class, 'referred_id');
     }
 
     public function order()

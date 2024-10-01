@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('characteristics', function (Blueprint $table) {
-            $table->unsignedBigInteger('brand_id')->after('size_id');
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-        });
+//        Schema::table('characteristics', function (Blueprint $table) {
+//            $table->unsignedBigInteger('brand_id')->after('size_id');
+//            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+//        });
     }
 
     /**
@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('characteristics', function (Blueprint $table) {
-            $table->dropForeign(['brand_id']);
-            $table->dropColumn('brand_id');
-        });
+//        Schema::table('characteristics', function (Blueprint $table) {
+//            $table->dropForeign(['brand_id']);
+//            $table->dropColumn('brand_id');
+//        });
     }
 };

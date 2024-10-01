@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helpers\Telegram;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +12,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(Telegram::class,function ($app){
+            return new Telegram();
+        });
     }
 
     /**
@@ -19,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        URL::forceScheme('https');
+        //URL::forceScheme('https');
     }
 }

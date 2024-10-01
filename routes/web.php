@@ -6,9 +6,13 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CharacteristicController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TelegramBotController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +30,21 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+
+//USERS
+Route::get('user/users', [UserController::class, 'index'])->name('user.index');
+Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
+
+Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+//REFERAl LINK
+Route::get('/user/{user}/referral-link', [HomeController::class, 'generateReferralLink'])
+    ->name('user.referral-link');
 
 // CART
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -80,24 +97,34 @@ Route::put('/products/{id}', [ProductController::class, 'update'])->name('produc
 Route::delete('product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/products/category/{id}', [HomeController::class, 'showCategory'])->name('products.showCategory');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//ORDERS
+Route::get('/orders/order',[OrderController::class,'showOrders'])->name('orders.order');
+
+
+
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
-    Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
-//    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
-//    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
-//    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
+    });
 });
+
+
 require __DIR__.'/auth.php';
 //Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
 //Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
+
+
+Route::group(['middleware' => ['auth', 'role:manager']], function () {
+    // маршрути доступні тільки для менеджерів
+});

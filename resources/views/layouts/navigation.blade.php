@@ -23,6 +23,7 @@
                         {{ __('profile.edit') }}
                     </x-nav-link>
                 </div>
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -59,12 +60,31 @@
                         </form>
                     </x-slot>
                 </x-dropdown>
-                {{-- ADMIN PANEL--}}
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                        {{ __('ADMIN PANEL') }}
-                    </x-nav-link>
-                </div>
+                @if (Auth::check())
+                    <p>Current user: {{ Auth::user()->name }} (Role: {{ Auth::user()->role->name }})</p>
+
+                    @if (Auth::user()->role->name == 'admin')
+                        {{-- ADMIN PANEL --}}
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                                {{ __('ADMIN PANEL') }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+                @else
+                    <p>No user is authenticated</p>
+                @endif
+
+
+{{--                @if (Auth::user() && Auth::user()->role == 'manager')--}}
+{{--                    <!-- контент доступний тільки для менеджерів -->--}}
+{{--                @endif--}}
+
+{{--                @if (Auth::user() && Auth::user()->role == 'user')--}}
+{{--                    <!-- контент доступний тільки для користувачів -->--}}
+{{--                @endif--}}
+
+
             </div>
 
 

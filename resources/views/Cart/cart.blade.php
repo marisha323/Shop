@@ -58,6 +58,41 @@
         <div class="text-right">
             <strong>Total: ${{ $total }}</strong>
         </div>
+
+        <!-- Checkout Form -->
+        <form action="{{ route('order.store') }}" method="POST">
+            @csrf
+            <input type="hidden" name="total_price" value="{{ $total }}">
+            <input type="hidden" name="total_count" value="{{ count(session('cart')) }}">
+            <div class="mb-3">
+                <label for="index" class="form-label">Индекс</label>
+                <input type="text" class="form-control" id="index" name="index">
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Комментарий</label>
+                <textarea class="form-control" id="comment" name="comment"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="post" class="form-label">Выберите почту</label>
+                <select id="post" name="post_id" class="form-select">
+                    <option value="" selected>Выберите почту</option>
+                    @foreach($posts as $post)
+                        <option value="{{ $post->id }}">{{ $post->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="postal_branch_number" class="form-label">Номер отделения почты</label>
+                <input type="text" class="form-control" id="postal_branch_number" name="postal_branch_number">
+            </div>
+
+
+            <button type="submit" class="btn btn-outline-success">Оформить заказ</button>
+        </form>
+
+
+
     @else
         <p>Your cart is empty.</p>
 @endif
