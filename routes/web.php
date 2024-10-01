@@ -13,6 +13,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TelegramBotController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -127,4 +128,12 @@ require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['auth', 'role:manager']], function () {
     // маршрути доступні тільки для менеджерів
+});
+
+
+
+
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
 });

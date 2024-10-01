@@ -34,6 +34,7 @@ class RegisteredUserController extends Controller
     {
         // Найдите пользователя по реферальному коду, если он передан
         $referrer = User::where('referral_code', $request->input('referral_code'))->first();
+
         //dd($referrer);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
