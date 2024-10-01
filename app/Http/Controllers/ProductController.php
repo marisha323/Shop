@@ -21,6 +21,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return view('index-product', compact('products'));
+
     }
     public function info($id)
     {
