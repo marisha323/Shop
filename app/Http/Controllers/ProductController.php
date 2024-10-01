@@ -20,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product/indexf', compact('products'));
+        return view('product/index', compact('products'));
     }
     public function info($id)
     {
@@ -93,7 +93,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('product.indexf')->with('success', 'Продукт успішно доданий');
+        return redirect()->route('product.index')->with('success', 'Продукт успішно доданий');
     }
 
     /**
@@ -148,7 +148,7 @@ class ProductController extends Controller
         $product->save();
         Log::info('Update method called');
         // Перенаправлення з повідомленням про успіх
-        return redirect()->route('product.indexf')->with('success', 'Продукт успішно оновлено');
+        return redirect()->route('product.index')->with('success', 'Продукт успішно оновлено');
 
     }
 
@@ -160,6 +160,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect()->route('product.indexf')->with('success', 'Продукт успешно удален!');
+        return redirect()->route('product.index')->with('success', 'Продукт успешно удален!');
     }
 }
