@@ -89,7 +89,7 @@ Route::delete('brand/{id}', [BrandController::class, 'destroy'])->name('brand.de
 
 
 //Products
-Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
+Route::get('/product/index',[ProductController::class,'index'])->name('product.index-product');
 Route::get('/product/{id}/info', [ProductController::class, 'info'])->name('product.info');
 Route::get('product/add', [ProductController::class, 'create'])->name('product.add');
 Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
