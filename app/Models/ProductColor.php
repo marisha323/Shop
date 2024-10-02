@@ -14,7 +14,7 @@ class ProductColor extends Model
         'color_id',
     ];
 
-    // Определите связь с моделью Product
+    // Определите связь с моделью product
     public function product()
     {
         return $this->belongsTo(Product::class);

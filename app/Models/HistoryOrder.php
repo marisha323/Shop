@@ -19,7 +19,7 @@ class HistoryOrder extends Model
 
     ];
 
-    // Определяем связь с моделью Product
+    // Определяем связь с моделью product
     public function product()
     {
         return $this->belongsTo(Product::class);

@@ -16,7 +16,7 @@ class Basket extends Model
         'product_id',
     ];
 
-    // Определяем связь с моделью Product
+    // Определяем связь с моделью product
     public function product()
     {
         return $this->belongsTo(Product::class);

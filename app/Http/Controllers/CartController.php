@@ -26,7 +26,7 @@ class CartController extends Controller
         $product = Product::with('images')->find($request->product_id);
 
         if (!$product) {
-            return redirect()->back()->with('error', 'Product not found.');
+            return redirect()->back()->with('error', 'product not found.');
         }
 
         $cart = session()->get('cart', []);
@@ -49,7 +49,7 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
 
-        return redirect()->back()->with('success', 'Product added to cart.');
+        return redirect()->back()->with('success', 'product added to cart.');
 
     }
 
@@ -63,7 +63,7 @@ class CartController extends Controller
             session()->put('cart', $cart);
         }
 
-        return redirect()->back()->with('success', 'Product removed successfully');
+        return redirect()->back()->with('success', 'product removed successfully');
     }
 
 

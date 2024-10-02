@@ -28,7 +28,7 @@ class HomeController extends Controller
 
 //        public function index()
 //    {
-//        $products = Product::with('images')->get();
+//        $products = product::with('images')->get();
 //        $categories = Category::all();
 //
 //        $user = Auth::user();
