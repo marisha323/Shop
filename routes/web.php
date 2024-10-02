@@ -62,7 +62,7 @@ Route::get('category/{id}/edit', [CategoryController::class, 'edit'])->name('cat
 Route::put('category/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
-// сharacteristics
+// characteristics
 //Route::resource('characteristics', CharacteristicController::class);
 Route::get('/characteristics/index', [CharacteristicController::class, 'index'])->name('characteristics.index');
 Route::get('characteristics/create', [CharacteristicController::class, 'create']) -> name('characteristics.create');
