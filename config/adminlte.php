@@ -348,7 +348,7 @@ return [
 
         ],
         [
-            'text' => 'Characteristics',
+            'text' => 'сharacteristics',
             'url' => 'characteristics/index',
             'icon' => 'far fa-fw fa-file',
 //            'label' => 4,

@@ -13,7 +13,7 @@ class CharacteristicController extends Controller
     public function index()
     {
         $characteristics = Characteristics::all();
-        return view('Characteristics.index', compact('characteristics'));
+        return view('сharacteristics.index', compact('characteristics'));
     }
 
     public function create()
@@ -44,7 +44,7 @@ class CharacteristicController extends Controller
         $sizes = Size::all();
         $brands = Brand::all();
         $characteristic = Characteristics::findOrFail($id);
-        return view('Characteristics.edit', compact('characteristic', 'sizes', 'brands'));
+        return view('сharacteristics.edit', compact('characteristic', 'sizes', 'brands'));
     }
 
     public function update(Request $request, $id)
