@@ -7,58 +7,77 @@
     <title>@yield('title')</title>
     <!-- Add your CSS and other head content here -->
     <link rel="stylesheet" href="{{ asset('css/main_nav.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ropa+Sans:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <div class="nav_bar_T1">
-            <div class="lng_selection">
-                <a href="">ENG</a>
-                <span>|</span>
-                <a href="">RU</a>
-            </div>
-            <div class="sel_Log_Reg">
-                <img src="" alt="">
-                <a href="">Login</a>
-                <span>|</span>
-                <a href="">Register</a>
+        <div class="top_header_el">
+            <h1 class="links_h1"><a href="/">ENG</a> | <a href="/">RU</a></h1>
+            <div class="login_ic"><a href="">
+                <img src="/icons/profile_Icon.png" alt="" class="p_icon"></a>
+                <h1 class="links_h1"><a href="">Login</a> | <a href="">Register</a></h1>
             </div>
         </div>
-        <div class="nav_bar_T2">
-            <div class="search_bar">
-                <img class="home_logo" src="/images/logo_home.png" alt="">
-                <form class="form-inline d-flex my-2 my-lg-0" action="{{ route('search') }}" method="GET">
-                    <input class="form-control me-2 search_h" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request()->input('query') }}">
-                    {{-- <button class="btn btn-outline-success" type="submit">Search</button> --}}
-                </form>
-            </div>
-           <div class="navbar_selection">
-                <a href="">Home</a>
-                <a href="">Products</a>
-                <a href="">FAQ</a>
-                <a href="">Shop</a>
-           </div>
-
-        </div>
-        <div class="wrapper">
-            <div class="middle_section">
-                <h1 class="w_h1">WELCOME</h1>
-                <h1>VENDELLA DEMIAN</h1>
-                <p>“If you want to look into the future with confidence, you need to build it yourself. You can take responsibility for your future life only if you learn to control your sources of income. And for this you need your own business.”</p>
-                <div class="btn_section">
-                    <a href="">Contact</a>
-                    <a href="">Opportunities</a>
-                    <a href="">Learn More</a>
-                </div>
+        <div class="bottom_header_el">
+            <img class="logo_v" src="/icons/logo_vv.png" alt="">
+            <input class="search_engine" type="text" placeholder="Search">
+            <div class="login_is"><a href="">
+                <h1 class="links_h11"><a href="">Home</a></h1>
+                <h1 class="links_h11"><a href="">Products</a></h1>
+                <h1 class="links_h11"><a href="">FAQ</a></h1>
+                <h1 class="links_h11"><a href="">Shop</a></h1>
             </div>
         </div>
     </header>
+        
 
     <main>
         @yield('content')
     </main>
 
     <footer>
-       <h1>Footer</h1>
+       <div class="footer_info">
+        <div class="footer_con">
+            <h1 class="h1_f">INFORMATION</h1>
+            <div class="links_f">
+                <a href="">ABOUT US</a>
+                <a href="">DELIVERY AND PAYMENT INFORMATION</a>
+                <a href="">SECURITY POLICY OF THE SITE</a>
+                <a href="">TERMS OF AGREEMENT</a>
+            </div>
+        </div>
+        <div class="footer_con">
+            <h1 class="h1_f">SUPPORT</h1>
+            <div class="links_f">
+                <a href="">MAP OF SITE</a>
+                <a href="">PURCHASE RETURNS</a>
+                <a href="">CONNECT US</a>
+            </div>
+        </div>
+        <div class="footer_con">
+            <h1 class="h1_f">PERSONAL AREA</h1>
+            <div class="links_f">
+                <a href="">PERSONAL AREA</a>
+                <a href="">HISTORY OF ORDERS</a>
+                <a href="">FEATURED PRODUCTS</a>
+                <a href="">NEWSLETTER</a>
+            </div>
+        </div>
+       </div>
+       <div class="social_net">
+        <p>OUR STORE ON SOCIAL NETWORKS</p>
+        <div class="social_d">
+            <a href=""><img src="/icons/insta_Ic.png" alt="" class="f_img"></a>
+            <a href=""><img src="/icons/facebook_Ic.png" alt="" class="f_img"></a>
+            
+        </div>
+        <p>PAYMENT OPTIONS</p>
+        <div>
+            <h1 class="h1_card"><img class="card_img" src="/icons/visa_Ic.png" alt=""> <hr class="c_hr"> <img class="card_img" src="/icons/mastercard_Ic.png" alt=""> <hr class="c_hr"> <img class="card_img" src="/icons/google_Ic.png" alt=""> </h1>
+        </div>
+       </div>
     </footer>
 </body>
 </html>
