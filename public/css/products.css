@@ -6,7 +6,7 @@ body, html {
 }
 
 body {
-    background-color: #0E4D3B; /* Darker background for better contrast */
+    background-color: #10654E; /* Darker background for better contrast */
     color: #F8F9FA; /* Light text for readability */
 }
 
@@ -71,6 +71,7 @@ body {
     width: 90vw;
     display: flex;
     flex-direction: column;
+    margin-bottom: 5rem;
 }
 
 .product_body p, .product_body h2 {
@@ -156,7 +157,7 @@ body {
 }
 
 .categories_selection {
-    background-color: #1F6E4C; /* Richer green for sidebar */
+    background-color:#4C3129; /* Richer green for sidebar */
     border-radius: 8px;
     padding: 20px;
     width: 16rem;
@@ -164,7 +165,7 @@ body {
 }
 
 .categories_selection h3 {
-    color: #FFD700; /* Gold for sidebar titles */
+    color: #FEF0CC; /* Gold for sidebar titles */
     margin-bottom: 15px;
 }
 
@@ -237,10 +238,10 @@ body {
 .product {
     position: relative;
     width: 14.2rem;
-    background-color: #FFFFFF; /* Keep product background white for contrast */
+    background-color: #083026; /* Keep product background white for contrast */
     cursor: pointer;
     border-radius: 10px;
-    color: black;
+    color: white;
     padding: 0.5rem;
     overflow: hidden;
     max-height: 22rem;
@@ -291,7 +292,7 @@ body {
 .add_cart_btn {
     width: 50%;
     height: 3rem;
-    background-color: #007bff; /* Bright blue for the button */
+    background-color: #42D9B0; /* Bright blue for the button */
     color: white;
     padding: 12px 0;
     border: none;
@@ -306,7 +307,7 @@ body {
 }
 
 .add_cart_btn:hover {
-    background-color: #0056b3;
+    background-color: #35a68c;
     transform: scale(1.03);
 }
 
@@ -323,10 +324,10 @@ body {
     display: block;
     margin-top: 1rem;
     font-size: 14px;
-    color: #555;
+    color: white;
     position: relative;
     z-index: 1;
-    background-color: #F8F9FA; /* Light background for description */
+    background-color: #083026; /* Light background for description */
     padding: 10px; /* Padding for description */
     border-radius: 5px; /* Rounded corners */
 }

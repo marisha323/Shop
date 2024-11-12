@@ -23,7 +23,7 @@
             <button id="right-arrow"></button>
         </div>
         <div class="information">
-            <p>Model: 2RRt00229</p>
+            <p class="m_p">Model: 2RRt00229</p>
             <h1 class="prod_name">Random product color blue 2RRt00229</h1>
             <hr>
             <h1 class="price">$50.00 <span>$75.00</span></h1>
@@ -33,27 +33,27 @@
             <div class="radio_btns">
                 <label class="radio_enabled active_r">
                     <input type="radio" name="size" value="36">
-                    <span>36</span>
+                    <span class="r_num">36</span>
                 </label>
                 <label class="radio_enabled">
                     <input type="radio" name="size" value="38">
-                    <span>38</span>
+                    <span  class="r_num">38</span>
                 </label>
                 <label class="radio_enabled">
                     <input type="radio" name="size" value="40">
-                    <span>40</span>
+                    <span  class="r_num">40</span>
                 </label>
                 <label class="radio_enabled">
                     <input type="radio" name="size" value="42">
-                    <span>42</span>
+                    <span  class="r_num">42</span>
                 </label>
                 <label class="radio_disabled">
                     <input type="radio" name="size" value="44" disabled>
-                    <span>44 (Disabled)</span>
+                    <span  class="r_num">44 (Disabled)</span>
                 </label>
                 <label class="radio_enabled">
                     <input type="radio" name="size" value="46">
-                    <span>46</span>
+                    <span  class="r_num">46</span>
                 </label>
             </div>
             <hr>
@@ -66,6 +66,22 @@
                 </div>
                 <button class="add_cart">ADD TO CART</button>
             </div>
+            <h1 class="des_h1">Description</h1>
+            <p class="description">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea molestias eligendi velit accusantium sequi hic iure, repellendus impedit, quo corporis sit, praesentium consequuntur vel similique? Dolores unde at illum distinctio.
+            </p>
+            <hr>
+            <div class="character_con">
+                <h1 class="char_h1">Characters</h1>
+                <ul>
+                    <li>Red!</li>
+                    <li>Color!</li>
+                    <li>Lorem Opsim!</li>
+                    <li>How to get rich!</li>
+                    <li>I dont know much what to say!</li>
+                </ul>
+            </div>
+            
         </div>
     </div>
 </div>

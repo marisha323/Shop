@@ -1,14 +1,15 @@
 <link rel="stylesheet" href="{{ asset('css/products.css') }}">
 
 @section('title', 'Products')
-
-<div class="search_products">
+@extends('layouts.main_nav')
+@section('content')
+{{-- <div class="search_products">
     <button class="btn_close" onclick="clearInput()">
         <img class="close_icon" src="/icons/close_icon.png" alt="">
     </button>
     <input class="search_inp" type="text" placeholder="Search" id="searchInput">
     <button class="btn_search">Search</button>
-</div>
+</div> --}}
 
 <div class="product_body">
     <p>Category > Product</p>
@@ -224,3 +225,4 @@ function toggleSubmenu(selectedCategory) {
     }
 }
 </script>
+@endsection

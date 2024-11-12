@@ -40,7 +40,8 @@ body {
     padding: 20px;
     border-right: 1px solid #ddd;
     color: white;
-    background-color: #139975;
+    /* background-color: #139975; */
+    background-color: #061F18;
 }
 .address-info h2{
     color: #FEF0CC;

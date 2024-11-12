@@ -1,5 +1,7 @@
 html, body {
-    background-color: #A8BCA1; /* Sage green */
+    /* background-color: #A8BCA1; */
+    background-color: #0E4D3B;
+    background-color: #061F18;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -136,7 +138,8 @@ html, body {
 .information {
     padding: 1rem;
     box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 0.85); /* Slightly more transparent */
+    background-color: #0E4D3B;
+    /* background-color: #061F18; */
     width: 50%;
     border-radius: 0; /* Remove border radius for a flatter look */
     display: flex;
@@ -147,14 +150,19 @@ html, body {
 
 .prod_name, .price {
     font-size: 24px;
-    color: #0E4D3B; /* Match product name and price color with body */
+    /* color: #0E4D3B;  */
+    color: white;
+    font-weight: 400;
 }
-
+.m_p{
+    color: white;
+}
 .price span {
     font-size: 17px;
     font-weight: 500;
     text-decoration: line-through;
-    color: #B22222; /* Dark red for strikethrough price */
+    /* color: #B22222; */
+    color: lightgray;
 }
 
 hr {
@@ -165,10 +173,12 @@ hr {
 .storage_q {
     margin-left: auto;
     margin-bottom: 0;
+    color: white;
 }
 
 .p_s {
     margin-top: 0;
+    color: white;
 }
 
 .radio_btns {
@@ -202,7 +212,7 @@ hr {
 
 /* Disabled state styles */
 .radio_disabled {
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: darkgray; /* Light gray background */
     color: gray; /* Gray text color */
     cursor: not-allowed; /* Show not-allowed cursor */
     opacity: 0.6; /* Make it look disabled */
@@ -219,7 +229,9 @@ hr {
 .radio_disabled span {
     padding: 0.5rem 1rem; /* Padding for the span */
 }
-
+.r_num{
+    color: white;
+}
 .add_to_cart {
     display: flex;
     align-items: center;
@@ -227,17 +239,21 @@ hr {
 }
 .q_h{
     font-size: 24px;
+    color: white;
 }
 .add_Q {
     display: flex;
     align-items: center;
     border-radius: 8px; /* More rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    gap: 0.5rem;
 }
 
 .add_Q button {
-    background-color: transparent; /* Button background color */
-    color: #0E4D3B; /* Match button text color with body */
+    /* background-color: transparent; */
+    background-color:#061F18;
+    /* color: #0E4D3B;  */
+    color: white; 
     border: none; /* Remove default border */
     padding: 0.5rem 1rem; /* Padding for buttons */
     cursor: pointer; /* Cursor changes to pointer */
@@ -246,7 +262,6 @@ hr {
     font-size: 20px; /* Larger font size */
     outline: none; /* Remove outline on focus */
 }
-
 .add_Q input.quantity {
     width: 50px; /* Fixed width for input */
     text-align: center; /* Center text in input */
@@ -286,4 +301,27 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Hide the default number input spinners in Firefox */
 input[type="number"] {
     -moz-appearance: textfield; /* Remove default spinner */
+}
+.description{
+    color: lightgray;
+    margin: 0;
+    font-size: 18px;
+}
+.des_h1{
+    color: darkgray;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+.character_con{
+    display: flex;
+    flex-direction: column;
+}
+.char_h1{
+    color: darkgray;
+    margin: 0;
+    font-weight: 400;
+}
+ul li{
+    color: darkgray;
+    font-size: 19px;
 }

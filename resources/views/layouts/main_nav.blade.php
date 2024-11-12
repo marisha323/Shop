@@ -14,20 +14,25 @@
 <body>
     <header>
         <div class="top_header_el">
-            <h1 class="links_h1"><a href="/">ENG</a> | <a href="/">RU</a></h1>
+            <img class="logo_v" src="/icons/logo_vv.png" alt="">
+            
             <div class="login_ic"><a href="">
+                <div class="cart-container">
+                    <img class="p_icon" src="/icons/cart_icon.png" alt="">
+                    <div class="cart-count">3</div> <!-- Change '3' dynamically as needed -->
+                </div>
                 <img src="/icons/profile_Icon.png" alt="" class="p_icon"></a>
                 <h1 class="links_h1"><a href="">Login</a> | <a href="">Register</a></h1>
             </div>
         </div>
         <div class="bottom_header_el">
-            <img class="logo_v" src="/icons/logo_vv.png" alt="">
+            
             <input class="search_engine" type="text" placeholder="Search">
             <div class="login_is"><a href="">
                 <h1 class="links_h11"><a href="">Home</a></h1>
                 <h1 class="links_h11"><a href="">Products</a></h1>
                 <h1 class="links_h11"><a href="">FAQ</a></h1>
-                <h1 class="links_h11"><a href="">Shop</a></h1>
+                <h1 class="links_h11"><a href="">Contact Us</a></h1>
             </div>
         </div>
     </header>

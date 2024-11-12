@@ -40,9 +40,13 @@ header {
     justify-content: space-between;
 }
 .search_engine{
-    margin-left: 12rem;
+    margin-left: 6rem;
     width: 22vw;
     font-size: 22px;
+    background-color: #F3E2CA;
+    border: none;
+    border-radius: 10px;
+    padding-left: 2rem;
 }
 .links_h1 a, .links_h1, .links_h11 a, .links_h11{
     text-decoration: none;
@@ -53,12 +57,40 @@ header {
 }
 .p_icon{
     width: 2rem;
+    margin-left: 1rem;
+}
+.cart-container {
+    display: inline-flex; /* Flexbox to arrange the icon and cart count side by side */
+    align-items: center; /* Vertically center the content */
+    position: relative; /* Keep the relative position for child elements */
+}
+
+.p_icon {
+    width: 40px; /* Adjust size of the cart icon */
+    height: auto;
+}
+
+.cart-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px; /* Circle size */
+    height: 20px; /* Circle size */
+    background-color: #D42C2F; /* Circle color */
+    color: white; /* Text color */
+    border-radius: 50%; /* Makes it circular */
+    font-size: 12px; /* Adjust text size */
+    font-weight: bold;
+    margin-left: -15px; /* Position the cart count slightly to the right */
+    margin-bottom: 1.5rem;
 }
 .login_ic{
     display: flex;
     align-items: center;
     gap: 1.5rem;
     margin-right: 4rem;
+    margin-left: auto;
+    justify-content: center;
 }
 .logo_v{
     width: 4rem;
