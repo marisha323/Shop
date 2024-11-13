@@ -30,6 +30,7 @@ Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::get('/order', [OrderController::class, 'showOrderForm'])->name('order.form');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+Route::get('/information', [HomeController::class, 'information'])->name('information');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 //REFERAl LINK

@@ -37,6 +37,17 @@ class HomeController extends Controller
         return view('welcome', compact('categories', 'products', 'referralLink'));
 
     }
+    public function information()
+    {
+        $products = Product::with('images')->get();
+        $categories = Category::all();
+
+        $user = Auth::user();
+        $referralLink = (new HomeController)->generateReferralLink($user);
+        //dd($products);
+        return view('information', compact('categories', 'products', 'referralLink'));
+
+    }
 
     public function showCategory($categoryId)
     {

@@ -381,3 +381,39 @@ html, body {
 .inf img{
     width: 5rem;
 }
+
+/*
+container info for information page*/
+.container_info{
+    background-color: #051E18;
+    color: #FEF0CC;
+    width: 95vw;
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    box-sizing: border-box;
+}
+.container_info h1{
+    font-size: 36px;
+    font-weight: 400;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+}
+.container_info p, .container_info h1, .container_info li{
+    margin: 0;
+}
+.container_info p, .container_info li{
+    font-size: 24px;
+    font-weight: 200;
+    width: 85%;
+    align-self: center;
+}
+.custom-digits {
+    list-style-type: decimal; /* This ensures numbers (digits) are shown instead of dots */
+    padding-left: 20px; /* Adjust padding as needed for alignment */
+}
