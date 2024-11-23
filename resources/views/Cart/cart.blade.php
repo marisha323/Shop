@@ -1,101 +1,122 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Styles -->
-    <style>
-        /* Styles here */
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 </head>
-<body class="antialiased">
-
-<div class="container mt-5">
-    <a href="{{ route('welcome') }}" class="btn btn-primary">Вернуться к покупкам</a>
-
-    <h1>Cart</h1>
-    @if(session('cart'))
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach(session('cart') as $id => $details)
-                <tr>
-                    <td>
-                        @if(!empty($details['images']))
-                            <img src="{{ $details['images'][0]['ImageUrl'] }}" alt="{{ $details['name'] }}" class="img-fluid" style="width: 50px; height: 50px; margin-right: 10px;">
-                        @endif
-                        {{ $details['name'] }}
-                    </td>
-                    <td>{{ $details['quantity'] }}</td>
-                    <td>${{ $details['price'] }}</td>
-                    <td>${{ $details['price'] * $details['quantity'] }}</td>
-                    <td>
-                        <form action="{{ route('cart.remove', $id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div class="text-right">
-            <strong>Total: ${{ $total }}</strong>
+<body>
+<div class="container">
+    <h1>Your Cart</h1>
+    
+    <div class="display_list_info">
+        <div class="emp_d"><p>Added Items:</p></div>
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Total Price</p>
+    <div></div>
+    </div>
+    <hr>
+    
+    <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMHaunvYk8q_hmXVtd1eO39lg36ucOqyUm3HvqyrqUDRRglTkVVXvBvmg2mUOPheN6nQ&usqp=CAU" alt="Product Name" class="product-image">
+        <div class="product-info">
+            <div class="name_des">
+                <h2>Product Name</h2>
+                <p>Style: Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            <p class="product-price unit-price">$10.00</p>
+            <div class="quantity-control">
+                <button class="decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="increase">+</button>
+            </div>
+            <p class="product-price total-price">$10.00</p>
+            <button class="remove-product">X</button>
         </div>
+    </div>
 
-        <!-- Checkout Form -->
-        <form action="{{ route('order.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="total_price" value="{{ $total }}">
-            <input type="hidden" name="total_count" value="{{ count(session('cart')) }}">
-            <div class="mb-3">
-                <label for="index" class="form-label">Индекс</label>
-                <input type="text" class="form-control" id="index" name="index">
+    <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMHaunvYk8q_hmXVtd1eO39lg36ucOqyUm3HvqyrqUDRRglTkVVXvBvmg2mUOPheN6nQ&usqp=CAU" alt="Product Name" class="product-image">
+        <div class="product-info">
+            <div class="name_des">
+                <h2>Product Name</h2>
+                <p>Style: Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
             </div>
-            <div class="mb-3">
-                <label for="comment" class="form-label">Комментарий</label>
-                <textarea class="form-control" id="comment" name="comment"></textarea>
+            <p class="product-price unit-price">$10.00</p>
+            <div class="quantity-control">
+                <button class="decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="increase">+</button>
             </div>
-            <div class="mb-3">
-                <label for="post" class="form-label">Выберите почту</label>
-                <select id="post" name="post_id" class="form-select">
-                    <option value="" selected>Выберите почту</option>
-                    @foreach($posts as $post)
-                        <option value="{{ $post->id }}">{{ $post->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+            <p class="product-price total-price">$10.00</p>
+            <button class="remove-product">X</button>
+        </div>
+    </div>
 
-            <div class="mb-3">
-                <label for="postal_branch_number" class="form-label">Номер отделения почты</label>
-                <input type="text" class="form-control" id="postal_branch_number" name="postal_branch_number">
-            </div>
+    <hr>
+    <div class="subtotal">
+        <p><strong>Subtotal:</strong> <span id="subtotal-price">$20.00</span></p>
+    </div>
+    
+    <button class="checkout">PROCEED TO CHECKOUT</button>
+</div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityControls = document.querySelectorAll('.quantity-control');
+        let subtotal = 0; // Initialize subtotal
+        
+        quantityControls.forEach(control => {
+            const decreaseButton = control.querySelector('.decrease');
+            const increaseButton = control.querySelector('.increase');
+            const quantityDisplay = control.querySelector('.quantity');
+            const unitPriceElement = control.closest('.product-info').querySelector('.unit-price');
+            const totalPriceDisplay = control.closest('.product-info').querySelector('.total-price');
+            const subtotalDisplay = document.getElementById('subtotal-price');
 
-            <button type="submit" class="btn btn-outline-success">Оформить заказ</button>
-        </form>
+            function updateTotalPrice(quantity) {
+                const unitPrice = parseFloat(unitPriceElement.textContent.replace('$', '')); // Get unit price
+                const totalPrice = (unitPrice * quantity).toFixed(2); // Calculate total price
+                totalPriceDisplay.textContent = `$${totalPrice}`; // Update total price display
+                return totalPrice; // Return total price for subtotal calculation
+            }
 
+            function updateSubtotal() {
+                subtotal = 0; // Reset subtotal
+                document.querySelectorAll('.product').forEach(product => {
+                    const quantity = parseInt(product.querySelector('.quantity').textContent);
+                    const unitPrice = parseFloat(product.querySelector('.unit-price').textContent.replace('$', ''));
+                    subtotal += unitPrice * quantity; // Add to subtotal
+                });
+                subtotalDisplay.textContent = `$${subtotal.toFixed(2)}`; // Update subtotal display
+            }
 
+            decreaseButton.addEventListener('click', () => {
+                let currentQuantity = parseInt(quantityDisplay.textContent);
+                if (currentQuantity > 1) { // Ensure quantity doesn't go below 1
+                    currentQuantity--;
+                    quantityDisplay.textContent = currentQuantity;
+                    updateTotalPrice(currentQuantity); // Update total price
+                    updateSubtotal(); // Update subtotal
+                }
+            });
 
-    @else
-        <p>Your cart is empty.</p>
-@endif
+            increaseButton.addEventListener('click', () => {
+                let currentQuantity = parseInt(quantityDisplay.textContent);
+                currentQuantity++;
+                quantityDisplay.textContent = currentQuantity;
+                updateTotalPrice(currentQuantity); // Update total price
+                updateSubtotal(); // Update subtotal
+            });
 
+            // Initialize total price and subtotal on page load
+            updateTotalPrice(parseInt(quantityDisplay.textContent));
+            updateSubtotal();
+        });
+    });
+</script>
 </body>
 </html>

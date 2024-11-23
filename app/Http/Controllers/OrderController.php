@@ -2,17 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Telegram;
-use App\Models\HistoryOrder;
 use App\Models\Order;
-use App\Models\Referral;
-use App\Models\TotalSalary;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Http;
-use function Laravel\Prompts\alert;
 
 class OrderController extends Controller
 {
@@ -52,7 +44,7 @@ class OrderController extends Controller
             'user_id' => Auth::id(),
             'total_price' => $request->total_price,
             'total_count' => $request->total_count,
-
+            'status' => 'pending', // Или другой статус по умолчанию
             'index' => $request->index,
             'comment' => $request->comment,
             'postal_branch_number' => $request->postal_branch_number,

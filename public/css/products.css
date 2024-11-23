@@ -1,0 +1,333 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #10654E; /* Darker background for better contrast */
+    color: #F8F9FA; /* Light text for readability */
+}
+
+.search_products {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    border: 2px solid #FFD700; /* Gold border for prominence */
+    background-color: #FFFFFF; /* Keep white for input area */
+    margin-top: 2vw;
+    padding: 0.5rem;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.btn_close {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.close_icon {
+    width: 1rem;
+    margin-right: 0.5rem;
+}
+
+.search_inp {
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    outline: none;
+    padding: 0.5rem; /* Added padding for better usability */
+}
+
+.btn_search {
+    background-color: #FF4500; /* Vivid orange-red for the button */
+    border: none;
+    color: white;
+    width: 10rem;
+    height: 2.5rem; /* Slightly taller for better visibility */
+    margin-left: auto;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+.btn_search:hover {
+    background-color: #FF5722; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+.btn_search:active {
+    transform: scale(0.95); /* Slightly reduces the button size when pressed */
+}
+
+.product_body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0 auto;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+}
+
+.product_body p, .product_body h2 {
+    margin: 0.3rem;
+}
+
+.product_body h2 {
+    color: #FFD700; /* Gold color for product titles */
+}
+
+.product_body span {
+    color: #F8F9FA; /* Light text for visibility */
+}
+
+.bg_img {
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9); /* Lighter background for buttons */
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.slider-btn.left {
+    left: 10px;
+}
+
+.slider-btn.right {
+    right: 10px;
+}
+
+.indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 0.5rem;
+    overflow-x: auto;
+}
+
+.dot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ccc;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background: #FF4500; /* Match active dot with search button */
+    transform: scale(1.2);
+}
+
+.product_section {
+    width: 100%;
+    display: flex;
+    gap: 3rem;
+}
+
+.categories_selection {
+    background-color:#4C3129; /* Richer green for sidebar */
+    border-radius: 8px;
+    padding: 20px;
+    width: 16rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.categories_selection h3 {
+    color: #FEF0CC; /* Gold for sidebar titles */
+    margin-bottom: 15px;
+}
+
+.category {
+    cursor: pointer;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.category:hover {
+    background-color: #2A9E73; /* Light green on hover */
+}
+
+.category-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subcategory {
+    color: #D0E1D4;
+    margin: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.subcategory:hover {
+    color: #F5F5F5;
+}
+
+.filters_selection_con {
+    width: 75vw;
+}
+
+.filters-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 0.5rem;
+    font-weight: 600;
+    border: 2px solid rgb(218, 173, 173);
+    margin-right: 1rem;
+}
+
+.last_f {
+    margin-left: auto;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.product-container {
+    width: 14.2rem;
+    height: 21rem;
+    box-sizing: border-box;
+}
+
+.product {
+    position: relative;
+    width: 14.2rem;
+    background-color: #083026; /* Keep product background white for contrast */
+    cursor: pointer;
+    border-radius: 10px;
+    color: white;
+    padding: 0.5rem;
+    overflow: hidden;
+    max-height: 22rem;
+    transition: max-height 0.3s ease;
+}
+
+.product:hover {
+    max-height: 40rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.product_img_slider {
+    width: 100%;
+    height: 22rem;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.product_img {
+    width: 100%;
+    height: 13rem;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.product .cut_price {
+    color: rgb(174, 158, 158);
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.product .price {
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    font-weight: 600;
+}
+
+.add_cart_btn_p {
+    display: flex;
+    align-items: center;
+}
+
+.add_cart_btn {
+    width: 50%;
+    height: 3rem;
+    background-color: #42D9B0; /* Bright blue for the button */
+    color: white;
+    padding: 12px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.add_cart_btn:hover {
+    background-color: #35a68c;
+    transform: scale(1.03);
+}
+
+.add_cart_btn:active {
+    background-color: #004085;
+    transform: scale(0.98);
+}
+
+.product .description_prod {
+    display: none;
+}
+
+.product:hover .description_prod {
+    display: block;
+    margin-top: 1rem;
+    font-size: 14px;
+    color: white;
+    position: relative;
+    z-index: 1;
+    background-color: #083026; /* Light background for description */
+    padding: 10px; /* Padding for description */
+    border-radius: 5px; /* Rounded corners */
+}

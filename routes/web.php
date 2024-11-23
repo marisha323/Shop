@@ -38,8 +38,10 @@ Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit')
 Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::get('/order', [OrderController::class, 'showOrderForm'])->name('order.form');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+Route::get('/information', [HomeController::class, 'information'])->name('information');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 //REFERAl LINK
@@ -88,6 +90,12 @@ Route::delete('brand/{id}', [BrandController::class, 'destroy'])->name('brand.de
 
 
 //Products
+Route::get('/products', [ProductController::class, 'products'])->name('products');
+Route::get('products/{itemName}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/product/{itemName}/updateColor', [ProductController::class, 'updateColor'])->name('product.updateColor');
+
+
+
 Route::get('/product/index',[ProductController::class,'index'])->name('product.indexf');
 Route::get('/product/{id}/info', [ProductController::class, 'info'])->name('product.info');
 Route::get('product/add', [ProductController::class, 'create'])->name('product.add');
@@ -118,8 +126,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
     });
 });
-
-
 require __DIR__.'/auth.php';
 //Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
 //Route::get('/product/index',[ProductController::class,'index'])->name('product.index');
