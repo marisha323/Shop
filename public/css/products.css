@@ -226,13 +226,46 @@ body {
     width: 100%;
     box-sizing: border-box;
     padding: 1rem;
-    gap: 2rem;
+    gap: 1rem;
 }
+.container_menu_scroller{
+    display: flex;
+    gap: 2rem;
+    width: 28%;
 
-.product-container {
-    width: 14.2rem;
-    height: 21rem;
-    box-sizing: border-box;
+}
+.menu{
+    display: flex;
+    flex-direction: column;
+    background-color: #4C3129;
+    border-radius: 8px;
+    padding: 1rem;
+    gap: 0.5rem;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 34%;
+}
+.option_m hr{
+    border-color: #FEF0CC;
+}
+.opt{
+    display: flex;
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+    text-decoration: none;
+}
+.opt p {
+    margin: 0;
+    font-size: 19px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    text-decoration: none;
+}
+.arrow{
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
 }
 
 .product {
@@ -330,4 +363,163 @@ body {
     background-color: #083026; /* Light background for description */
     padding: 10px; /* Padding for description */
     border-radius: 5px; /* Rounded corners */
+}
+.select_con {
+    background-color: #3C5247; /* Default background */
+    width: 15%;
+    border: none;
+    color: white; /* Text color */
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover effect */
+.select_con:hover {
+    background-color: #42D9B0; /* Lighter color on hover */
+    color: #051E18; /* Dark text color on hover for contrast */
+}
+
+/* Focused (active) state when the dropdown is selected */
+.select_con:focus {
+    background-color: #35a68c; /* Darker shade for active/focused state */
+    color: white; /* Text stays white */
+    outline: none; /* Remove default outline */
+}
+
+.filters{
+    display: flex;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    gap: 1rem;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    padding-left: 8rem;
+}
+.filters p{
+    margin: 0;
+}
+.oevb_h1{
+    color: #FEF0CC;
+    font-family: 'Roboto Slab', serif; /* Corrected font family with fallback */
+    text-shadow: 12px 6px 6px rgba(0, 0, 0, 0.25); /* X: 12px, Y: 6px, blur: 6px, black 25% opacity */
+    font-weight: 400;
+    margin: 0 auto;
+    font-size: 37px;
+}
+.quick_filters a {
+    text-decoration: none;
+    background-color: #051E18; /* Default background */
+    color: white; /* Text color */
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
+    margin: 0.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover effect */
+.quick_filters a:hover {
+    background-color: #42D9B0; /* Lighter color on hover */
+    color: #051E18; /* Dark text color on hover for contrast */
+    transform: scale(1.05); /* Slight scaling on hover */
+}
+
+/* Active state */
+.quick_filters a.active {
+    background-color: #35a68c; /* Darker shade of the hover color */
+    color: white; /* Keep text color white */
+}
+
+
+
+
+
+.product-card {
+    background-color: #002523;
+    color: #fff;
+    border-radius: 30px;
+    padding: 1rem;
+    width: 20%;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+    text-align: justify;
+    font-family: Roboto Slab, sans-serif;
+}
+
+.image-container {
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.image-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.3rem;
+}
+
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    background-color: #ff8000; /* Помаранчевий активний колір */
+}
+
+.product-info {
+    margin-top: 1rem;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.add-to-cart {
+    background-color: #00d9a1; /* Бірюзовий фон */
+    color: #000000; /* Темно-зелений текст */
+    font-weight: 800; /* Жирний текст */
+    border: none;
+    border-radius: 50px; /* Зробити кнопку більш круглою */
+    padding: 0.8rem 1.5rem; /* Збільшення внутрішніх відступів */
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: inset 8px 8px 4px rgba(0, 0, 0, 0.4); /* Внутрішня тінь */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: Roboto Slab, sans-serif;
+}
+
+.add-to-cart:hover {
+    background-color: #00b488; /* Трохи темніший відтінок */
+    transform: scale(1.05); /* Збільшення при наведенні */
+    box-shadow: inset 8px 8px 4px rgba(0, 0, 0, 0.3); /* Посилення тіні при наведенні */
+}
+
+.add-to-cart:active {
+    transform: scale(0.95); /* Зменшення при натисканні */
+    box-shadow: inset 4px 4px 2px rgba(0, 0, 0, 0.2); /* Зміна тіні при натисканні */
 }

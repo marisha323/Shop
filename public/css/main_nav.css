@@ -4,27 +4,29 @@
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal; */
-body{
+body {
     margin: 0;
     padding: 0;
     background-color: #10654E;
 }
+
 header {
     font-family: "Roboto Slab", serif;
     font-optical-sizing: auto;
     font-style: normal;
     width: 100%;
     box-sizing: border-box;
-    
-    
-    /* overflow: hidden; 
+
+
+    /* overflow: hidden;
     background-image: url('/images/home_top_bg.png');
-    background-size: 100vw 100vh; 
-    background-position: top center; 
-    background-repeat: no-repeat; 
+    background-size: 100vw 100vh;
+    background-position: top center;
+    background-repeat: no-repeat;
     background-color: #10654E;  */
 }
-.top_header_el, .bottom_header_el{
+
+.top_header_el, .bottom_header_el {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -33,41 +35,69 @@ header {
     box-sizing: border-box;
     padding: 0.8rem;
 }
+
 .bottom_header_el {
     background-color: rgba(0, 0, 0, 0.5);
     border-top: 2px solid #FEF0CC; /* Add 2px top border */
     border-bottom: 2px solid #FEF0CC; /* Add 2px bottom border */
     justify-content: space-between;
 }
-.search_engine{
-    margin-left: 6rem;
-    width: 22vw;
-    font-size: 22px;
-    background-color: #F3E2CA;
-    border: none;
-    border-radius: 10px;
-    padding-left: 2rem;
-}
-.links_h1 a, .links_h1, .links_h11 a, .links_h11{
+
+.links_h1 a, .links_h1, .links_h11 a, .links_h11 {
     text-decoration: none;
     color: #FEF0CC;
     font-weight: 400;
     font-size: 18px;
     margin: 0;
 }
-.p_icon{
+
+.p_icon {
     width: 2rem;
     margin-left: 1rem;
 }
+
 .cart-container {
     display: inline-flex; /* Flexbox to arrange the icon and cart count side by side */
     align-items: center; /* Vertically center the content */
     position: relative; /* Keep the relative position for child elements */
 }
 
+
 .p_icon {
     width: 40px; /* Adjust size of the cart icon */
     height: auto;
+}
+
+.search-container {
+    padding-left: 4rem;
+    display: inline-flex; /* Flexbox to arrange the icon and cart count side by side */
+    align-items: center; /* Vertically center the content */
+    position: relative; /* Keep the relative position for child elements */
+    width: 100%; /* Займає всю ширину */
+    max-width: 300px;
+    min-width: 140px;
+}
+
+.search_engine {
+
+    width: 100%;
+    padding-right: 2rem;
+    box-sizing: border-box;
+    font-size: 22px;
+    background-color: #F3E2CA;
+    border: none;
+    border-radius: 10px;
+    padding-left: 2rem;
+}
+
+.s_icon {
+    /*width: 25px; !* Adjust size of the cart icon *!*/
+    position: absolute;
+    right: 0.5rem;
+
+    pointer-events: none;
+    height: 1.5rem;
+    width: 1.5rem;
 }
 
 .cart-count {
@@ -84,26 +114,30 @@ header {
     margin-left: -15px; /* Position the cart count slightly to the right */
     margin-bottom: 1.5rem;
 }
-.login_ic{
+
+.login_ic {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    margin-right: 4rem;
+    margin-right: 1rem;
     margin-left: auto;
     justify-content: center;
 }
-.logo_v{
+
+.logo_v {
     width: 4rem;
     position: absolute;
     left: 1rem;
 }
-.login_is{
+
+.login_is {
     display: flex;
     align-items: center;
     gap: 4rem;
     margin-right: 4rem;
 }
-.links_h11 a, .links_h11{
+
+.links_h11 a, .links_h11 {
     font-size: 22px !important;
 }
 
@@ -120,53 +154,64 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
-.footer_info{
+
+.footer_info {
     display: flex;
     gap: 2rem;
 
 }
-.footer_con{
+
+.footer_con {
     width: 17vw;
 }
-.h1_f{
+
+.h1_f {
     color: white;
     font-family: 'Ropa Sans', sans-serif;
     font-weight: 100;
     font-size: 24px;
 }
-.links_f{
+
+.links_f {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
-.links_f a{
+
+.links_f a {
     text-decoration: none;
     color: #FEF0CC;
     font-family: "Ropa Sans", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
 }
-.links_f a:hover{
+
+.links_f a:hover {
     color: #FFD15C;
 }
-.social_net{
+
+.social_net {
     display: flex;
     flex-direction: column;
 }
-.social_net p{
+
+.social_net p {
     margin-bottom: 0.5rem;
     color: white;
     font-size: 18px;
 }
-.social_d{
+
+.social_d {
     display: flex;
     gap: 0.8rem;
 }
-.f_img{
+
+.f_img {
     width: 3rem;
 }
-.h1_card{
+
+.h1_card {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -174,10 +219,25 @@ footer {
     font-weight: 100;
     margin: 0;
 }
-.c_hr{
+
+.c_hr {
     height: 2rem;
-   border: 1px solid#FEF0CC;;
+    border: 1px solid #FEF0CC;;
 }
-.card_img{
+
+.card_img {
     width: 5rem;
+}
+
+@media screen and (max-width: 900px) {
+    .search_engine {
+
+        max-width: 100%;
+
+    }
+
+    .s_icon {
+        height: 1.2rem; /* Зменшення розміру іконки */
+        width: 1.2rem;
+    }
 }

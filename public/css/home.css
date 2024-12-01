@@ -38,7 +38,7 @@ html, body {
     text-align: center;
 }
 .wh, .nh {
-   
+
     font-weight: 400;
     margin: 0;
 }
@@ -145,10 +145,12 @@ html, body {
 }
 .brand_img{
     width: 100%;
+    height: 65%;
 }
 .name_brand{
     background-color: #051E18;
     width: 100%;
+    height: 20%;
     display: flex;
     justify-content: center;
 }
@@ -156,41 +158,38 @@ html, body {
     width: 30%;
     padding: 0.5rem;
 }
+.fendi_brand{
+    width: 40%;
+    padding: 0.5rem;
+}
+.dior_brand{
+    width: 45%;
+    padding: 0.5rem;
+}.gucci_brand{
+    width: 25%;
+    padding: 0.5rem;
+}
+.prada_brand{
+    width: 55%;
+    padding: 0.5rem;
+}
+.louis_vuitton_brand{
+    width: 50%;
+    padding: 0.5rem;
+}
 .products {
     display: flex;
     flex-wrap: wrap;
     width: 90%;
     box-sizing: border-box;
-    padding: 1rem;
+
     gap: 2rem;
     margin: 2rem;
+    padding-inline-start: 5rem;
+    justify-content: flex-start;
 }
 
-.product-container {
-    width: 14.2rem;
-    height: 23rem;
-    box-sizing: border-box;
-}
 
-.product {
-    position: relative;
-    width: 14.2rem;
-    background-color: #083026; /* Keep product background white for contrast */
-    cursor: pointer;
-    border-radius: 10px;
-    color: white;
-    padding: 0.5rem;
-    overflow: hidden;
-    max-height: 23rem;
-    transition: max-height 0.3s ease;
-}
-
-.product:hover {
-    max-height: 40rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    transform: scale(1.05);
-    z-index: 1;
-}
 
 .product_img_slider {
     width: 100%;
@@ -199,12 +198,7 @@ html, body {
     object-fit: cover;
 }
 
-.product_img {
-    width: 100%;
-    height: 13rem;
-    border-radius: 10px;
-    object-fit: cover;
-}
+
 
 .product .cut_price {
     color: rgb(174, 158, 158);
@@ -213,18 +207,7 @@ html, body {
     font-size: 18px;
 }
 
-.product .price {
-    font-size: 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-    font-weight: 600;
-}
 
-.add_cart_btn_p {
-    display: flex;
-    align-items: center;
-}
 
 .add_cart_btn {
     width: 50%;
@@ -243,31 +226,7 @@ html, body {
     margin: 0 auto;
 }
 
-.add_cart_btn:hover {
-    background-color: #35a68c;
-    transform: scale(1.03);
-}
 
-.add_cart_btn:active {
-    background-color: #004085;
-    transform: scale(0.98);
-}
-
-.product .description_prod {
-    display: none;
-}
-
-.product:hover .description_prod {
-    display: block;
-    margin-top: 1rem;
-    font-size: 14px;
-    color: white;
-    position: relative;
-    z-index: 1;
-    background-color: #083026; /* Light background for description */
-    padding: 10px; /* Padding for description */
-    border-radius: 5px; /* Rounded corners */
-}
 .btn_load_more {
     width: 15rem;
     margin: 0 auto;
@@ -289,64 +248,8 @@ html, body {
     transform: scale(1.05); /* Slight scaling effect on hover */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Add a soft shadow to make the button pop */
 }
-.filters{
-    display: flex;
-    color: white;
-    font-family: 'Roboto Slab', serif;
-    font-weight: 400;
-    gap: 1rem;
-    width: 90%;
-    justify-content: center;
-    align-items: center;
-}
-.filters p{
-    margin: 0;
-}
-.quick_filters a {
-    text-decoration: none;
-    background-color: #051E18; /* Default background */
-    color: white; /* Text color */
-    padding: 0.3rem 0.5rem;
-    border-radius: 10px;
-    margin: 0.1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-}
 
-/* Hover effect */
-.quick_filters a:hover {
-    background-color: #42D9B0; /* Lighter color on hover */
-    color: #051E18; /* Dark text color on hover for contrast */
-    transform: scale(1.05); /* Slight scaling on hover */
-}
 
-/* Active state */
-.quick_filters a.active {
-    background-color: #35a68c; /* Darker shade of the hover color */
-    color: white; /* Keep text color white */
-}
-.select_con {
-    background-color: #3C5247; /* Default background */
-    border: none;
-    color: white; /* Text color */
-    padding: 0.5rem 0.8rem;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-}
-
-/* Hover effect */
-.select_con:hover {
-    background-color: #42D9B0; /* Lighter color on hover */
-    color: #051E18; /* Dark text color on hover for contrast */
-}
-
-/* Focused (active) state when the dropdown is selected */
-.select_con:focus {
-    background-color: #35a68c; /* Darker shade for active/focused state */
-    color: white; /* Text stays white */
-    outline: none; /* Remove default outline */
-}
 .information_con {
     background-image: url("/images/coffee_bg.png");
     background-size: cover; /* Ensures the image covers the element */
@@ -391,7 +294,7 @@ container info for information page*/
     display: flex;
     margin: 0 auto;
     text-align: center;
-    
+
     justify-content: center;
     flex-direction: column;
     gap: 0.5rem;
@@ -416,4 +319,90 @@ container info for information page*/
 .custom-digits {
     list-style-type: decimal; /* This ensures numbers (digits) are shown instead of dots */
     padding-left: 20px; /* Adjust padding as needed for alignment */
+}
+
+
+
+.product-card {
+    background-color: #002523;
+    color: #fff;
+    border-radius: 30px;
+    padding: 1rem;
+    width: 20%;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+    text-align: justify;
+    font-family: Roboto Slab, sans-serif;
+}
+
+.image-container {
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.image-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.3rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.dot.active {
+    opacity: 1;
+    background-color: #ff8000; /* Помаранчевий активний колір */
+}
+
+.product-info {
+    margin-top: 1rem;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+.add-to-cart {
+    background-color: #00d9a1; /* Бірюзовий фон */
+    color: #000000; /* Темно-зелений текст */
+    font-weight: 800; /* Жирний текст */
+    border: none;
+    border-radius: 50px; /* Зробити кнопку більш круглою */
+    padding: 0.8rem 1.5rem; /* Збільшення внутрішніх відступів */
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: inset 8px 8px 4px rgba(0, 0, 0, 0.4); /* Внутрішня тінь */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: Roboto Slab, sans-serif;
+}
+
+.add-to-cart:hover {
+    background-color: #00b488; /* Трохи темніший відтінок */
+    transform: scale(1.05); /* Збільшення при наведенні */
+    box-shadow: inset 8px 8px 4px rgba(0, 0, 0, 0.3); /* Посилення тіні при наведенні */
+}
+
+.add-to-cart:active {
+    transform: scale(0.95); /* Зменшення при натисканні */
+    box-shadow: inset 4px 4px 2px rgba(0, 0, 0, 0.2); /* Зміна тіні при натисканні */
 }

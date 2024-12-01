@@ -61,86 +61,64 @@
     <div class="brands_scroller">
     <div class="brands">
         <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
+            <img class="brand_img" src="/images/chanel1.png" alt="">
             <div class="name_brand">
                 <img class="NA_brand" src="/images/chanel.png" alt="">
             </div>
         </div>
         <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
+            <img class="brand_img" src="/images/Dior-1.png" alt="">
             <div class="name_brand">
-                <img class="NA_brand" src="/images/chanel.png" alt="">
+                <img class="dior_brand" src="/images/dior_logo.png" alt="">
             </div>
         </div>
         <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
+            <img class="brand_img" src="/images/fendi_bags.png" alt="">
             <div class="name_brand">
-                <img class="NA_brand" src="/images/chanel.png" alt="">
+                <img class="fendi_brand" src="/images/fendi.png" alt="">
             </div>
         </div>
         <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
+            <img class="brand_img" src="/images/gucci_bags.png" alt="">
             <div class="name_brand">
-                <img class="NA_brand" src="/images/chanel.png" alt="">
+                <img class="gucci_brand" src="/images/gucci.png" alt="">
             </div>
         </div>
         <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
+            <img class="brand_img" src="/images/prada_bags.png" alt="">
             <div class="name_brand">
-                <img class="NA_brand" src="/images/chanel.png" alt="">
+                <img class="prada_brand" src="/images/prada.png" alt="">
             </div>
         </div>
         <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
+            <img class="brand_img" src="/images/louis_vuitton_bags.png" alt="">
             <div class="name_brand">
-                <img class="NA_brand" src="/images/chanel.png" alt="">
-            </div>
-        </div>
-        <div class="brand">
-            <img class="brand_img" src="/images/brands_img.png" alt="">
-            <div class="name_brand">
-                <img class="NA_brand" src="/images/chanel.png" alt="">
+                <img class="louis_vuitton_brand" src="/images/louis_vuitton.png" alt="">
             </div>
         </div>
         <!-- Add more brands as needed -->
     </div>
-    
+
 </div>
 <h1 class="oevb_h1">All Products</h1>
-<div class="filters">
-    <p>New Products</p>
-    <div class="quick_filters">
-        <a class="active" href="/">New Products</a>
-        <a href="/">Over the last 7 days</a>
-        <a href="/">Over the last 30 days</a>
-    </div>
-    <p>Filter by Categories</p>
-    <select class="select_con" name="" id="">
-        <option value="" selected disabled>Select</option> <!-- Default, unselectable option -->
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-        <option value="option4">Option 4</option>
-        <option value="option5">Option 5</option>
-    </select>
-</div>
 <div class="products">
-    <!-- Example product container -->
     @for ($i = 0; $i < 10; $i++)
-        <div class="product-container">
-            <div class="product">
-                <img class="product_img" src="/images/bag.png" alt="">
-                <div class="add_cart_btn_p">
-                    <p class="price">$65.00 <span class="cut_price">$85.00</span></p>
-                    <button class="add_cart_btn">Add Cart</button>
-                </div>
-                <p>Product Name (19201291)</p>
-                <p>Brand Name</p>
-                <div class="description_prod">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur nam odio, reiciendis vitae ex nisi atque ipsum unde, totam eveniet rerum a ipsa fugit? Aperiam necessitatibus placeat facere consectetur aliquid.</p>
-                </div>
+    <div class="product-card">
+        <div class="image-container">
+            <img src="/images/bag.png" alt="Product Image" class="product-image" />
+            <div class="image-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
             </div>
         </div>
+        <div class="product-info">
+            <h3 class="product-name">product1</h3>
+            <p class="product-price">150$</p>
+            <button class="add-to-cart">Add to cart</button>
+        </div>
+    </div>
+
     @endfor
 </div>
 <button class="btn_load_more">Load More</button>
@@ -195,11 +173,11 @@
 
 
             <!-- SEARCH -->
-            
+
         </div>
     @endif --}}
 
-    
+
     {{-- <div class="container mt-5">
         <h1>Products</h1>
         <div class="row">
@@ -272,5 +250,5 @@ function toggleSubmenu(selectedCategory) {
 @endsection
 
 @section('scripts')
-   
+
 @endsection

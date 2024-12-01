@@ -55,13 +55,13 @@ class HomeController extends Controller
     }
     public function information()
     {
-        $products = Product::with('images')->get();
-        $categories = Category::all();
-
-        $user = Auth::user();
-        $referralLink = (new HomeController)->generateReferralLink($user);
+//        $products = Product::with('images')->get();
+//        $categories = Category::all();
+//
+//        $user = Auth::user();
+//        $referralLink = (new HomeController)->generateReferralLink($user);
         //dd($products);
-        return view('information', compact('categories', 'products', 'referralLink'));
+        return view('information');
 
     }
 
