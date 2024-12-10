@@ -34,6 +34,9 @@
                      <div class="carousel-item">
                         <img class="d-block w-100" src="{{ asset('images/baner5.png') }}" alt="Third slide">
                     </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="{{ asset('images/baner6.png') }}" alt="Third slide">
+                    </div>
 
                 </div>
 
