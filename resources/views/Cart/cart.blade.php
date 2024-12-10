@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
-</head>
-<body>
-<div class="container">
+<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+@section('title', 'Cart')
+@extends('layouts.main_nav')
+
+
+@section('content')
+<div class="cart_container">
     <h1>Your Cart</h1>
-    
+
     <div class="display_list_info">
         <div class="emp_d"><p>Added Items:</p></div>
         <p>Price</p>
@@ -19,7 +15,7 @@
     <div></div>
     </div>
     <hr>
-    
+
     <div class="product">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMHaunvYk8q_hmXVtd1eO39lg36ucOqyUm3HvqyrqUDRRglTkVVXvBvmg2mUOPheN6nQ&usqp=CAU" alt="Product Name" class="product-image">
         <div class="product-info">
@@ -60,7 +56,7 @@
     <div class="subtotal">
         <p><strong>Subtotal:</strong> <span id="subtotal-price">$20.00</span></p>
     </div>
-    
+
     <button class="checkout">PROCEED TO CHECKOUT</button>
 </div>
 
@@ -68,7 +64,7 @@
     document.addEventListener("DOMContentLoaded", function () {
         const quantityControls = document.querySelectorAll('.quantity-control');
         let subtotal = 0; // Initialize subtotal
-        
+
         quantityControls.forEach(control => {
             const decreaseButton = control.querySelector('.decrease');
             const increaseButton = control.querySelector('.increase');
@@ -118,5 +114,4 @@
         });
     });
 </script>
-</body>
-</html>
+@endsection

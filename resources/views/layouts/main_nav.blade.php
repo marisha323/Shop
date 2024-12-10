@@ -43,14 +43,16 @@
             <input class="search_engine" type="text" placeholder="Search"/>
             <img class="s_icon" src="/icons/search.png" alt="Search Icon">
         </div>
-        <div class="login_is"><a href="{{ route('information') }}"></a>
+        <div class="login_is">
             <h1 class="links_h11"><a href="{{ route('welcome') }}">Home</a></h1>
             <h1 class="links_h11"><a href="{{ route('products.home') }}">Products</a></h1>
-            <h1 class="links_h11"><a href="">Opportunities</a></h1>
+            <h1 class="links_h11"><a href="{{ route('information') }}">Opportunities</a></h1>
+                <a href="{{ route('cart.index') }}">
             <div class="cart-container">
-                <img class="p_icon" src="/icons/cart_icon.png" alt="">
-                <div class="cart-count">3</div> <!-- Change '3' dynamically as needed -->
+                    <img class="p_icon" src="/icons/cart_icon.png" alt="Cart Icon">
+                    <div class="cart-count">3</div> <!-- Динамічно змінюється, в залежності від кількості товарів у кошику -->
             </div>
+                </a>
         </div>
     </div>
 </header>
