@@ -39,9 +39,18 @@
 
     </div>
     <div class="bottom_header_el">
+
+{{--        <!-- SEARCH -->--}}
+{{--        <form class="form-inline d-flex my-2 my-lg-0" action="{{ route('search') }}" method="GET">--}}
+{{--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request()->input('query') }}">--}}
+{{--            <button class="btn btn-outline-success" type="submit">Search</button>--}}
+{{--        </form>--}}
+
         <div class="search-container">
-            <input class="search_engine" type="text" placeholder="Search"/>
+            <form class="form-inline d-flex my-2 my-lg-0" action="{{ route('search') }}" method="GET">
+            <input class="search_engine" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request()->input('query') }}"/>
             <img class="s_icon" src="/icons/search.png" alt="Search Icon">
+            </form>
         </div>
         <div class="login_is">
             <h1 class="links_h11"><a href="{{ route('welcome') }}">Home</a></h1>

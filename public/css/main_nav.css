@@ -94,7 +94,7 @@ header {
     /*width: 25px; !* Adjust size of the cart icon *!*/
     position: absolute;
     right: 0.5rem;
-
+    top: 0.1rem;
     pointer-events: none;
     height: 1.5rem;
     width: 1.5rem;
