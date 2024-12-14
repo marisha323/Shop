@@ -34,24 +34,31 @@
         </div>
     </div>
 
+    @foreach(session('cart') as $id=> $details)
     <div class="product">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMHaunvYk8q_hmXVtd1eO39lg36ucOqyUm3HvqyrqUDRRglTkVVXvBvmg2mUOPheN6nQ&usqp=CAU" alt="Product Name" class="product-image">
+        @if(!empty($details['images']))
+        <img src="{{$details['images'][0]['ImageUrl']}}" alt="{{$details['name']}}" class="product-image">
+        @endif
         <div class="product-info">
             <div class="name_des">
-                <h2>Product Name</h2>
-                <p>Style: Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                <h2>{{$details['name']}}</h2>
+                <p>Style: {{$details['quantity']}}</p>
             </div>
-            <p class="product-price unit-price">$10.00</p>
+            <p class="product-price unit-price">${{$details['price']}}</p>
             <div class="quantity-control">
                 <button class="decrease">-</button>
-                <span class="quantity">1</span>
+                <span class="quantity">{{$details['quantity'] }}</span>
                 <button class="increase">+</button>
             </div>
-            <p class="product-price total-price">$10.00</p>
+            <p class="product-price total-price">${{ $details['price'] * $details['quantity'] }}</p>
+            <form action="{{ route('cart.remove', $id) }}" method="POST">
+                @csrf
+                @method('DELETE')
             <button class="remove-product">X</button>
+            </form>
         </div>
     </div>
-
+    @endforeach
     <hr>
     <div class="subtotal">
         <p><strong>Subtotal:</strong> <span id="subtotal-price">$20.00</span></p>
