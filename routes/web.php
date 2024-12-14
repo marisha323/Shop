@@ -38,7 +38,7 @@ Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit')
 Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
-Route::get('/order', [OrderController::class, 'showOrderForm'])->name('order.form');
+Route::get('/orders', [OrderController::class, 'showOrderForm'])->name('order.order');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 Route::get('/information', [HomeController::class, 'information'])->name('information');

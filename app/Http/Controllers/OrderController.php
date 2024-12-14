@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,11 +27,22 @@ class OrderController extends Controller
 
         return view('orders.order', compact('orders'));
     }
+    public function showOrderForm(){
+
+        $posts = Post::all();
+        $cart = session()->get('cart', []);
+        $total = array_sum(array_map(function($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        return view('order', compact('cart', 'total','posts'));
+    }
 
 
 
     public function store(Request $request)
     {
+dd($request);
         // Валидация запроса
         $request->validate([
             'post_id' => ['required', 'exists:posts,id'],
@@ -38,7 +50,6 @@ class OrderController extends Controller
             'comment' => ['nullable', 'string'],
             'postal_branch_number' => ['nullable', 'string'],
         ]);
-
         // Сохранение заказа
         $order = Order::create([
             'user_id' => Auth::id(),

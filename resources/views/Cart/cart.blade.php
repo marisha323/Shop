@@ -5,6 +5,7 @@
 
 @section('content')
 <div class="cart_container">
+    @if(session('cart'))
     <h1>Your Cart</h1>
 
     <div class="display_list_info">
@@ -15,24 +16,6 @@
     <div></div>
     </div>
     <hr>
-
-    <div class="product">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhMHaunvYk8q_hmXVtd1eO39lg36ucOqyUm3HvqyrqUDRRglTkVVXvBvmg2mUOPheN6nQ&usqp=CAU" alt="Product Name" class="product-image">
-        <div class="product-info">
-            <div class="name_des">
-                <h2>Product Name</h2>
-                <p>Style: Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-            </div>
-            <p class="product-price unit-price">$10.00</p>
-            <div class="quantity-control">
-                <button class="decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="increase">+</button>
-            </div>
-            <p class="product-price total-price">$10.00</p>
-            <button class="remove-product">X</button>
-        </div>
-    </div>
 
     @foreach(session('cart') as $id=> $details)
     <div class="product">
@@ -65,6 +48,9 @@
     </div>
 
     <button class="checkout">PROCEED TO CHECKOUT</button>
+    @else
+        <p>Your cart is empty.</p>
+    @endif
 </div>
 
 <script>
