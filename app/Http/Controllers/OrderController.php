@@ -42,9 +42,14 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-dd($request);
+dd($request->total_price);
         // Валидация запроса
         $request->validate([
+            'full_name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'phone_number' => 'nullable|string|max:15',
             'post_id' => ['required', 'exists:posts,id'],
             'index' => ['required', 'string'],
             'comment' => ['nullable', 'string'],

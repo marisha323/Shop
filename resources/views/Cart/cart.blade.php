@@ -2,7 +2,7 @@
 @section('title', 'Cart')
 @extends('layouts.main_nav')
 
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section('content')
 <div class="cart_container">
     @if(session('cart'))
@@ -18,14 +18,14 @@
     <hr>
 
     @foreach(session('cart') as $id=> $details)
-    <div class="product">
+    <div class="product" data-id="{{ $id }}">
         @if(!empty($details['images']))
         <img src="{{$details['images'][0]['ImageUrl']}}" alt="{{$details['name']}}" class="product-image">
         @endif
         <div class="product-info">
             <div class="name_des">
                 <h2>{{$details['name']}}</h2>
-                <p>Style: {{$details['quantity']}}</p>
+
             </div>
             <p class="product-price unit-price">${{$details['price']}}</p>
             <div class="quantity-control">
@@ -44,10 +44,11 @@
     @endforeach
     <hr>
     <div class="subtotal">
-        <p><strong>Subtotal:</strong> <span id="subtotal-price">$20.00</span></p>
+        <p><strong>Subtotal:</strong> <span id="subtotal-price">${{$total}}</span></p>
     </div>
-
+        <a href="{{ route('order.order') }}">
     <button class="checkout">PROCEED TO CHECKOUT</button>
+        </a>
     @else
         <p>Your cart is empty.</p>
     @endif
@@ -83,28 +84,68 @@
                 subtotalDisplay.textContent = `$${subtotal.toFixed(2)}`; // Update subtotal display
             }
 
-            decreaseButton.addEventListener('click', () => {
-                let currentQuantity = parseInt(quantityDisplay.textContent);
-                if (currentQuantity > 1) { // Ensure quantity doesn't go below 1
-                    currentQuantity--;
-                    quantityDisplay.textContent = currentQuantity;
-                    updateTotalPrice(currentQuantity); // Update total price
-                    updateSubtotal(); // Update subtotal
-                }
-            });
+            // decreaseButton.addEventListener('click', () => {
+            //     let currentQuantity = parseInt(quantityDisplay.textContent);
+            //     if (currentQuantity > 1) { // Ensure quantity doesn't go below 1
+            //         currentQuantity--;
+            //         quantityDisplay.textContent = currentQuantity;
+            //         updateTotalPrice(currentQuantity); // Update total price
+            //         updateSubtotal(); // Update subtotal
+            //     }
+            // });
 
-            increaseButton.addEventListener('click', () => {
-                let currentQuantity = parseInt(quantityDisplay.textContent);
-                currentQuantity++;
-                quantityDisplay.textContent = currentQuantity;
-                updateTotalPrice(currentQuantity); // Update total price
-                updateSubtotal(); // Update subtotal
-            });
+            // increaseButton.addEventListener('click', () => {
+            //     let currentQuantity = parseInt(quantityDisplay.textContent);
+            //     currentQuantity++;
+            //     quantityDisplay.textContent = currentQuantity;
+            //     updateTotalPrice(currentQuantity); // Update total price
+            //     updateSubtotal(); // Update subtotal
+            // });
 
             // Initialize total price and subtotal on page load
             updateTotalPrice(parseInt(quantityDisplay.textContent));
             updateSubtotal();
         });
     });
+
+
+
+    // update session quantity product
+
+    document.querySelectorAll('.quantity-control button').forEach(button=>{
+        button.addEventListener('click',function (){
+            const product =this.closest('.product');
+            const quantitySpan=product.querySelector('.quantity');
+            const totalPriceElement=product.querySelector('.total-price');
+            const unitPrice=parseFloat(product.querySelector('.unit-price').textContent.replace('$',''));
+            const productId=product.dataset.id;
+            let newQuantity=parseInt(quantitySpan.textContent);
+
+            if(this.classList.contains('increase')){
+                newQuantity++;
+            } else if (this.classList.contains('decrease')&& newQuantity>1){
+                newQuantity--;
+            }
+            quantitySpan.textContent=newQuantity;
+            totalPriceElement.textContent=`$${(unitPrice*newQuantity.toFixed(1))}`;
+
+            fetch(`/cart/update/${productId}`,{
+                method:'PATCH',
+                headers:{
+                    'Content-Type':'application/json',
+                    'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body:JSON.stringify({quantity:newQuantity}),
+            })
+                .then(response=>response.json())
+                .then(data=>{
+                if (data.success){
+                    document.getElementById('subtotal-price').textContent=`$${data.total.toFixed(2)}`;
+                }
+                })
+                .catch(error=>console.error('Error',error));
+        });
+    });
+
 </script>
 @endsection

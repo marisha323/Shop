@@ -53,6 +53,7 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
+Route::patch('/cart/update/{id}',[CartController::class,'updateQuantity'])->name('cart.update');
 
 
 // Category

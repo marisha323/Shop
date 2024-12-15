@@ -19,6 +19,11 @@ class Order extends Model
         'comment',
         'postal_branch_number',
         'post_id',
+        'full_name',
+        'address',
+        'city',
+        'country',
+        'phone_number',
     ];
 
     // Определяем связь с моделью User

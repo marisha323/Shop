@@ -61,6 +61,54 @@ h2 {
 .form-group {
     margin-bottom: 15px;
 }
+
+.custom-textarea {
+    width: 90%; /* Зробити текстове поле на всю ширину батьківського контейнера */
+    height: 55px; /* Висота */
+    padding: 10px; /* Внутрішній відступ */
+    font-size: 16px; /* Розмір шрифту */
+    font-family: Arial, sans-serif; /* Шрифт */
+    border: 2px solid #10654E; /* Рамка */
+    border-radius: 5px; /* Закруглені кути */
+    background-color: #D6DAD9; /* Фон */
+    color: black; /* Колір тексту */
+    resize: vertical; /* Дозволити змінювати розмір тільки по вертикалі */
+}
+
+.custom-textarea:focus {
+    outline: none; /* Видалити стандартну рамку при фокусі */
+    border-color: #0056b3; /* Змінити колір рамки при фокусі */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Додати тінь */
+}
+
+.custom-select {
+    width: 100%; /* Ширина select */
+    height: 40px; /* Висота select */
+    padding: 5px; /* Внутрішній відступ */
+    font-size: 16px; /* Розмір тексту */
+    color: black;/* Color for the placeholder text */
+    font-weight: 500; /* Font weight for the placeholder text */
+    font-family: "Roboto Slab", serif;
+    background-color: #f9f9f9; /* Колір фону */
+    border: 2px solid #10654E; /* Рамка */
+    border-radius: 5px; /* Закруглення кутів */
+    appearance: none; /* Сховати стандартний стиль браузера */
+    -webkit-appearance: none; /* Для Safari */
+    -moz-appearance: none; /* Для Firefox */
+}
+
+.custom-select:focus {
+    outline: none; /* Видалити стандартний фокус */
+    border-color: #0056b3; /* Колір рамки при фокусі */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Додати тінь при фокусі */
+}
+
+.custom-select option {
+    padding: 10px; /* Відступи для опцій */
+    background-color: #ffffff; /* Колір фону опцій */
+    color: #996D6D;; /* Колір тексту */
+}
+
 .checkbox-container {
     display: flex;
     align-items: center;
@@ -100,6 +148,13 @@ h2 {
     font-weight: 500; /* Font weight for the placeholder text */
     font-family: "Roboto Slab", serif;
 }
+.form-group textarea::placeholder {
+    color: #996D6D; /* Color for the placeholder text */
+    font-weight: 500; /* Font weight for the placeholder text */
+    font-family: "Roboto Slab", serif;
+}
+
+
 
 .submit-button {
     background-color: #007bff;

@@ -38,6 +38,27 @@
                     <label for="phone_number">Phone Number</label>
                     <input type="text" id="phone_number" name="phone_number" required placeholder="(555) 123-4567 (Optional)">
                 </div>
+                <div class="form-group">
+                    <label for="index">Index</label>
+                    <input type="text" id="index" name="index" required placeholder="Enter index">
+                </div>
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea class="custom-textarea" id="comment" name="comment" placeholder="Add any comments"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post_id">Post</label>
+                    <select class="custom-select" id="post" name="post_id" class="form-select" required>
+                        <option value="" selected>Select post</option>
+                        @foreach($posts as $post)
+                            <option value="{{ $post->id }}">{{ $post->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="postal_branch_number">Postal Branch Number</label>
+                    <input type="text" id="postal_branch_number" name="postal_branch_number" required placeholder="Branch number">
+                </div>
 
                 <!-- Payment Information Section -->
 {{--                <div class="payment-info">--}}
@@ -98,9 +119,6 @@
         <div class="product-info">
             @if(session('cart'))
             <h2>Order Summary</h2>
-                @php
-                    $totalPrice = 0; // Ініціалізація загальної суми
-                @endphp
             <!-- Product List -->
             <div class="product-list">
                 @foreach(session('cart') as $id=> $details)
@@ -114,16 +132,12 @@
                         <p class="product-quantity"><strong>Qty:</strong> {{$details['quantity']}}</p>
                     </div>
                 </div>
-                    @php
-                        $totalPrice += $details['price'] * $details['quantity']; // Додавання до загальної суми
-                    @endphp
                 @endforeach
-
                 <hr>
 
                 <!-- Summary -->
                 <div class="summary">
-                    <p><strong>Total Price:</strong>${{ $totalPrice }}</p>
+                    <p><strong>Total Price:</strong>${{ $total }}</p>
                 </div>
             </div>
             @else
