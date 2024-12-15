@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Telegram;
+use App\Models\HistoryOrder;
 use App\Models\Order;
 use App\Models\Post;
+use App\Models\Referral;
+use App\Models\TotalSalary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -42,9 +48,8 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-dd($request->total_price);
         // Валидация запроса
-        $request->validate([
+        $validatedData =$request->validate([
             'full_name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'city' => 'required|string|max:255',
@@ -61,10 +66,16 @@ dd($request->total_price);
             'total_price' => $request->total_price,
             'total_count' => $request->total_count,
             'status' => 'pending', // Или другой статус по умолчанию
-            'index' => $request->index,
-            'comment' => $request->comment,
-            'postal_branch_number' => $request->postal_branch_number,
-            'post_id' => $request->post_id,
+            'index' => $validatedData['index'],
+            'comment' => $validatedData['comment'],
+            'postal_branch_number' => $validatedData['postal_branch_number'],
+            'post_id' => $validatedData['post_id'],
+            'full_name' => $validatedData['full_name'],
+            'address' => $validatedData['address'],
+            'city' => $validatedData['city'],
+            'postal_code' => $validatedData['postal_code'],
+            'country' => $validatedData['country'],
+            'phone_number' => $validatedData['phone_number'],
         ]);
 
         // Получите корзину из сессии
@@ -116,11 +127,11 @@ dd($request->total_price);
                 $totalSalary->save();
             }
         }
-        $userName = Auth::user()->name;
+//        $userName = Auth::user()->name;
 
         $telegram=new Telegram(new Http,config('bots.bot'));
         $message = "<b>НОВЕ ЗАМОВЛЕНННЯ!</b>\n";
-        $message .= "Замовник: {$userName}\n";
+        $message .= "Замовник: {$order->full_name}\n";
         $message .= "ID замовлення: {$order->id}\n";
         $message .= "Сума замовлення: {$order->total_price} грн\n";
         $message .= "Кількість товарів: {$order->total_count}\n";

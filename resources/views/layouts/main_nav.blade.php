@@ -59,7 +59,8 @@
                 <a href="{{ route('cart.index') }}">
             <div class="cart-container">
                     <img class="p_icon" src="/icons/cart_icon.png" alt="Cart Icon">
-                    <div class="cart-count">3</div> <!-- Динамічно змінюється, в залежності від кількості товарів у кошику -->
+                    <div class="cart-count">{{ array_reduce(session('cart', []), function ($total, $item) { return $total + $item['quantity']; }, 0) }}</div> <!-- Динамічно змінюється, в залежності від кількості товарів у кошику -->
+
             </div>
                 </a>
         </div>

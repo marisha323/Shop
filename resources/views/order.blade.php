@@ -14,6 +14,8 @@
             <h2>Shipping Address</h2>
             <form action="{{ route('order.store') }}" method="POST">
                 @csrf
+                <input type="hidden" name="total_price" value="{{ $total }}">
+                <input type="hidden" name="total_count" value="{{ array_reduce(session('cart', []), function ($total, $item) { return $total + $item['quantity']; }, 0) }}">
                 <div class="form-group">
                     <label for="full_name">Full Name</label>
                     <input type="text" id="full_name" name="full_name" required placeholder="John Doe">
