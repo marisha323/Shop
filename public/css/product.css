@@ -17,7 +17,7 @@ html, body {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5)); /* Add shadow effect */
 }
 .name_p {
-    font-family: 'Roboto Slab', sans-serif; 
+    font-family: 'Roboto Slab', sans-serif;
     color: #FFF9E6; /* Soft light color for better readability */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-weight: 500;
@@ -45,6 +45,8 @@ html, body {
 }
 
 .prod_display {
+    padding-top: 3%;
+    padding-bottom: 2%;
     width: 100%;
     display: flex;
     gap: 1.5rem;
@@ -138,7 +140,7 @@ html, body {
 .information {
     padding: 1rem;
     box-sizing: border-box;
-    background-color: #0E4D3B;
+    background-color: #002523;
     /* background-color: #061F18; */
     width: 50%;
     border-radius: 0; /* Remove border radius for a flatter look */
@@ -186,6 +188,11 @@ hr {
     gap: 1rem; /* Space between radio buttons */
     padding-bottom: 1rem;
 }
+.color_btns{
+    display: flex;
+    gap: 1rem; /* Space between radio buttons */
+    padding-bottom: 1rem;
+}
 
 .radio_btns label {
     display: flex;
@@ -200,7 +207,7 @@ hr {
 
 /* Hide the default radio button */
 .radio_btns input[type="radio"] {
-    display: none; 
+    display: none;
     position: absolute;
     box-sizing: border-box;
 }
@@ -253,7 +260,7 @@ hr {
     /* background-color: transparent; */
     background-color:#061F18;
     /* color: #0E4D3B;  */
-    color: white; 
+    color: white;
     border: none; /* Remove default border */
     padding: 0.5rem 1rem; /* Padding for buttons */
     cursor: pointer; /* Cursor changes to pointer */

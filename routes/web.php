@@ -92,7 +92,7 @@ Route::delete('brand/{id}', [BrandController::class, 'destroy'])->name('brand.de
 
 //Products
 Route::get('/products', [ProductController::class, 'products'])->name('products.home');
-Route::get('products/{itemName}', [ProductController::class, 'show'])->name('product.show');
+Route::get('product/info/{id}', [ProductController::class, 'show'])->name('product.show');
 Route::post('/product/{itemName}/updateColor', [ProductController::class, 'updateColor'])->name('product.updateColor');
 
 

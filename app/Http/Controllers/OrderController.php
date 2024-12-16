@@ -73,7 +73,6 @@ class OrderController extends Controller
             'full_name' => $validatedData['full_name'],
             'address' => $validatedData['address'],
             'city' => $validatedData['city'],
-            'postal_code' => $validatedData['postal_code'],
             'country' => $validatedData['country'],
             'phone_number' => $validatedData['phone_number'],
         ]);
@@ -133,7 +132,7 @@ class OrderController extends Controller
         $message = "<b>НОВЕ ЗАМОВЛЕНННЯ!</b>\n";
         $message .= "Замовник: {$order->full_name}\n";
         $message .= "ID замовлення: {$order->id}\n";
-        $message .= "Сума замовлення: {$order->total_price} грн\n";
+        $message .= "Сума замовлення: {$order->total_price} $\n";
         $message .= "Кількість товарів: {$order->total_count}\n";
         $message .= "Поштовий індекс: {$order->index}\n";
         $message .= "Коментар: {$order->comment}\n";

@@ -7,6 +7,7 @@ use App\Models\Characteristics;
 use App\Models\DiscountProducts;
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\ProductColor;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -21,15 +22,18 @@ class ProductController extends Controller
 {
     return view('products');
 }
-public function show(Request $request, $itemName)
+public function show($id)
 {
     // Provide a default color, e.g., 'Black'
-    $selectedColor = 'Black'; 
-
-    return view('product.show', [
-        'selectedColor' => $selectedColor,
-        'itemName' => $itemName
-    ]);
+    $product = Product::with(['characteristics.size', 'characteristics.brand'])->findOrFail($id);
+    $productImages = ProductImage::where('product_id', $product->id)->get();
+    $images = [];
+    foreach ($productImages as $productImage) {
+        $image = Image::findOrFail($productImage->image_id);
+        $images[] = $image;
+    }
+    $mainImageUrl = $productImages->first()?->image->ImageUrl ?? '/images/shoe_icon.png';
+    return view('product.show', compact('product', 'productImages','mainImageUrl'));
 }
 
     public function updateColor(Request $request, $itemName)
@@ -50,6 +54,7 @@ public function show(Request $request, $itemName)
     public function info($id)
     {
         $product = Product::with(['characteristics.size', 'characteristics.brand'])->findOrFail($id);
+        $colorProduct=ProductColor::where('product_id',$product->id)->get();
         $productImages = ProductImage::where('product_id', $product->id)->get();
         $images = [];
         foreach ($productImages as $productImage) {
@@ -57,7 +62,7 @@ public function show(Request $request, $itemName)
             $images[] = $image;
         }
 
-        return view('product/info', compact('product', 'productImages'));
+        return view('product/info', compact('product', 'productImages','colorProduct'));
     }
     public function create_product()
     {
