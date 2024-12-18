@@ -15,7 +15,8 @@ class HistoryOrder extends Model
         'count',
         'product_id',
         'StatusId',
-        'order_id'
+        'order_id',
+         'color_id',
 
     ];
 

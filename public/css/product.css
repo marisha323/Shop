@@ -204,9 +204,24 @@ hr {
     transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
     box-sizing: border-box;
 }
-
+.color_btns label{
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    padding: 0.5rem 1rem; /* Padding around the radio buttons */
+    border: 2px solid #FFF9E6; /* Match border to text colors */
+    border-radius: 2rem; /* Slightly rounded corners */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+    box-sizing: border-box;
+}
 /* Hide the default radio button */
 .radio_btns input[type="radio"] {
+    display: none;
+    position: absolute;
+    box-sizing: border-box;
+}
+.color_btns input[type="radio"] {
     display: none;
     position: absolute;
     box-sizing: border-box;
@@ -216,6 +231,26 @@ hr {
 .radio_btns label:hover {
     background-color: rgba(255, 215, 0, 0.3); /* Light gold on hover */
 }
+/* Використання кольору, переданого через data-color */
+
+.color_btns label {
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.color_btns label.active {
+    border-color: #2818bb;
+}
+
+.color_btns label:hover {
+    opacity: 0.8;
+    border-color: #ece32c;
+}
+/*.color_btns label {*/
+/*    opacity: 0.8;*/
+/*    border-color: #2818bb;*/
+/*}*/
 
 /* Disabled state styles */
 .radio_disabled {

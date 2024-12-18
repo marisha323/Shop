@@ -35,7 +35,7 @@ p {
     border-radius: 5px; /* Rounded corners */
 }
 .emp_d{
-    width: 19rem;
+    width: 15.8rem;
 }
 
 .product-info {
@@ -94,9 +94,16 @@ button.decrease:hover, button.increase:hover {
     border-radius: 5px; /* Rounded corners */
 }
 .name_des{
-    width: 10.3rem;
+    width: 7.3rem;
 }
-
+.color_des{
+    width: 4.3rem;
+}
+.color_button{
+    border-radius: 2rem;
+    width: 2rem;
+    height: 2rem;
+}
 button {
     background-color: #4CAF50; /* Soft green */
     color: #ffffff;

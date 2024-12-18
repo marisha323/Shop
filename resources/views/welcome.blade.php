@@ -103,9 +103,16 @@
                     <div class="product-info">
                         <h3 class="product-name">{{$product->name}}</h3>
                         <p class="product-price">{{$product->price}} $</p>
+                        {{-- Перший колір продукту --}}
+{{--                        @if ($product->firstColor && $product->firstColor->color)--}}
+{{--                            <p>Колір: {{ $product->firstColor->color->name }}</p>--}}
+{{--                        @else--}}
+{{--                            <p>Колір не вказаний</p>--}}
+{{--                        @endif--}}
                         <form action="{{ route('cart.add') }}" method="POST">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1">
                             <button type="submit" class="add-to-cart">Add to cart</button>
                         </form>
                     </div>

@@ -23,6 +23,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    public function firstColor()
+    {
+        return $this->hasOne(ProductColor::class, 'product_id')->with('color');
+    }
 
     // Определите связь с моделью Characteristic
     public function characteristics()

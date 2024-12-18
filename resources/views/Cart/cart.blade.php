@@ -10,6 +10,7 @@
 
     <div class="display_list_info">
         <div class="emp_d"><p>Added Items:</p></div>
+        <p>Color</p>
         <p>Price</p>
         <p>Quantity</p>
         <p>Total Price</p>
@@ -26,6 +27,9 @@
             <div class="name_des">
                 <h2>{{$details['name']}}</h2>
 
+            </div>
+            <div class="color_des">
+                <button class="color_button" style="background-color: {{$details['color']}}"></button>
             </div>
             <p class="product-price unit-price">${{$details['price']}}</p>
             <div class="quantity-control">

@@ -24,7 +24,8 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        $product = Product::with('images')->find($request->product_id);
+
+        $product = Product::with(['images', 'firstColor.color'])->find($request->product_id);
 
         if (!$product) {
             return redirect()->back()->with('error', 'Product not found.');
@@ -33,22 +34,24 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
 
         if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity']++;
+            $cart[$product->id]['quantity']+= $request->quantity ?? 1;
         } else {
             // Add product to the cart with its details
             $cart[$product->id] = [
                 'name' => $product->name,
-                'quantity' => 1,
+                'quantity' => $request->quantity ?? 1,
                 'price' => $product->price,
                 'images' => $product->images->map(function ($image) {
                     return [
                         'ImageUrl' => $image->ImageUrl,
                     ];
                 })->toArray(),
+                'color' => $request->color ?? $product->firstColor && $product->firstColor->color,
+
             ];
         }
-
         session()->put('cart', $cart);
+
 
         return redirect()->back()->with('success', 'Product added to cart.');
 

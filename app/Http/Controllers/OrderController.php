@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Telegram;
+use App\Models\Color;
 use App\Models\HistoryOrder;
 use App\Models\Order;
 use App\Models\Post;
@@ -59,8 +60,9 @@ class OrderController extends Controller
             'index' => ['required', 'string'],
             'comment' => ['nullable', 'string'],
             'postal_branch_number' => ['nullable', 'string'],
+            'color_id' => ['nullable', 'string'],
         ]);
-        // Сохранение заказа
+
         $order = Order::create([
             'user_id' => Auth::id(),
             'total_price' => $request->total_price,
@@ -85,13 +87,19 @@ class OrderController extends Controller
         // Сохранение данных в таблицу history_orders перед очисткой корзины
         if ($userId && !empty($cart)) {
             foreach ($cart as $productId => $details) {
+                $color = Color::where('name', strtolower($details['color']))->first();
+
+                // Перевіряємо, чи знайдений колір
+                $colorId = $color ? $color->id : null;
+
                 HistoryOrder::create([
                     'user_id' => $userId,
                     'product_id' => $productId,
                     'sum_price' => $details['price'] * $details['quantity'],
                     'count' => $details['quantity'],
                     'StatusId' =>1,
-                    'order_id' =>$order->id
+                    'order_id' =>$order->id,
+                    'color_id'=>$colorId,
                 ]);
             }
 

@@ -39,7 +39,7 @@ class HomeController extends Controller
 //    }
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::with(['images'])->get();
         $categories = Category::all();
 
         $user = Auth::user();

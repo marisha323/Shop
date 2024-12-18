@@ -36,75 +36,46 @@
                 <p class="p_s">Select Size</p>
                 <div class="radio_btns">
                     <label class="radio_enabled active_r">
-                        <input type="radio" name="size" value="36">
+                        <input type="radio" name="size" value="{{ $product->characteristics->size->name }}">
                         <span class="r_num">{{ $product->characteristics->size->name }}</span>
                     </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="38">
-                        <span class="r_num">38</span>
-                    </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="40">
-                        <span class="r_num">40</span>
-                    </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="42">
-                        <span class="r_num">42</span>
-                    </label>
-                    <label class="radio_disabled">
-                        <input type="radio" name="size" value="44" disabled>
-                        <span class="r_num">44 (Disabled)</span>
-                    </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="46">
-                        <span class="r_num">46</span>
-                    </label>
+
                 </div>
 
+{{--                <div class="color_btns">--}}
+{{--                    @foreach($colorProduct as $productColor)--}}
+{{--                        <label class="radio_enabled" style="background-color: {{ strtolower($productColor->color->name) }};">--}}
+{{--                            <input type="radio" name="size"  value="{{ $productColor->color->name}}">--}}
+{{--                        </label>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
                 <div class="color_btns">
-                    <label class="radio_enabled active_r">
-                        <input type="radio" name="size" value="36">
-                        <span class="r_num">{{ $product->characteristics->size->name }}</span>
-                    </label>
-
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="38">
-                        <span class="r_num">38</span>
-                    </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="40">
-                        <span class="r_num">40</span>
-                    </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="42">
-                        <span class="r_num">42</span>
-                    </label>
-                    <label class="radio_disabled">
-                        <input type="radio" name="size" value="44" disabled>
-                        <span class="r_num">44 (Disabled)</span>
-                    </label>
-                    <label class="radio_enabled">
-                        <input type="radio" name="size" value="46">
-                        <span class="r_num">46</span>
-                    </label>
+                    @foreach($colorProduct as $index => $productColor)
+                        <label class="radio_enabled {{ $loop->first ? 'active' : '' }}"
+                               style="background-color: {{ strtolower($productColor->color->name) }};">
+                            <input type="radio" name="color_input" value="{{ $productColor->color->name }}" {{ $loop->first ? 'checked' : '' }}>
+                        </label>
+                    @endforeach
                 </div>
-
                 <hr>
                 <h1 class="q_h">Quantity:</h1>
                 <div class="add_to_cart">
                     <div class="add_Q">
                         <button class="decrease">-</button>
-{{--                        <input type="number" class="quantity" value="1" min="1" max="99" oninput="limitInput(this)"/>--}}
+                        <input type="number" class="quantity" value="1" min="1" max="99" oninput="limitInput(this)"/>
                         <button class="increase">+</button>
-
                     </div>
-                    <button class="add_cart">ADD TO CART</button>
+
+                    <form action="{{ route('cart.add') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" id="hidden-quantity" value="1">
+                        <input type="hidden" name="color" id="hidden-color" value="{{ $colorProduct[0]->color->name ?? '' }}">
+                        <button class="add_cart">ADD TO CART</button>
+
+                    </form>
                 </div>
                 <h1 class="des_h1">Description</h1>
-
-
-
-                fgdfg
                 <p class="description">
                     {{ $product->description }}
                 </p>
@@ -126,6 +97,7 @@
 
     <!-- Add JavaScript to update the selected color when a radio button is clicked -->
     <script>
+
         const images = document.querySelectorAll('.images_container img');
         const mainDisplay = document.getElementById('main-display');
 
@@ -209,6 +181,7 @@
             let currentValue = parseInt(quantityInput.value);
             if (currentValue < 99) {
                 quantityInput.value = currentValue + 1;
+                document.getElementById('hidden-quantity').value = quantityInput.value; // Update hidden input
             }
         });
 
@@ -217,8 +190,34 @@
             let currentValue = parseInt(quantityInput.value);
             if (currentValue > 1) {
                 quantityInput.value = currentValue - 1;
+                document.getElementById('hidden-quantity').value = quantityInput.value; // Update hidden input
             }
         });
 
+        document.querySelector('.quantity').addEventListener('input', function () {
+            limitInput(this);
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const labels = document.querySelectorAll('.color_btns label');
+            const hiddenColorInput = document.getElementById('hidden-color'); // Знаходимо приховане поле для кольору
+
+            // Додати слухач подій для кожного елемента
+            labels.forEach(label => {
+                label.addEventListener('click', () => {
+                    // Зняти активний стан з усіх
+                    labels.forEach(lbl => lbl.classList.remove('active'));
+
+                    // Додати активний стан до вибраного
+                    label.classList.add('active');
+
+                    // Оновити приховане поле
+                    const selectedColor = label.querySelector('input[name="color_input"]').value; // Виправлено селектор
+                    if (selectedColor) {
+                        hiddenColorInput.value = selectedColor; // Оновлення значення
+                        console.log('Selected color:', hiddenColorInput.value); // Перевірка в консолі
+                    }
+                });
+            });
+        });
     </script>
 @endsection

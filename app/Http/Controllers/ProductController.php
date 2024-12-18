@@ -19,22 +19,25 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function products()
-{
-    return view('products');
-}
-public function show($id)
-{
-    // Provide a default color, e.g., 'Black'
-    $product = Product::with(['characteristics.size', 'characteristics.brand'])->findOrFail($id);
-    $productImages = ProductImage::where('product_id', $product->id)->get();
-    $images = [];
-    foreach ($productImages as $productImage) {
-        $image = Image::findOrFail($productImage->image_id);
-        $images[] = $image;
+    {
+        return view('products');
     }
-    $mainImageUrl = $productImages->first()?->image->ImageUrl ?? '/images/shoe_icon.png';
-    return view('product.show', compact('product', 'productImages','mainImageUrl'));
-}
+
+    public function show($id)
+    {
+        // Provide a default color, e.g., 'Black'
+        $product = Product::with(['characteristics.size', 'characteristics.brand'])->findOrFail($id);
+        $productImages = ProductImage::where('product_id', $product->id)->get();
+        $colorProduct = ProductColor::where('product_id', $product->id)->get();
+
+        $images = [];
+        foreach ($productImages as $productImage) {
+            $image = Image::findOrFail($productImage->image_id);
+            $images[] = $image;
+        }
+        $mainImageUrl = $productImages->first()?->image->ImageUrl ?? '/images/shoe_icon.png';
+        return view('product.show', compact('product', 'productImages', 'mainImageUrl', 'colorProduct'));
+    }
 
     public function updateColor(Request $request, $itemName)
     {
@@ -51,10 +54,11 @@ public function show($id)
         $products = Product::all();
         return view('product/indexf', compact('products'));
     }
+
     public function info($id)
     {
         $product = Product::with(['characteristics.size', 'characteristics.brand'])->findOrFail($id);
-        $colorProduct=ProductColor::where('product_id',$product->id)->get();
+        $colorProduct = ProductColor::where('product_id', $product->id)->get();
         $productImages = ProductImage::where('product_id', $product->id)->get();
         $images = [];
         foreach ($productImages as $productImage) {
@@ -62,8 +66,9 @@ public function show($id)
             $images[] = $image;
         }
 
-        return view('product/info', compact('product', 'productImages','colorProduct'));
+        return view('product/info', compact('product', 'productImages', 'colorProduct'));
     }
+
     public function create_product()
     {
         $categories = Category::all();
@@ -143,7 +148,7 @@ public function show($id)
         $categories = Category::all();
         $characteristics = Characteristics::all();
         $discounts = DiscountProducts::all();
-        return view('product/edit',compact('product','categories','characteristics','discounts'));
+        return view('product/edit', compact('product', 'categories', 'characteristics', 'discounts'));
     }
 
     /**
