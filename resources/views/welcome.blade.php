@@ -26,10 +26,8 @@
             <div class="menu">
                 @foreach($categories as $categorie)
                 <div class="option_m">
-
                     <a href="/" class="opt"><p>{{$categorie->title}}</p> <img class="arrow" src="/icons/arrow_y.png" alt=""></a>
                     <hr>
-
                 </div>
                 @endforeach
             </div>
@@ -86,38 +84,33 @@
             </div>
 
         </div>
-        <h1 class="oevb_h1">All Products</h1>
+        <h1 class="oevb_h1">Products</h1>
         <div class="products">
             @foreach($products as $product)
                 <div class="product-card" onmouseover="startImageSlider(this)" onmouseout="stopImageSlider(this)">
-                    <div class="image-container">
-                        @foreach($product->images as $image)
-                            <img src="{{$image->ImageUrl}}" alt="{{$product->name}}" class="product-image"/>
-                        @endforeach
-                        <div class="image-dots">
-                            @foreach($product->images as $index => $image)
-                                <span class="dot {{ $index === 0 ? 'active' : '' }}"></span>
+                    <a href="{{ route('product.show', $product->id) }}" class="product-link">
+                        <div class="image-container">
+                            @foreach($product->images as $image)
+                                <img src="{{ $image->ImageUrl }}" alt="{{ $product->name }}" class="product-image"/>
                             @endforeach
+                            <div class="image-dots">
+                                @foreach($product->images as $index => $image)
+                                    <span class="dot {{ $index === 0 ? 'active' : '' }}"></span>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">{{$product->name}}</h3>
-                        <p class="product-price">{{$product->price}} $</p>
-                        {{-- Перший колір продукту --}}
-{{--                        @if ($product->firstColor && $product->firstColor->color)--}}
-{{--                            <p>Колір: {{ $product->firstColor->color->name }}</p>--}}
-{{--                        @else--}}
-{{--                            <p>Колір не вказаний</p>--}}
-{{--                        @endif--}}
-                        <form action="{{ route('cart.add') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="add-to-cart">Add to cart</button>
-                        </form>
-                    </div>
+                        <div class="product-info">
+                            <h3 class="product-name">{{ $product->name }}</h3>
+                            <p class="product-price">{{ $product->price }} $</p>
+                        </div>
+                    </a>
+                    <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="add-to-cart">Add to cart</button>
+                    </form>
                 </div>
-
             @endforeach
         </div>
         <button class="btn_load_more">Load More</button>
@@ -254,28 +247,32 @@
 
 
 
-        // Ініціалізація активного зображення
         document.querySelectorAll('.product-card').forEach(card => {
             const images = card.querySelectorAll('.product-image');
             const dots = card.querySelectorAll('.dot');
 
             if (images.length > 0) {
-                images[0].classList.add('active');
-                dots[0].classList.add('active');
+                images[0].classList.add('active'); // Додаємо клас до першого зображення
+                dots[0].classList.add('active');   // Додаємо клас до першої точки
             }
         });
 
-        // Обробка кліку на точки
         document.querySelectorAll('.dot').forEach(dot => {
-            dot.addEventListener('click', function () {
-                const card = dot.closest('.product-card');
-                const images = card.querySelectorAll('.product-image');
-                const dots = card.querySelectorAll('.dot');
-                const index = Array.from(dots).indexOf(dot);
+            dot.addEventListener('click', function (event) {
+                event.preventDefault(); // Запобігаємо стандартній поведінці посилання
+                event.stopPropagation(); // Зупиняємо спливання події
 
+                const card = dot.closest('.product-card'); // Знаходимо батьківський елемент
+                const images = card.querySelectorAll('.product-image'); // Отримуємо всі зображення
+                const dots = card.querySelectorAll('.dot'); // Отримуємо всі точки
+
+                const index = Array.from(dots).indexOf(dot); // Знаходимо індекс натиснутої точки
+
+                // Знімаємо активні класи
                 images.forEach(img => img.classList.remove('active'));
                 dots.forEach(d => d.classList.remove('active'));
 
+                // Додаємо активні класи до вибраного елемента
                 images[index].classList.add('active');
                 dots[index].classList.add('active');
             });

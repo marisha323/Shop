@@ -82,7 +82,7 @@ h2 {
 }
 
 .custom-select {
-    width: 100%; /* Ширина select */
+    width: 93%; /* Ширина select */
     height: 40px; /* Висота select */
     padding: 5px; /* Внутрішній відступ */
     font-size: 16px; /* Розмір тексту */

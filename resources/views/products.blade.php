@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="{{ asset('css/products.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 @section('title', 'Products')
 @extends('layouts.main_nav')
 @section('content')
@@ -66,82 +68,48 @@
         <div class="product_section">
             <div class="container_menu_scroller">
                 <div class="menu">
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Women's Clothing</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                             alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Men's Clothing</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                           alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Accessories</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                        alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Seasonal Collections</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                                 alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Special Collections</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                                alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Most Viewed</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                        alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Most Viewed</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                        alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Most Viewed</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                        alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Most Viewed</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                        alt=""></a>
-                        <hr>
-                    </div>
-                    <div class="option_m">
-                        <a href="/" class="opt"><p>Most Viewed</p> <img class="arrow" src="/icons/arrow_y.png"
-                                                                        alt=""></a>
-                        <hr>
-                    </div>
+                    @foreach($categories as $categorie)
+                        <div class="option_m">
+                            <a href="/" class="opt"><p>{{$categorie->title}}</p> <img class="arrow" src="/icons/arrow_y.png" alt=""></a>
+                            <hr>
+                        </div>
+                    @endforeach
 
                 </div>
             </div>
 
             <div class="filters_selection_con">
                 <div class="products">
-                    @for ($i = 0; $i < 20; $i++)
-                        <div class="product-card">
+                   @foreach($products as $product)
+                       <div class="product-card" onmouseover="startImageSlider(this)" onmouseout="stopImageSlider(this)">
+                            <a href="{{route('product.show',$product->id)}}" class="product-link">
                             <div class="image-container">
-                                <img src="/images/bag.png" alt="Product Image" class="product-image"/>
+                                @foreach($product->images as $image)
+                                    <img src="{{ $image->ImageUrl }}" alt="{{ $product->name }}" class="product-image"/>
+                                @endforeach
                                 <div class="image-dots">
-                                    <span class="dot active"></span>
-                                    <span class="dot"></span>
-                                    <span class="dot"></span>
+                                    @foreach($product->images as $index => $image)
+                                        <span class="dot {{ $index === 0 ? 'active' : '' }}"></span>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="product-info">
-                                <h3 class="product-name">product1</h3>
-                                <p class="product-price">150$</p>
-                                <button class="add-to-cart">Add to cart</button>
+                                <h3 class="product-name">{{ $product->name }}</h3>
+                                <p class="product-price">{{ $product->price }} $</p>
                             </div>
+                            </a>
+                            <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button type="submit" class="add-to-cart">Add to cart</button>
+                            </form>
                         </div>
-
-                    @endfor
+                    @endforeach
                 </div>
-
+                <div class="pagination-links">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </div>
@@ -204,15 +172,15 @@
             updateDots();
         }
 
-        function updateDots() {
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.classList.remove('active');
-                if (index === currentSlideIndex) {
-                    dot.classList.add('active');
-                }
-            });
-        }
+        // function updateDots() {
+        //     const dots = document.querySelectorAll('.dot');
+        //     dots.forEach((dot, index) => {
+        //         dot.classList.remove('active');
+        //         if (index === currentSlideIndex) {
+        //             dot.classList.add('active');
+        //         }
+        //     });
+        // }
 
         function toggleSubmenu(selectedCategory) {
             // Toggle the selected submenu
@@ -227,5 +195,36 @@
                 selectedArrow.innerHTML = '&#9660;'; // Change arrow to down
             }
         }
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            const images = card.querySelectorAll('.product-image');
+            const dots = card.querySelectorAll('.dot');
+
+            if (images.length > 0) {
+                images[0].classList.add('active'); // Додаємо клас до першого зображення
+                dots[0].classList.add('active');   // Додаємо клас до першої точки
+            }
+        });
+
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.addEventListener('click', function (event) {
+                event.preventDefault(); // Запобігаємо стандартній поведінці посилання
+                event.stopPropagation(); // Зупиняємо спливання події
+
+                const card = dot.closest('.product-card'); // Знаходимо батьківський елемент
+                const images = card.querySelectorAll('.product-image'); // Отримуємо всі зображення
+                const dots = card.querySelectorAll('.dot'); // Отримуємо всі точки
+
+                const index = Array.from(dots).indexOf(dot); // Знаходимо індекс натиснутої точки
+
+                // Знімаємо активні класи
+                images.forEach(img => img.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+
+                // Додаємо активні класи до вибраного елемента
+                images[index].classList.add('active');
+                dots[index].classList.add('active');
+            });
+        });
     </script>
 @endsection

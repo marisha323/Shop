@@ -28,8 +28,13 @@
                 <h2>{{$details['name']}}</h2>
 
             </div>
+
             <div class="color_des">
-                <button class="color_button" style="background-color: {{$details['color']}}"></button>
+                @if (!empty($details['color']))
+                    <button class="color_button" style="background-color: {{ $details['color'] }}"></button>
+                @else
+                    <p>Колір не вказаний</p>
+                @endif
             </div>
             <p class="product-price unit-price">${{$details['price']}}</p>
             <div class="quantity-control">

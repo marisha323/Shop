@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="postal_code">Postal Code</label>
-                    <input type="text" id="postal_code" name="postal_code" required placeholder="12345">
+                    <input type="text" id="postal_code" name="index" required placeholder="12345">
                 </div>
                 <div class="form-group">
                     <label for="country">Country</label>
@@ -40,10 +40,10 @@
                     <label for="phone_number">Phone Number</label>
                     <input type="text" id="phone_number" name="phone_number" required placeholder="(555) 123-4567 (Optional)">
                 </div>
-                <div class="form-group">
-                    <label for="index">Index</label>
-                    <input type="text" id="index" name="index" required placeholder="Enter index">
-                </div>
+{{--                <div class="form-group">--}}
+{{--                    <label for="index">Index</label>--}}
+{{--                    <input type="text" id="index" name="index" required placeholder="Enter index">--}}
+{{--                </div>--}}
                 <div class="form-group">
                     <label for="comment">Comment</label>
                     <textarea class="custom-textarea" id="comment" name="comment" placeholder="Add any comments"></textarea>

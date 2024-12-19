@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\ProductColor;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,7 +21,11 @@ class ProductController extends Controller
      */
     public function products()
     {
-        return view('products');
+        $categories = Category::all();
+        $products = Product::with(['images'])
+            ->latest()
+            ->paginate(2);
+        return view('products',compact('products','categories'));
     }
 
     public function show($id)
@@ -52,6 +57,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+
+
         return view('product/indexf', compact('products'));
     }
 

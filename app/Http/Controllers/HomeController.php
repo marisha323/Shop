@@ -39,7 +39,10 @@ class HomeController extends Controller
 //    }
     public function index()
     {
-        $products = Product::with(['images'])->get();
+        $products = Product::with(['images'])
+            ->latest() // Сортуємо за датою створення (created_at) у зворотному порядку
+            ->take(12) // Беремо тільки 12 записів
+            ->get();
         $categories = Category::all();
 
         $user = Auth::user();

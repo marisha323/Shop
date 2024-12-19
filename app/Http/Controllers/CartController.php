@@ -18,6 +18,7 @@ class CartController extends Controller
         $total = array_sum(array_map(function($item) {
             return $item['price'] * $item['quantity'];
         }, $cart));
+//        dd($cart);
 
         return view('cart.cart', compact('cart', 'total','posts'));
     }

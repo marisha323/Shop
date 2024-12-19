@@ -406,6 +406,12 @@ container info for information page*/
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
+.product-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
 
 .product-price {
     font-size: 1.2rem;
