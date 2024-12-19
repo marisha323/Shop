@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Characteristics;
+use App\Models\Color;
 use App\Models\DiscountProducts;
 use App\Models\Image;
 use App\Models\Product;
@@ -24,7 +25,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $products = Product::with(['images'])
             ->latest()
-            ->paginate(2);
+            ->paginate(12);
         return view('products',compact('products','categories'));
     }
 
@@ -81,7 +82,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $characteristics = Characteristics::all();
         $discounts = DiscountProducts::all();
-        return view('product/create_product', compact('categories', 'characteristics', 'discounts'));
+        $colors=Color::all();
+        return view('product/create_product', compact('categories', 'characteristics', 'discounts','colors'));
     }
 
     /**
@@ -97,17 +99,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+
+         $request->validate([
             'name' => 'required|string|max:255',
             'count' => 'required|integer',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'category_id' => 'required|integer',
             'characteristics_id' => 'required|integer',
+             'characteristics_color_id' => 'required|array', // Змінено для роботи з масивом кольорів
+             'characteristics_color_id.*' => 'integer',
             'discount_products_id' => 'required|integer',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        $url = url(Storage::url('images/image_product/фон5.jpg'));
+
 
         //echo asset('storage/images/image_product/фон5.jpg');
         $product = Product::create([
@@ -119,6 +124,12 @@ class ProductController extends Controller
             'characteristics_id' => $request->characteristics_id,
             'discount_products_id' => $request->discount_products_id,
         ]);
+        foreach ($request->characteristics_color_id as $color_id) {
+            ProductColor::create([
+                'product_id' => $product->id,
+                'color_id' => $color_id,
+            ]);
+        }
         //dd($request->file('images'));
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $imageFile) {
@@ -151,11 +162,12 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('colors')->findOrFail($id);
         $categories = Category::all();
         $characteristics = Characteristics::all();
         $discounts = DiscountProducts::all();
-        return view('product/edit', compact('product', 'categories', 'characteristics', 'discounts'));
+        $colors=Color::all();
+        return view('product/edit', compact('product', 'categories', 'characteristics', 'discounts','colors'));
     }
 
     /**
@@ -173,6 +185,8 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'characteristics_id' => 'required|exists:characteristics,id',
             'discount_products_id' => 'required|exists:discount_products,id',
+            'new_colors' => 'required|array', // Змінено для роботи з масивом кольорів
+            'new_colors.*' => 'integer',
         ]);
 
 
@@ -187,7 +201,15 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->characteristics_id = $request->characteristics_id;
         $product->discount_products_id = $request->discount_products_id;
+
+        foreach ($request->new_colors as $color_id) {
+            ProductColor::create([
+                'product_id' => $product->id,
+                'color_id' => $color_id,
+            ]);
+        }
         $product->save();
+
         Log::info('Update method called');
         // Перенаправлення з повідомленням про успіх
         return redirect()->route('product.indexf')->with('success', 'Продукт успішно оновлено');

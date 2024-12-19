@@ -163,6 +163,29 @@ body {
     width: 100%;
     display: flex;
     gap: 3rem;
+    margin-top: 2rem;
+}
+.links_category {
+    display: flex;
+    align-items: center; /* Вирівнювання елементів по вертикалі */
+    font-size: 1.5rem;
+    color: #1a88ff;
+    gap: 5px; /* Проміжок між елементами */
+}
+
+.link_home {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: inherit; /* Забезпечить, що колір буде таким самим як у батьківському елементі */
+}
+
+.link_home:hover {
+    text-decoration: none;
+    color: #1a88ff; /* Додати зміну кольору на ховер */
+}
+
+.title_category {
+    font-weight: bold;
 }
 
 .categories_selection {
@@ -209,7 +232,10 @@ body {
 .filters_selection_con {
     width: 75vw;
 }
-
+.category_no_product{
+    font-size: 2rem;
+    color: #001f3f;
+}
 .filters-container {
     width: 100%;
     box-sizing: border-box;
@@ -242,6 +268,10 @@ body {
     gap: 2rem;
     width: 28%;
 
+}
+.title_category{
+    margin-top: 1rem;
+    margin-left: 3rem;
 }
 .menu{
     display: flex;
@@ -277,6 +307,10 @@ body {
     color: white;
     justify-content: space-between;
     text-decoration: none;
+}
+.opt:hover{
+    text-decoration: none;
+    color: white;
 }
 .opt p {
     margin: 0;
@@ -483,6 +517,9 @@ body {
     height: 13rem;
     border-radius: 10px;
     margin-bottom: 0.5rem;
+}
+.pagination{
+    margin-left: 13rem;
 }
 .product-link {
     display: block;

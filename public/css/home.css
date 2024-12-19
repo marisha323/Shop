@@ -97,6 +97,10 @@ html, body {
     justify-content: space-between;
     text-decoration: none;
 }
+.opt:hover{
+    text-decoration: none;
+    color: white;
+}
 .opt p {
     margin: 0;
     font-size: 19px;

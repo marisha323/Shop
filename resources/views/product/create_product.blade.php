@@ -84,6 +84,21 @@
                     @endforeach
                 </select>
             </div>
+
+            <!-- Блок для кольорів -->
+            <div id="colors-container">
+                <div class="form-group">
+                    <label for="characteristics_color_id_1">Цвет:</label>
+                    <select name="characteristics_color_id[]" id="characteristics_color_id_1" required>
+                        <option value="">--Будь ласка, виберіть опцію--</option>
+                        @foreach($colors as $color)
+                            <option value="{{ $color->id }}">{{ $color->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <button type="button" id="add-color-button" class="btn btn-secondary mb-3">Додати ще один колір</button>
+
             <div class="form-group">
                 <label for="discount_products_id">Знижка:</label>
                 <select name="discount_products_id" id="discount_products_id" required>
@@ -131,6 +146,29 @@
                 var fileNames = Array.from(input.files).map(file => file.name).join(', ');
                 label.innerHTML = fileNames ? fileNames : 'Виберіть файли';
             }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let colorIndex = 1;
+
+            // Додає нове поле для кольору
+            document.getElementById('add-color-button').addEventListener('click', function () {
+                colorIndex++;
+
+                const colorsContainer = document.getElementById('colors-container');
+                const newColorField = document.createElement('div');
+                newColorField.classList.add('form-group');
+                newColorField.innerHTML = `
+                <label for="characteristics_color_id_${colorIndex}">Цвет:</label>
+                <select name="characteristics_color_id[]" id="characteristics_color_id_${colorIndex}" required>
+                    <option value="">--Будь ласка, виберіть опцію--</option>
+                    @foreach($colors as $color)
+                <option value="{{ $color->id }}">{{ $color->name }}</option>
+                    @endforeach
+                </select>
+            `;
+                colorsContainer.appendChild(newColorField);
+            });
         });
     </script>
 @stop

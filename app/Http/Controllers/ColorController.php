@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
+use App\Models\ProductColor;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -59,6 +60,23 @@ class ColorController extends Controller
         $color->delete();
 
         return redirect()->route('color.index')->with('success', 'Color успешно удален!');
+    }
+    public function delete_color($productId, $colorId)
+    {
+        // Знайти зв'язок між продуктом і кольором у таблиці ProductColor
+        $productColor = ProductColor::where('product_id', $productId)
+            ->where('color_id', $colorId)
+            ->first();
+
+        // Якщо зв'язок знайдений, видалити його
+        if ($productColor) {
+            $productColor->delete();
+
+            return response()->json(['success' => true]);
+        }
+
+        // Якщо зв'язок не знайдений, повернути помилку
+        return response()->json(['success' => false, 'message' => 'Зв\'язок між продуктом і кольором не знайдено.']);
     }
 
 }

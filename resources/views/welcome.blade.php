@@ -26,7 +26,7 @@
             <div class="menu">
                 @foreach($categories as $categorie)
                 <div class="option_m">
-                    <a href="/" class="opt"><p>{{$categorie->title}}</p> <img class="arrow" src="/icons/arrow_y.png" alt=""></a>
+                    <a href="{{route('products.showCategory',$categorie->id)}}" class="opt"><p>{{$categorie->title}}</p> <img class="arrow" src="/icons/arrow_y.png" alt=""></a>
                     <hr>
                 </div>
                 @endforeach
@@ -87,7 +87,7 @@
         <h1 class="oevb_h1">Products</h1>
         <div class="products">
             @foreach($products as $product)
-                <div class="product-card" onmouseover="startImageSlider(this)" onmouseout="stopImageSlider(this)">
+                <div class="product-card" >
                     <a href="{{ route('product.show', $product->id) }}" class="product-link">
                         <div class="image-container">
                             @foreach($product->images as $image)

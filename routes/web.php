@@ -80,6 +80,9 @@ Route::post('/color/store', [ColorController::class, 'store'])->name('color.stor
 Route::get('color/{id}/edit', [ColorController::class, 'edit'])->name('color.edit');
 Route::put('color/{id}', [ColorController::class, 'update'])->name('color.update');
 Route::delete('color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
+// Для видалення кольору
+Route::delete('product/{productId}/color/{colorId}', [ColorController::class, 'delete_color'])->name('color.delete_color');
+
 
 //Brands
 Route::get('/brand/index', [BrandController::class, 'index'])->name('brand.index');

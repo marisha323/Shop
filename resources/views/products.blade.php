@@ -48,29 +48,30 @@
         </div>
 
 
-        <div class="filters">
-            <p>New Products</p>
-            <div class="quick_filters">
-                <a class="active" href="/">New Products</a>
-                <a href="/">Over the last 7 days</a>
-                <a href="/">Over the last 30 days</a>
-            </div>
-            <p>Filter by Categories</p>
-            <select class="select_con" name="" id="">
-                <option value="" selected disabled>Select</option> <!-- Default, unselectable option -->
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option>
-                <option value="option4">Option 4</option>
-                <option value="option5">Option 5</option>
-            </select>
-        </div>
+{{--        <div class="filters">--}}
+{{--            <p>New Products</p>--}}
+{{--            <div class="quick_filters">--}}
+{{--                <a class="active" href="/">New Products</a>--}}
+{{--                <a href="/">Over the last 7 days</a>--}}
+{{--                <a href="/">Over the last 30 days</a>--}}
+{{--            </div>--}}
+{{--            <p>Filter by Categories</p>--}}
+{{--            <select class="select_con" name="" id="">--}}
+{{--                <option value="" selected disabled>Select</option> <!-- Default, unselectable option -->--}}
+{{--                <option value="option1">Option 1</option>--}}
+{{--                <option value="option2">Option 2</option>--}}
+{{--                <option value="option3">Option 3</option>--}}
+{{--                <option value="option4">Option 4</option>--}}
+{{--                <option value="option5">Option 5</option>--}}
+{{--            </select>--}}
+{{--        </div>--}}
+
         <div class="product_section">
             <div class="container_menu_scroller">
                 <div class="menu">
                     @foreach($categories as $categorie)
                         <div class="option_m">
-                            <a href="/" class="opt"><p>{{$categorie->title}}</p> <img class="arrow" src="/icons/arrow_y.png" alt=""></a>
+                            <a href="{{route('products.showCategory',$categorie->id)}}" class="opt"><p>{{$categorie->title}}</p> <img class="arrow" src="/icons/arrow_y.png" alt=""></a>
                             <hr>
                         </div>
                     @endforeach
@@ -81,7 +82,7 @@
             <div class="filters_selection_con">
                 <div class="products">
                    @foreach($products as $product)
-                       <div class="product-card" onmouseover="startImageSlider(this)" onmouseout="stopImageSlider(this)">
+                       <div class="product-card" >
                             <a href="{{route('product.show',$product->id)}}" class="product-link">
                             <div class="image-container">
                                 @foreach($product->images as $image)
@@ -106,11 +107,13 @@
                             </form>
                         </div>
                     @endforeach
+
                 </div>
-                <div class="pagination-links">
+                <div class="pagination pagination-links">
                     {{ $products->links() }}
                 </div>
             </div>
+
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

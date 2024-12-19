@@ -75,8 +75,10 @@ class HomeController extends Controller
         // Витягнути категорію разом з продуктами за ідентифікатором категорії
         $category = Category::with('products.images')->findOrFail($categoryId);
 
+        $products = $category->products()->with('images')->latest()->paginate(12);
+
         $categories = Category::all();
-        return view('product/category', compact('category','categories'));
+        return view('product/category', compact('category','categories','products'));
     }
 
     public function search(Request $request)
