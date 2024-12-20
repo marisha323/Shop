@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
+@extends('adminlte::page')
+@section('content_header')
 <head>
     <title>Добавить бренд</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body:not(.layout-fixed) .main-sidebar {
+            width: 20%; /* Нова ширина */
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -35,3 +42,4 @@
 </div>
 </body>
 </html>
+@stop

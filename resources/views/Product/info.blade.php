@@ -8,6 +8,44 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
+        <style>
+            body:not(.layout-fixed) .main-sidebar {
+                width: 20%; /* Нова ширина */
+            }
+            .color_btns{
+                display: flex;
+                gap: 1rem; /* Space between radio buttons */
+                padding-bottom: 1rem;
+            }
+            .color_btns label{
+                display: flex;
+                align-items: center;
+                height: 2rem;
+                padding: 0.5rem 1rem; /* Padding around the radio buttons */
+                border: 2px solid #FFF9E6; /* Match border to text colors */
+                border-radius: 2rem; /* Slightly rounded corners */
+                cursor: pointer; /* Cursor changes to pointer on hover */
+                transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+                box-sizing: border-box;
+            }
+            .color_btns input[type="radio"] {
+                display: none;
+                position: absolute;
+                box-sizing: border-box;
+            }
+            .color_btns label {
+                border: 2px solid transparent;
+                cursor: pointer;
+                transition: border-color 0.3s ease;
+            }
+
+
+
+            .color_btns label:hover {
+                opacity: 0.8;
+                border-color: #2818bb;
+            }
+        </style>
     </head>
     <body>
     <div class="container">
@@ -50,6 +88,14 @@
                     <h1 class="card-title mb-3 display-4" style="font-size: 50px">{{ $product->name }}</h1>
                     <p class="card-text mb-3" style="font-size: 40px">{{ $product->description }}</p>
                     <p class="card-text" style="font-size: 30px">Ціна: {{ $product->price }}</p>
+                    <div class="color_btns">
+                        @foreach($colorProduct as $index => $productColor)
+                            <label class="radio_enabled {{ $loop->first ? 'active' : '' }}"
+                                   style="background-color: {{ strtolower($productColor->color->name) }};">
+                                <input type="radio" name="color_input" value="{{ $productColor->color->name }}" {{ $loop->first ? 'checked' : '' }}>
+                            </label>
+                        @endforeach
+                    </div>
                     <p class="card-text" style="font-size: 30px">Характеристика:
                     <ul>
                         <li style="font-size: 20px">Тип матеріалу : {{ $product->characteristics->type_of_material }}</li>

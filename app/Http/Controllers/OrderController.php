@@ -8,6 +8,7 @@ use App\Models\HistoryOrder;
 use App\Models\Order;
 use App\Models\Post;
 use App\Models\Referral;
+use App\Models\Status;
 use App\Models\TotalSalary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,21 +20,41 @@ class OrderController extends Controller
     public function showOrders(Request $request)
     {
         $user = auth()->user();
+//        $orders = Order::where('user_id', $user->id)
+//            ->with(['historyOrders.product.images','status'])
+//            ->get();
 
-        // Отримання всіх замовлень користувача разом з історією замовлень та статусами
-        $orders = Order::where('user_id', $user->id)
-            ->with(['historyOrders.status'])
-            ->get();
 
-        // Для кожного замовлення обчислімо статуси
+        // Завантажуємо замовлення разом з історією та статусом
+        $orders = Order::with(['historyOrders.product.images', 'status'])->get();
+        $statuses = Status::all();
+
+        // Для кожного замовлення перевіряємо статус
         foreach ($orders as $order) {
-            $order->status_names = $order->historyOrders->map(function ($historyOrder) {
-                return $historyOrder->status->name ?? 'Статус не встановлений';
-            })->unique()->join(', '); // Об'єднуємо унікальні статуси в рядок
+            // Якщо статус існує, зберігаємо його ім'я, інакше встановлюємо дефолтне значення
+            $order->status_name = $order->status ? $order->status->name : 'Статус не встановлений';
         }
 
-        return view('orders.order', compact('orders'));
+        return view('orders.order', compact('orders', 'statuses'));
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+
+        // Перевірка валідності статусу
+        $request->validate([
+            'status_id' => 'required|exists:statuses,id',
+        ]);
+
+        // Оновлення статусу
+        $order->update([
+            'status_id' => $request->status_id,
+        ]);
+
+        return response()->json(['message' => 'Статус успішно змінено']);
+    }
+
     public function showOrderForm(){
 
         $posts = Post::all();
@@ -67,7 +88,6 @@ class OrderController extends Controller
             'user_id' => Auth::id(),
             'total_price' => $request->total_price,
             'total_count' => $request->total_count,
-            'status' => 'pending', // Или другой статус по умолчанию
             'index' => $validatedData['index'],
             'comment' => $validatedData['comment'],
             'postal_branch_number' => $validatedData['postal_branch_number'],
@@ -77,6 +97,7 @@ class OrderController extends Controller
             'city' => $validatedData['city'],
             'country' => $validatedData['country'],
             'phone_number' => $validatedData['phone_number'],
+            'status_id' =>1,
         ]);
 
         // Получите корзину из сессии

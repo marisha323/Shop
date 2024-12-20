@@ -26,7 +26,7 @@ class ProductController extends Controller
         $products = Product::with(['images'])
             ->latest()
             ->paginate(12);
-        return view('products',compact('products','categories'));
+        return view('products', compact('products', 'categories'));
     }
 
     public function show($id)
@@ -82,8 +82,8 @@ class ProductController extends Controller
         $categories = Category::all();
         $characteristics = Characteristics::all();
         $discounts = DiscountProducts::all();
-        $colors=Color::all();
-        return view('product/create_product', compact('categories', 'characteristics', 'discounts','colors'));
+        $colors = Color::all();
+        return view('product/create_product', compact('categories', 'characteristics', 'discounts', 'colors'));
     }
 
     /**
@@ -100,17 +100,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-         $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
             'count' => 'required|integer',
             'description' => 'required|string',
             'price' => 'required|numeric',
             'category_id' => 'required|integer',
             'characteristics_id' => 'required|integer',
-             'characteristics_color_id' => 'required|array', // Змінено для роботи з масивом кольорів
-             'characteristics_color_id.*' => 'integer',
+            'characteristics_color_id' => 'required|array', // Змінено для роботи з масивом кольорів
+            'characteristics_color_id.*' => 'integer',
             'discount_products_id' => 'required|integer',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif',
         ]);
 
 
@@ -162,12 +162,12 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::with('colors')->findOrFail($id);
+        $product = Product::with('images', 'colors')->findOrFail($id);
         $categories = Category::all();
         $characteristics = Characteristics::all();
         $discounts = DiscountProducts::all();
-        $colors=Color::all();
-        return view('product/edit', compact('product', 'categories', 'characteristics', 'discounts','colors'));
+        $colors = Color::all();
+        return view('product/edit', compact('product', 'categories', 'characteristics', 'discounts', 'colors'));
     }
 
     /**
@@ -185,8 +185,9 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'characteristics_id' => 'required|exists:characteristics,id',
             'discount_products_id' => 'required|exists:discount_products,id',
-            'new_colors' => 'required|array', // Змінено для роботи з масивом кольорів
+            'new_colors' => 'nullable|array', // Змінено для роботи з масивом кольорів
             'new_colors.*' => 'integer',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
 
@@ -202,11 +203,28 @@ class ProductController extends Controller
         $product->characteristics_id = $request->characteristics_id;
         $product->discount_products_id = $request->discount_products_id;
 
-        foreach ($request->new_colors as $color_id) {
-            ProductColor::create([
-                'product_id' => $product->id,
-                'color_id' => $color_id,
-            ]);
+        if (is_array($request->new_colors)) {
+            foreach ($request->new_colors as $color_id) {
+                ProductColor::create([
+                    'product_id' => $product->id,
+                    'color_id' => $color_id,
+                ]);
+            }
+        }
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $imageFile) {
+                $path = $imageFile->store('images/image_product', 'public');
+                $fullUrl = url(Storage::url($path));
+
+                $image = Image::create([
+                    'ImageUrl' => $fullUrl,
+                ]);
+                ProductImage::create([
+                    'product_id' => $product->id,
+                    'image_id' => $image->id,
+                ]);
+            }
         }
         $product->save();
 
@@ -225,5 +243,28 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('product.indexf')->with('success', 'Продукт успешно удален!');
+    }
+
+    public function delete_image_products($productId, $photoId)
+    {
+        // Спробуємо знайти зв'язок між продуктом і фото
+        $productPhoto = ProductImage::where('product_id', $productId)
+            ->where('image_id', $photoId)
+            ->first();
+
+        if ($productPhoto) {
+            // Видалити зв'язок
+            $productPhoto->delete();
+        }
+
+        // Незалежно від наявності зв'язку, намагаємось видалити фото
+        $image = Image::find($photoId);
+        if ($image) {
+            $image->delete(); // Видаляємо фото
+            return response()->json(['success' => true]);
+        }
+
+        // Якщо фото не знайдено
+        return response()->json(['success' => false, 'message' => 'Фото не знайдено.']);
     }
 }

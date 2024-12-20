@@ -82,6 +82,9 @@ Route::put('color/{id}', [ColorController::class, 'update'])->name('color.update
 Route::delete('color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
 // Для видалення кольору
 Route::delete('product/{productId}/color/{colorId}', [ColorController::class, 'delete_color'])->name('color.delete_color');
+// Для видалення фото
+Route::delete('product/{productId}/image/{photoId}', [ProductController::class, 'delete_image_products'])->name('product.delete_image_products');
+
 
 
 //Brands
@@ -111,7 +114,7 @@ Route::get('/products/category/{id}', [HomeController::class, 'showCategory'])->
 
 //ORDERS
 Route::get('/orders/order',[OrderController::class,'showOrders'])->name('orders.order');
-
+Route::put('/history-orders/{historyOrder}/status', [OrderController::class, 'updateStatus']);
 
 
 //Route::get('/dashboard', function () {

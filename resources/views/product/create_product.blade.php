@@ -2,7 +2,9 @@
 @section('content_header')
     <head>
         <style>
-
+            body:not(.layout-fixed) .main-sidebar {
+                width: 20%; /* Нова ширина */
+            }
             .container {
                 background-color: #fff;
                 padding: 20px;

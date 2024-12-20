@@ -5,7 +5,13 @@
 <head>
     <title>Список брендов</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body:not(.layout-fixed) .main-sidebar {
+            width: 20%; /* Нова ширина */
+        }
+    </style>
 </head>
+
 <body>
 <div class="container">
     <h1 class="mt-5 mb-3">Список брендов</h1>
