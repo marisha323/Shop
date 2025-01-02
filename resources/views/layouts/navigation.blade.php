@@ -15,8 +15,8 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                        {{ __('profile.edit') }}
+                    <x-nav-link :href="route('orders.order_user')" :active="request()->routeIs('profile.edit')">
+                        {{ __('List of all orders') }}
                     </x-nav-link>
                 </div>
 
@@ -57,8 +57,6 @@
                     </x-slot>
                 </x-dropdown>
                 @if (Auth::check())
-                    <p>Current user: {{ Auth::user()->name }} (Role: {{ Auth::user()->role->name }})</p>
-
                     @if (Auth::user()->role->name == 'admin')
                         {{-- ADMIN PANEL --}}
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

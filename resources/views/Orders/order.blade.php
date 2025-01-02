@@ -60,9 +60,6 @@
                     </td>
                     <td>{{ $order->total_price }}</td>
                     <td>{{ $order->total_count }}</td>
-{{--                    @php--}}
-{{--                    dd( $order->status . $order->status->name );--}}
-{{--                    @endphp--}}
                     <td> {{ $order->status->name ?? 'Статус не встановлений' }}
                         <select class="form-select status-select" data-history-order-id="{{ $order->id }}">
                             @foreach($statuses as $status)
