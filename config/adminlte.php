@@ -325,15 +325,23 @@ return [
         ],
 
         [
-            'text' => 'Categories',
+            'text' => 'Категории',
             'url' => 'category/index',
             'icon' => 'far fa-fw fa-file',
 //            'label' => 4,
             'label_color' => 'success',
         ],
         [
-            'text' => 'Products',
+            'text' => 'Продукты',
             'url' => 'product/index',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 4,
+            'label_color' => 'success',
+
+        ],
+        [
+            'text' => 'Список всех заказов',
+            'url' => 'orders/order',
             'icon' => 'far fa-fw fa-file',
             'label' => 4,
             'label_color' => 'success',
@@ -348,7 +356,11 @@ return [
 
         ],
         [
+//<<<<<<< HEAD
             'text' => 'characteristics',
+//=======
+            'text' => 'Характеристика',
+//>>>>>>> origin/Front_end_and_Back_end_Marina
             'url' => 'characteristics/index',
             'icon' => 'far fa-fw fa-file',
 //            'label' => 4,
@@ -356,21 +368,21 @@ return [
 
         ],
         [
-            'text' => 'Colors',
+            'text' => 'Цвет',
             'url' => 'color/index',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
 
         ],
         [
-            'text' => 'Brands',
+            'text' => 'Бренд',
             'url' => 'brand/index',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
 
         ],
         [
-            'text' => 'All Users',
+            'text' => 'Все пользователы',
             'url' => 'user/users',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',

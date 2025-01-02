@@ -39,8 +39,10 @@ Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit')
 Route::put('user/{id}', [UserController::class, 'update'])->name('user.update');
 
 Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+Route::get('/orders', [OrderController::class, 'showOrderForm'])->name('order.order');
 
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+Route::get('/information', [HomeController::class, 'information'])->name('information');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
 //REFERAl LINK
@@ -52,6 +54,7 @@ Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
+Route::patch('/cart/update/{id}',[CartController::class,'updateQuantity'])->name('cart.update');
 
 
 // Category
@@ -78,6 +81,12 @@ Route::post('/color/store', [ColorController::class, 'store'])->name('color.stor
 Route::get('color/{id}/edit', [ColorController::class, 'edit'])->name('color.edit');
 Route::put('color/{id}', [ColorController::class, 'update'])->name('color.update');
 Route::delete('color/{id}', [ColorController::class, 'destroy'])->name('color.destroy');
+// Для видалення кольору
+Route::delete('product/{productId}/color/{colorId}', [ColorController::class, 'delete_color'])->name('color.delete_color');
+// Для видалення фото
+Route::delete('product/{productId}/image/{photoId}', [ProductController::class, 'delete_image_products'])->name('product.delete_image_products');
+
+
 
 //Brands
 Route::get('/brand/index', [BrandController::class, 'index'])->name('brand.index');
@@ -89,7 +98,17 @@ Route::delete('brand/{id}', [BrandController::class, 'destroy'])->name('brand.de
 
 
 //Products
+//<<<<<<< HEAD
 Route::get('/product/index',[ProductController::class,'index'])->name('product.index-product');
+//=======
+Route::get('/products', [ProductController::class, 'products'])->name('products.home');
+Route::get('product/info/{id}', [ProductController::class, 'show'])->name('product.show');
+Route::post('/product/{itemName}/updateColor', [ProductController::class, 'updateColor'])->name('product.updateColor');
+
+
+
+Route::get('/product/index',[ProductController::class,'index'])->name('product.indexf');
+//>>>>>>> origin/Front_end_and_Back_end_Marina
 Route::get('/product/{id}/info', [ProductController::class, 'info'])->name('product.info');
 Route::get('product/add', [ProductController::class, 'create'])->name('product.add');
 Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
@@ -100,7 +119,7 @@ Route::get('/products/category/{id}', [HomeController::class, 'showCategory'])->
 
 //ORDERS
 Route::get('/orders/order',[OrderController::class,'showOrders'])->name('orders.order');
-
+Route::put('/history-orders/{historyOrder}/status', [OrderController::class, 'updateStatus']);
 
 
 //Route::get('/dashboard', function () {
@@ -119,8 +138,6 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('/add-product', [ProductController::class, 'create_product'])->name('admin.create_product');
     });
 });
-
-
 require __DIR__.'/auth.php';
 //Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
 //Route::get('/product/index',[ProductController::class,'index'])->name('product.index');

@@ -15,7 +15,8 @@ class HistoryOrder extends Model
         'count',
         'product_id',
         'StatusId',
-        'order_id'
+        'order_id',
+         'color_id',
 
     ];
 
@@ -40,5 +41,8 @@ class HistoryOrder extends Model
     {
         return $this->belongsTo(Order::class, 'order_id');
     }
-
+    public function color()
+    {
+        return $this->belongsTo(Color::class, 'color_id', 'id');
+    }
 }

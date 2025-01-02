@@ -39,7 +39,10 @@ class HomeController extends Controller
 //    }
     public function index()
     {
-        $products = Product::with('images')->get();
+        $products = Product::with(['images'])
+            ->latest() // Сортуємо за датою створення (created_at) у зворотному порядку
+            ->take(12) // Беремо тільки 12 записів
+            ->get();
         $categories = Category::all();
 
         $user = Auth::user();
@@ -53,6 +56,17 @@ class HomeController extends Controller
 
         return view('welcome', compact('categories', 'products', 'referralLink'));
     }
+    public function information()
+    {
+//        $products = Product::with('images')->get();
+//        $categories = Category::all();
+//
+//        $user = Auth::user();
+//        $referralLink = (new HomeController)->generateReferralLink($user);
+        //dd($products);
+        return view('information');
+
+    }
 
 
 
@@ -61,8 +75,10 @@ class HomeController extends Controller
         // Витягнути категорію разом з продуктами за ідентифікатором категорії
         $category = Category::with('products.images')->findOrFail($categoryId);
 
+        $products = $category->products()->with('images')->latest()->paginate(12);
+
         $categories = Category::all();
-        return view('product/category', compact('category','categories'));
+        return view('product/category', compact('category','categories','products'));
     }
 
     public function search(Request $request)

@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use function Pest\Laravel\json;
 
 class CartController extends Controller
 {
@@ -17,13 +18,15 @@ class CartController extends Controller
         $total = array_sum(array_map(function($item) {
             return $item['price'] * $item['quantity'];
         }, $cart));
+//        dd($cart);
 
         return view('cart.cart', compact('cart', 'total','posts'));
     }
 
     public function add(Request $request)
     {
-        $product = Product::with('images')->find($request->product_id);
+
+        $product = Product::with(['images', 'firstColor.color'])->find($request->product_id);
 
         if (!$product) {
             return redirect()->back()->with('error', 'product not found.');
@@ -32,24 +35,30 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
 
         if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity']++;
+            $cart[$product->id]['quantity']+= $request->quantity ?? 1;
         } else {
             // Add product to the cart with its details
             $cart[$product->id] = [
                 'name' => $product->name,
-                'quantity' => 1,
+                'quantity' => $request->quantity ?? 1,
                 'price' => $product->price,
                 'images' => $product->images->map(function ($image) {
                     return [
                         'ImageUrl' => $image->ImageUrl,
                     ];
                 })->toArray(),
+                'color' => $request->color ?? $product->firstColor && $product->firstColor->color,
+
             ];
         }
-
         session()->put('cart', $cart);
 
+//<<<<<<< HEAD
         return redirect()->back()->with('success', 'product added to cart.');
+//=======
+
+//        return redirect()->back()->with('success', 'Product added to cart.');
+//>>>>>>> origin/Front_end_and_Back_end_Marina
 
     }
 
@@ -72,4 +81,23 @@ class CartController extends Controller
         // Логика для отображения содержимого корзины
         return view('cart.cart');
     }
+
+    public function updateQuantity(Request $request,$id){
+        if ($request->session()->has('cart')){
+            $cart=$request->session()->get('cart');
+            if (isset($cart[$id])){
+                $cart[$id]['quantity']=$request->quantity;
+                $request->session()->put('cart',$cart);
+            }
+        }
+        return response()->json(['success'=>true,'total'=>$this->calculateTotal($request->session()->get('cart'))]);
+    }
+    public function calculateTotal($cart){
+        $total=0;
+        foreach ($cart as $item){
+            $total+=$item['price']*$item['quantity'];
+        }
+        return $total;
+    }
 }
+

@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
+@extends('adminlte::page')
+@section('content_header')
 <head>
     <title>Create Characteristic</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body:not(.layout-fixed) .main-sidebar {
+            width: 20%; /* Нова ширина */
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
@@ -55,3 +62,4 @@
 </div>
 </body>
 </html>
+@stop

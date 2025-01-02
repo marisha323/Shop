@@ -2,9 +2,16 @@
 <html>
 @extends('adminlte::page')
 @section('content_header')
+
     <head>
         <title>Список продуктов</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/admin_table.css') }}">
+        <style>
+            body:not(.layout-fixed) .main-sidebar {
+                width: 20%; /* Нова ширина */
+            }
+        </style>
     </head>
     <body>
     <div class="container">
@@ -30,25 +37,28 @@
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
-                    <td>{{ $product->name }}</td>
+                    <td class="text-truncate" title="{{ $product->name }}">{{ $product->name }}</td>
                     <td>{{ $product->count }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td class="text-truncate" title="{{ $product->description }}">{{ $product->description }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->category->title }}</td>
                     <td>{{ $product->created_at->format('d.m.Y H:i') }}</td>
 
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <td>
-                            <a href="{{ route('product.info', $product->id) }}" class="btn btn-info">Перегляд</a>
+                            <a href="{{ route('product.info', $product->id) }}" class="btn btn-info btn-sm">Просмотр</a>
                         </td>
                         <td>
-                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning">Редактировать</a>
+                            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Редактировать</a>
                         </td>
                         <td>
-                            <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline-block;">
+                            <form action="{{ route('product.destroy', $product->id) }}" method="POST"
+                                  style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Вы уверены, что хотите удалить этот продукт?')">Удалить</button>
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Вы уверены, что хотите удалить этот продукт?')">Удалить
+                                </button>
                             </form>
                         </td>
 
@@ -59,5 +69,4 @@
         </table>
     </div>
     </body>
-</html>
 @stop

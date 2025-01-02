@@ -1,101 +1,160 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ asset('css/cart.css') }}">
+@section('title', 'Cart')
+@extends('layouts.main_nav')
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Styles -->
-    <style>
-        /* Styles here */
-    </style>
-</head>
-<body class="antialiased">
-
-<div class="container mt-5">
-    <a href="{{ route('welcome') }}" class="btn btn-primary">Вернуться к покупкам</a>
-
-    <h1>Cart</h1>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+<div class="cart_container">
     @if(session('cart'))
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach(session('cart') as $id => $details)
-                <tr>
-                    <td>
-                        @if(!empty($details['images']))
-                            <img src="{{ $details['images'][0]['ImageUrl'] }}" alt="{{ $details['name'] }}" class="img-fluid" style="width: 50px; height: 50px; margin-right: 10px;">
-                        @endif
-                        {{ $details['name'] }}
-                    </td>
-                    <td>{{ $details['quantity'] }}</td>
-                    <td>${{ $details['price'] }}</td>
-                    <td>${{ $details['price'] * $details['quantity'] }}</td>
-                    <td>
-                        <form action="{{ route('cart.remove', $id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div class="text-right">
-            <strong>Total: ${{ $total }}</strong>
+    <h1>Your Cart</h1>
+
+    <div class="display_list_info">
+        <div class="emp_d"><p>Added Items:</p></div>
+        <p>Color</p>
+        <p>Price</p>
+        <p>Quantity</p>
+        <p>Total Price</p>
+    <div></div>
+    </div>
+    <hr>
+
+    @foreach(session('cart') as $id=> $details)
+    <div class="product" data-id="{{ $id }}">
+        @if(!empty($details['images']))
+        <img src="{{$details['images'][0]['ImageUrl']}}" alt="{{$details['name']}}" class="product-image">
+        @endif
+        <div class="product-info">
+            <div class="name_des">
+                <h2>{{$details['name']}}</h2>
+
+            </div>
+
+            <div class="color_des">
+                @if (!empty($details['color']))
+                    <button class="color_button" style="background-color: {{ $details['color'] }}"></button>
+                @else
+                    <p>Колір не вказаний</p>
+                @endif
+            </div>
+            <p class="product-price unit-price">${{$details['price']}}</p>
+            <div class="quantity-control">
+                <button class="decrease">-</button>
+                <span class="quantity">{{$details['quantity'] }}</span>
+                <button class="increase">+</button>
+            </div>
+            <p class="product-price total-price">${{ $details['price'] * $details['quantity'] }}</p>
+            <form action="{{ route('cart.remove', $id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+            <button class="remove-product">X</button>
+            </form>
         </div>
-
-        <!-- Checkout Form -->
-        <form action="{{ route('order.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="total_price" value="{{ $total }}">
-            <input type="hidden" name="total_count" value="{{ count(session('cart')) }}">
-            <div class="mb-3">
-                <label for="index" class="form-label">Индекс</label>
-                <input type="text" class="form-control" id="index" name="index">
-            </div>
-            <div class="mb-3">
-                <label for="comment" class="form-label">Комментарий</label>
-                <textarea class="form-control" id="comment" name="comment"></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="post" class="form-label">Выберите почту</label>
-                <select id="post" name="post_id" class="form-select">
-                    <option value="" selected>Выберите почту</option>
-                    @foreach($posts as $post)
-                        <option value="{{ $post->id }}">{{ $post->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="postal_branch_number" class="form-label">Номер отделения почты</label>
-                <input type="text" class="form-control" id="postal_branch_number" name="postal_branch_number">
-            </div>
-
-
-            <button type="submit" class="btn btn-outline-success">Оформить заказ</button>
-        </form>
-
-
-
+    </div>
+    @endforeach
+    <hr>
+    <div class="subtotal">
+        <p><strong>Subtotal:</strong> <span id="subtotal-price">${{$total}}</span></p>
+    </div>
+        <a href="{{ route('order.order') }}">
+    <button class="checkout">PROCEED TO CHECKOUT</button>
+        </a>
     @else
         <p>Your cart is empty.</p>
-@endif
+    @endif
+</div>
 
-</body>
-</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const quantityControls = document.querySelectorAll('.quantity-control');
+        let subtotal = 0; // Initialize subtotal
+
+        quantityControls.forEach(control => {
+            const decreaseButton = control.querySelector('.decrease');
+            const increaseButton = control.querySelector('.increase');
+            const quantityDisplay = control.querySelector('.quantity');
+            const unitPriceElement = control.closest('.product-info').querySelector('.unit-price');
+            const totalPriceDisplay = control.closest('.product-info').querySelector('.total-price');
+            const subtotalDisplay = document.getElementById('subtotal-price');
+
+            function updateTotalPrice(quantity) {
+                const unitPrice = parseFloat(unitPriceElement.textContent.replace('$', '')); // Get unit price
+                const totalPrice = (unitPrice * quantity).toFixed(2); // Calculate total price
+                totalPriceDisplay.textContent = `$${totalPrice}`; // Update total price display
+                return totalPrice; // Return total price for subtotal calculation
+            }
+
+            function updateSubtotal() {
+                subtotal = 0; // Reset subtotal
+                document.querySelectorAll('.product').forEach(product => {
+                    const quantity = parseInt(product.querySelector('.quantity').textContent);
+                    const unitPrice = parseFloat(product.querySelector('.unit-price').textContent.replace('$', ''));
+                    subtotal += unitPrice * quantity; // Add to subtotal
+                });
+                subtotalDisplay.textContent = `$${subtotal.toFixed(2)}`; // Update subtotal display
+            }
+
+            // decreaseButton.addEventListener('click', () => {
+            //     let currentQuantity = parseInt(quantityDisplay.textContent);
+            //     if (currentQuantity > 1) { // Ensure quantity doesn't go below 1
+            //         currentQuantity--;
+            //         quantityDisplay.textContent = currentQuantity;
+            //         updateTotalPrice(currentQuantity); // Update total price
+            //         updateSubtotal(); // Update subtotal
+            //     }
+            // });
+
+            // increaseButton.addEventListener('click', () => {
+            //     let currentQuantity = parseInt(quantityDisplay.textContent);
+            //     currentQuantity++;
+            //     quantityDisplay.textContent = currentQuantity;
+            //     updateTotalPrice(currentQuantity); // Update total price
+            //     updateSubtotal(); // Update subtotal
+            // });
+
+            // Initialize total price and subtotal on page load
+            updateTotalPrice(parseInt(quantityDisplay.textContent));
+            updateSubtotal();
+        });
+    });
+
+
+
+    // update session quantity product
+
+    document.querySelectorAll('.quantity-control button').forEach(button=>{
+        button.addEventListener('click',function (){
+            const product =this.closest('.product');
+            const quantitySpan=product.querySelector('.quantity');
+            const totalPriceElement=product.querySelector('.total-price');
+            const unitPrice=parseFloat(product.querySelector('.unit-price').textContent.replace('$',''));
+            const productId=product.dataset.id;
+            let newQuantity=parseInt(quantitySpan.textContent);
+
+            if(this.classList.contains('increase')){
+                newQuantity++;
+            } else if (this.classList.contains('decrease')&& newQuantity>1){
+                newQuantity--;
+            }
+            quantitySpan.textContent=newQuantity;
+            totalPriceElement.textContent=`$${(unitPrice*newQuantity.toFixed(1))}`;
+
+            fetch(`/cart/update/${productId}`,{
+                method:'PATCH',
+                headers:{
+                    'Content-Type':'application/json',
+                    'X-CSRF-TOKEN':document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body:JSON.stringify({quantity:newQuantity}),
+            })
+                .then(response=>response.json())
+                .then(data=>{
+                if (data.success){
+                    document.getElementById('subtotal-price').textContent=`$${data.total.toFixed(2)}`;
+                }
+                })
+                .catch(error=>console.error('Error',error));
+        });
+    });
+
+</script>
+@endsection

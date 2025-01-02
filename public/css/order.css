@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap');
+html{
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body {
+    /* background-image: url('/images/bg__vd_lr.png'); */
+    background-color: #0E4D3B;
+    background-size: cover; /* Ensures the image covers the entire viewport */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    background-position: center; /* Centers the image in the viewport */
+    background-attachment: fixed; /* Optional: keeps the background fixed during scroll */
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-container {
+    margin: 3rem;
+    display: flex;
+    width: 80vw;
+    max-width: 1200px;
+    background-color: white;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.address-info {
+    width: 65vw;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    color: white;
+    /* background-color: #139975; */
+    background-color: #061F18;
+}
+.address-info h2{
+    color: #FEF0CC;
+}
+.product-info {
+    width: 35vw;
+    padding: 20px;
+    background-color: #FFFFFF;
+    position: sticky;
+}
+
+h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.custom-textarea {
+    width: 90%; /* Зробити текстове поле на всю ширину батьківського контейнера */
+    height: 55px; /* Висота */
+    padding: 10px; /* Внутрішній відступ */
+    font-size: 16px; /* Розмір шрифту */
+    font-family: Arial, sans-serif; /* Шрифт */
+    border: 2px solid #10654E; /* Рамка */
+    border-radius: 5px; /* Закруглені кути */
+    background-color: #D6DAD9; /* Фон */
+    color: black; /* Колір тексту */
+    resize: vertical; /* Дозволити змінювати розмір тільки по вертикалі */
+}
+
+.custom-textarea:focus {
+    outline: none; /* Видалити стандартну рамку при фокусі */
+    border-color: #0056b3; /* Змінити колір рамки при фокусі */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Додати тінь */
+}
+
+.custom-select {
+    width: 93%; /* Ширина select */
+    height: 40px; /* Висота select */
+    padding: 5px; /* Внутрішній відступ */
+    font-size: 16px; /* Розмір тексту */
+    color: black;/* Color for the placeholder text */
+    font-weight: 500; /* Font weight for the placeholder text */
+    font-family: "Roboto Slab", serif;
+    background-color: #f9f9f9; /* Колір фону */
+    border: 2px solid #10654E; /* Рамка */
+    border-radius: 5px; /* Закруглення кутів */
+    appearance: none; /* Сховати стандартний стиль браузера */
+    -webkit-appearance: none; /* Для Safari */
+    -moz-appearance: none; /* Для Firefox */
+}
+
+.custom-select:focus {
+    outline: none; /* Видалити стандартний фокус */
+    border-color: #0056b3; /* Колір рамки при фокусі */
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); /* Додати тінь при фокусі */
+}
+
+.custom-select option {
+    padding: 10px; /* Відступи для опцій */
+    background-color: #ffffff; /* Колір фону опцій */
+    color: #996D6D;; /* Колір тексту */
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust spacing between checkbox and label */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.checkbox-container input[type="checkbox"] {
+    accent-color: #007bff; /* Optional: Color of the checkbox */
+}
+
+.checkbox-container label {
+    font-size: 16px; /* Adjust font size as needed */
+    margin: 0; /* Remove default margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #D6DAD9;
+    color: black; /* Text color for input */
+}
+
+.form-group input::placeholder {
+    color: #996D6D; /* Color for the placeholder text */
+    font-weight: 500; /* Font weight for the placeholder text */
+    font-family: "Roboto Slab", serif;
+}
+.form-group textarea::placeholder {
+    color: #996D6D; /* Color for the placeholder text */
+    font-weight: 500; /* Font weight for the placeholder text */
+    font-family: "Roboto Slab", serif;
+}
+
+
+
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.payment-info {
+    margin-top: 30px;
+}
+
+.payment-info h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.payment-info .form-group {
+    margin-bottom: 15px;
+}
+
+.payment-info .form-group label {
+    font-weight: bold;
+}
+
+.payment-info .form-group input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.product-list {
+    margin-top: 20px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9; /* Light background for the product item */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition effects */
+    cursor: pointer;
+    font-family: "Roboto Slab", serif;
+}
+
+.product-item:hover {
+    background-color: #f0f0f0; /* Slightly darker background on hover */
+    transform: scale(1.02); /* Slightly enlarge the item on hover */
+}
+
+.product-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+.product-item:hover .product-image {
+    border-color: #007bff; /* Change border color on hover */
+}
+
+.product-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-name {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.product-quantity,
+.product-price {
+    font-size: 16px !important;
+    margin: 5px 0;
+    color: #666;
+}
+
+.product-quantity strong {
+    color: #007bff; /* Highlight label text */
+}
+
+.product-details p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.summary {
+    text-align: center;
+    font-size: 18px; /* Larger font size for emphasis */
+    font-weight: bold;
+    color: #333;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #f5f5f5; /* Light background color */
+    border: 2px solid #007bff; /* Border color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition effects */
+}
+
+.summary:hover {
+    background-color: #e0e0e0; /* Slightly darker background on hover */
+    border-color: #0056b3; /* Darker border color on hover */
+}
+.billing-address-section {
+    display: block; /* Default to block to ensure it's visible when not checked */
+    margin-top: 20px;
+}
+
+.billing-address-section .form-group {
+    margin-bottom: 15px;
+}
+
+.billing-address-section label {
+    font-weight: bold;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1100; /* Ensure the modal is above the blur overlay */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Centered horizontally */
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%; /* Adjust width as needed */
+    text-align: center;
+    position: relative;
+    z-index: 1100; /* Ensure modal content is above the blur overlay */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+/* Loading animation */
+.loading-animation {
+    font-family: 'Roboto', sans-serif; /* Apply the custom font */
+    font-size: 22px; /* Slightly larger font size */
+    color: #007bff; /* Stylish blue color */
+    position: relative; /* For positioning the animation */
+    text-align: center; /* Center-align the text */
+    text-shadow: 0 0 5px rgba(0,0,0,0.3); /* Subtle shadow effect */
+    animation: loadingAnimation 1.5s infinite; /* Add a pulsating animation */
+}
+
+.loading-animation::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: #007bff; /* Color of the spinning part */
+    animation: spin 1s linear infinite;
+    margin: 0 auto; /* Center the spinner */
+}
+.loading-animation::after {
+    content: '...'; /* Initial content */
+    display: inline-block; /* Inline block for animation */
+    animation: dot-flashing 1.5s infinite; /* Apply the dot flashing animation */
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes dot-flashing {
+    0% {
+        content: '...'; /* Three dots */
+    }
+    25% {
+        content: '.  '; /* One dot */
+    }
+    50% {
+        content: '.. '; /* Two dots */
+    }
+    75% {
+        content: '...'; /* Three dots */
+    }
+    100% {
+        content: '...'; /* Loop back to three dots */
+    }
+}
+
+/* Confirmation message */
+.confirmation-message {
+    font-family: 'Roboto', sans-serif; /* Apply the custom font */
+    font-size: 24px; /* Increase font size */
+    font-weight: 500; /* Bold text */
+    color: green; /* Text color */
+    margin-bottom: 20px; /* Space below the message */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Vertically center checkmark with text */
+    letter-spacing: 1px; /* Add spacing between letters */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Add subtle shadow */
+}
+
+
+
+/* Continue button */
+#continueButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block; /* Make sure button is displayed */
+    margin-top: 20px; /* Add space above the button */
+}
+
+/* Close button */
+button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}

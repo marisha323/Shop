@@ -19,7 +19,17 @@ class Order extends Model
         'comment',
         'postal_branch_number',
         'post_id',
+        'full_name',
+        'address',
+        'city',
+        'country',
+        'phone_number',
+        'status_id',
     ];
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 
     // Определяем связь с моделью User
     public function user()
@@ -39,10 +49,7 @@ class Order extends Model
         return $this->hasMany(HistoryOrder::class, 'order_id');
     }
 
-    public function status()
-    {
-        return $this->belongsTo(Status::class, 'StatusId'); // 'status' - це назва стовпця у таблиці orders
-    }
+
 
 
 

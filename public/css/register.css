@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+body {
+    background-image: url('/images/bg__vd_lr.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+}
+h1, h2, p{
+    padding: 0;
+    margin: 0;
+}
+.centr_l_r{
+    margin: 0 auto;
+    display: flex;
+    width: 70vw;
+    height: 75vh;
+}
+form{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
+    height: 75vh;
+    background-color: white;
+    color: black;
+    border-radius: 0 1vw 1vw 0;
+}
+form h1{
+    color: #139975;
+}
+.login_{
+    background-color: #139975;
+    color: white;
+    width: 30vw;
+    height: 75vh;
+    border-radius: 1vw 0 0 1vw;
+    display: flex;
+    flex-direction: column;
+}
+.login_ h2 {
+    padding: 0.5vw;
+    font-size: 16px;
+    font-weight: 400;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adjust the values as needed */
+}
+.w_login{
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8vw;
+}
+.w_login a{
+    border: 2px solid white;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    font-size: 24px;
+    border-radius: 3vw;
+    margin: 0 auto;
+    color: white;
+    text-decoration: none;
+}
+.name{
+    background-color: #D6DAD9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+}
+#name{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    width: 18rem;
+}
+.icon_name{
+    content: url('/icons/n_i.png');
+    width: 1.5rem;
+}
+.email{
+    background-color: #D6DAD9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+}
+#email{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    width: 18rem;
+}
+.icon_email{
+    content: url('/icons/m_i.png');
+    width: 1.5rem;
+}
+.password{
+    background-color: #D6DAD9;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+}
+#password, #password_confirmation{
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    width: 18rem;
+}
+.icon_pass{
+    content: url('/icons/l_i.png');
+    width: 1.5rem;
+}
+.btn{
+    font-size: 24px;
+    background-color: #139975;
+    color: white;
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    border: none;
+    border-radius: 2vw;
+    cursor: pointer;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+}
+.remember_m{
+    margin-left: -13rem;
+}
