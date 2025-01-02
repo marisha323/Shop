@@ -348,6 +348,14 @@ return [
 
         ],
         [
+            'text' => 'Список всех размеров',
+            'url' => '/size/table',
+            'icon' => 'far fa-fw fa-file',
+            'label' => 4,
+            'label_color' => 'success',
+
+        ],
+        [
             'text' => 'Реєстрація користувача',
             'url' => "register",
             'icon' => 'far fa-fw fa-file',

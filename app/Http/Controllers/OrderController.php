@@ -37,6 +37,28 @@ class OrderController extends Controller
 
         return view('orders.order', compact('orders', 'statuses'));
     }
+    public function showOrdersUser(Request $request)
+    {
+        $user = auth()->user();
+//        $orders = Order::where('user_id', $user->id)
+//            ->with(['historyOrders.product.images','status'])
+//            ->get();
+
+
+        // Завантажуємо замовлення разом з історією та статусом
+        $orders = Order::where('user_id', $user->id)
+            ->with(['historyOrders.product.images', 'status'])
+            ->get();
+        $statuses = Status::all();
+
+        // Для кожного замовлення перевіряємо статус
+        foreach ($orders as $order) {
+            // Якщо статус існує, зберігаємо його ім'я, інакше встановлюємо дефолтне значення
+            $order->status_name = $order->status ? $order->status->name : 'Статус не встановлений';
+        }
+
+        return view('orders.order_user', compact('orders', 'statuses'));
+    }
 
     public function updateStatus(Request $request, $id)
     {

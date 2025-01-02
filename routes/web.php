@@ -11,6 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\TelegramBotController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -114,7 +115,18 @@ Route::get('/products/category/{id}', [HomeController::class, 'showCategory'])->
 
 //ORDERS
 Route::get('/orders/order',[OrderController::class,'showOrders'])->name('orders.order');
+Route::get('/orders/order/user',[OrderController::class,'showOrdersUser'])->name('orders.order_user');
 Route::put('/history-orders/{historyOrder}/status', [OrderController::class, 'updateStatus']);
+
+
+//Size
+Route::get('/size/table',[SizeController::class,'index'])->name('size.table_size');
+Route::get('/size/add',[SizeController::class,'create'])->name('size.add');
+Route::post('/size/store',[SizeController::class,'store'])->name('size.store');
+Route::get('/size/edit',[SizeController::class,'edit'])->name('size.edit');
+Route::put('/size/update/{id}',[SizeController::class,'update'])->name('size.update');
+Route::delete('/size/{id}',[SizeController::class,'destroy'])->name('size.destroy');
+
 
 
 //Route::get('/dashboard', function () {
